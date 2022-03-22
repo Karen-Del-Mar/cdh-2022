@@ -25,9 +25,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/prueba', function () {
-    return view('dashboard.contact.index');
-});
+// Route::get('/prueba', function () {
+//     return view('dashboard.partials.header2');
+// });
 
 
 Auth::routes();

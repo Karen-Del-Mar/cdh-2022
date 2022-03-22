@@ -74,9 +74,11 @@ class VacancyController extends Controller
      * @param  \App\Models\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vacancy $vacancy)
+    public function edit($id)
     {
-        //
+        $vacancy = (Vacancy::where('id', $id)->get())[0];
+
+        return view('dashboard.vacancies.edit',['vacancy'=>$vacancy]); 
     }
 
     /**
@@ -86,9 +88,18 @@ class VacancyController extends Controller
      * @param  \App\Models\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vacancy $vacancy)
+    public function update(Request $request, $id)
     {
-        //
+        $vacancy = (Vacancy::where('id', $id)->get())[0];      
+        $vacancy ->job = $request->job;
+        $vacancy ->profile = $request->profile;
+        $vacancy ->payment = $request->payment;
+        $vacancy ->availability = $request->availability ;
+       // $vacancy ->hidden = $request->hidden;
+
+        $vacancy ->save();
+      
+        return back()->with('status', 'Experiencia actualizada exitosamente');
     }
 
     /**
@@ -97,9 +108,12 @@ class VacancyController extends Controller
      * @param  \App\Models\Vacancy  $vacancy
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vacancy $vacancy)
-    {
-        //
+    public function destroy($id)
+    {   
+         $vacancy = (Vacancy::where('id', $id)->get())[0];
+         $vacancy->delete();
+         return back()->with('status', "La vacante ha sido eliminada con éxito");
+        
     }
 
     public function index_perfil(){
