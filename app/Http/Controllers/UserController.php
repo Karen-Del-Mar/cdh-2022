@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Employer;
 use App\Models\Solicitude;
+use App\Models\Vacancy;
+use App\Models\Student;
+
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Hash;
 use Adldap\Laravel\Facades\Adldap;
@@ -69,12 +72,26 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+        $user = (User::where('id', $id)->get())[0];
+
+        if($user->rol_id == 2){
+            $employer = (Employer::where('id_user', $id)->get())[0];
+            $id_employer = $employer->id;
+
+            $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id")
+                     ->where("vacancies.id_employer","=",$id_employer)
+                     ->get());
+    
+            return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer, 'vacancies'=>$lista]);
+    
+        }
        
-        // $user = (User::where('id', $id)->get())[0];
-        // $employer = (Employer::where('id_user', $id)->get())[0];
-        // return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer]);
-      
+        if($user->rol_id == 3){
+            $student = (Student::where('id_user', $id)->get())[0];
+
+            return view('dashboard.students.show',['user'=>$user, 'student'=>$student]);
+        }     
     }
 
     /**

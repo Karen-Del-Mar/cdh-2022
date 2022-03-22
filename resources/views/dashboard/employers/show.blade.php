@@ -54,13 +54,13 @@
             <div class="card-body">
                 <h5 class="card-title" style="color:#0069A3">Descripción</h5>
                 <p class="card-text">{{ $employer->description }}</p>
-                <div class="d-flex">
+                <div class="d-lg-flex d-sm-block">
                     <p class="card-text" style="margin-right: 2%; font-weight:bold">Dirección</p>
                     <p class="card-text" style="margin-right: 2%">{{ $employer->location }}</p>
                     <p class="card-text" style="margin-right: 2%; font-weight:bold">Teléfono</p>
                     <p class="card-text" style="margin-right: 2%">{{ $user->phone }}</p>
                     <p class="card-text" style="margin-right: 2%; font-weight:bold">Correo</p>
-                    <p class="card-text" style="margin-right: 2%">{{ $user->email }}</p>
+                    <div class="card-text" style="margin-right: 2%; word-wrap: break-word;"><span> {{ $user->email }} </span> </div>
                 </div>
             </div>
         </div>
@@ -80,6 +80,9 @@
     #profile {
         width: 50%;
         height: 50%;
+    }
+    .card-text span{
+        word-wrap: break-word;
     }
 
 </style>
