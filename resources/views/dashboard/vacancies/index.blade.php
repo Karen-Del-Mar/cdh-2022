@@ -1,0 +1,88 @@
+@extends('dashboard.master')
+@section('content')
+
+
+    <div class="container light-blue">
+        @if (session('status'))
+        @endif
+
+        @if (Auth::guest())
+
+        @else
+
+            @if (auth()->user()->rol->key == 'employer')
+                <a href="{{ route('vacancies.create') }}" class="mt-4 btn btn-success btn-lg mb-3">
+                    Nueva vacante
+                </a>
+            @endif
+        @endif
+
+        <div class="justify-content-center row">
+
+            @foreach ($vacancies as $vacancy)
+                <br>
+                <div class="card w-75" style="margin: 2%">
+                    <div class="card-body">
+                        <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}</h5>
+                        <div class="d-flex">
+                            <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->company }}</p>
+                            <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->email }}</p>
+                            <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->location }}</p>
+
+                        </div>
+
+                        <div class="d-flex">
+                            <p class="card-text" style="margin-right: 2%; font-weight:bold">Perfil requerido:</p>
+                            <p class="card-text" style="margin-right: 2%">{{ $vacancy->profile }}</p>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex">
+                                    <p class="card-text" style="margin-right: 2%; font-weight:bold">Horario:</p>
+                                    <p class="card-text" style="margin-right: 2%">{{ $vacancy->availability }}</p>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="card-text" style="margin-right: 2%; font-weight:bold">Encargado:</p>
+                                    <p class="card-text" style="margin-right: 2%">{{ $vacancy->name }}</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex">
+                                    <p class="card-text" style="margin-right: 2%; font-weight:bold">Salario:</p>
+                                    <p class="card-text" style="margin-right: 2%">${{ $vacancy->payment }}</p>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="card-text" style="margin-right: 2%; font-weight:bold">Contacto:</p>
+                                    <p class="card-text" style="margin-right: 2%">{{ $vacancy->phone }}</p>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" alt=""
+                                    class="mr-1" id="profile" width="100%">
+                            </div>
+                        </div>
+
+                    </div>
+                    <a href="{{ route('vacancies.show', $vacancy->id) }}" class="btn btn-info"><strong>Aplicar?</strong></a>
+
+                </div><br>
+
+                {{-- TODO --}}
+                {{-- <a href="{{ route('vacancies.edit', $vacancy->id) }}" class="btn btn-info btn-sm">Editar</a>
+                        <form id="eliminarVacante" action="{{ route('admins.destroy',$vacancy->id) }}"
+                            data-action="{{ route('vacancies.destroy', $vacancy->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form> --}}
+
+            @endforeach
+        </div>
+    </div>
+@endsection
+<style>
+    .light-blue {
+        background: #d9eaf5;
+    }
+
+</style>
