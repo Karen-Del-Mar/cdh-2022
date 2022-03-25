@@ -110,10 +110,10 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {   
-        dd($id);
-        //  $vacancy = (Vacancy::where('id', $id)->get())[0];
-        //  $vacancy->delete();
-        //  return back()->with('status', "La vacante ha sido eliminada con éxito");
+        
+         $vacancy = (Vacancy::where('id', $id)->get())[0];
+         $vacancy->delete();
+         return back()->with('status', "La vacante ha sido eliminada con éxito");
 
         
         

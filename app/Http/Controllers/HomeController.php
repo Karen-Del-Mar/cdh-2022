@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Solicitude;
 use App\Models\Postulate;
 use App\Models\Vacancy;
+use App\Models\Contract;
+
 
 class HomeController extends Controller
 {
@@ -48,18 +50,14 @@ class HomeController extends Controller
                     ->where("postulates.state","=",1)
                     ->get();
 
+            $lista_student = Contract::join("students", "students.id", "=", "contracts.id_student")
+                    ->join("users", "users.id", "=", "students.id_user")
+                    ->select("users.name", "users.email", "users.phone", "contracts.start_date",
+                            "contracts.final_date", "contracts.description", "contracts.payment",
+                            "contracts.job")
+                    ->get();
 
-                    // $lista = Postulate::join("students","students.id","=","postulates.id_student")
-                    // ->join("users","users.id","=","students.id_user")
-                    // ->join("vacancies","vacancies.id","=","postulates.id_vacancy")
-                    // ->join("employers","employers.id","=","vacancies.id_employer")
-                    // ->select("postulates.id","postulates.created_at","users.name","users.email",
-                    // "vacancies.job","vacancies.profile","users.document","postulates.id_vacancy","vacancies.id_employer")
-                    // ->where("vacancies.id_employer","=",'employers.id')
-                    // ->where("postulates.state","=",1)
-                    // ->get();
-
-             return view('home', ['lista'=>$lista]);
+             return view('home', ['lista'=>$lista, 'lista_student' => $lista_student]);
         }
         if(auth()->user()->rol->key=='student')
         {

@@ -72,16 +72,10 @@
     
                                     <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancy->id }}">
     
-                                    <button type="submit" class="btn btn-outline-success btn-sm">Postularme</button>
+                                    <button type="submit" class="btn btn-success btn-sm">Postularme</button>
                                 </form>
 
-                            {{-- <form class="delete-form"
-                                action="{{ route('vacancies.destroy', ['vacancy' => $vacancy->id]) }}" method="post">
-
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-primary">Eliminar</button>
-                            </form> --}}
+                           
                         @endif
                     @endif
 

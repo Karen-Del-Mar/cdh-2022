@@ -17,7 +17,7 @@
             <br>
             <div class="card w-75" style="margin: 2%">
                 <div class="card-body">
-                  
+
                     <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}</h5>
 
                     <div class="d-flex">
@@ -48,18 +48,27 @@
                     <a href="/login" class="btn btn-info">Aplicar</a>
                 @else
                     @if (auth()->user()->id === $user->id)
+                        
                         <div class="btn-group btn-group-sm">
+                            <div class="col-2">
+                                {{-- Falta poner la opción de vigencia en el form para no recibir más postulaciones  --}}
 
-                            <a href="{{ route('vacancies.edit', $vacancy->id) }}"
-                                class="btn btn-info btn-sm">Editar</a>
-{{-- Se ve muy feo y no deja eliminar si hay postulaciones tampoco funciona el modal -_-
-                            <form action="{{ route('vacancies.destroy', ['vacancy' => $vacancy->id]) }}"
-                                method="post">
-                                @method('DELETE')
-                                @csrf
+                                <a href="{{ route('vacancies.edit', $vacancy->id) }}"
+                                    class="btn btn-primary btn-sm">Editar</a>
+                            </div>
 
-                                <button class="btn btn-info" type="submit">Delete</button>
-                            </form> --}}
+                            <div class="col-2">
+                                {{-- no deja eliminar si hay postulaciones  --}}
+
+                                <form action="{{ route('vacancies.destroy', ['vacancy' => $vacancy->id]) }}"
+                                    method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                </form>
+
+                            </div>
+
                         </div>
                     @endif
 
@@ -70,7 +79,7 @@
 
                                 <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancies->id }}"> --}}
 
-                            <button type="submit" class="btn btn-success btn-sm">Postularme</button>
+                            <button type="submit" class="btn btn-info btn-sm">Postularme</button>
                         </form>
                     @endif
                 @endif

@@ -8,6 +8,7 @@ use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PostulateController;
+use App\Http\Controllers\ContractController;
 
 
 /*
@@ -25,9 +26,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/prueba', function () {
-//     return view('dashboard.partials.header2');
-// });
+Route::get('/prueba', function () {
+    return view('dashboard.contracts.index');
+});
 
 
 Auth::routes();
@@ -80,3 +81,7 @@ Route::get('/conoce_mas', function () {
 Route::get('/contact', function () {
         return view('dashboard.contact.index');
     })->name('contact');
+
+Route::get('/contracts/{id}/{id_postulate}', [ContractController::class, 'create_contract'])
+                ->name('contracts.created_contract');
+Route::resource('contracts', ContractController::class);

@@ -87,6 +87,8 @@
                                                     @include('dashboard.postulates.index')
                                                 </div>
                                                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                    <a href="{{ route('contracts.index') }} ">Contratos..</a>
+                                                    {{-- @include('dashboard.contracts.index') --}}
                                                     <p>  auctor nisl. Nulla facilisi. Integer imperdiet faucibus ante. In eget sem non ex consectetur pharetra. Fusce sollicitudin purus sit amet dolor pulvinar congue. Donec luctus facilisis malesuada. Duis lobortis neque vel tortor aliquet sollicitudin. Donec sit amet dui mauris. Morbi in mattis libero, in sagittis nisl. Suspendisse tempor, mi pellentesque dictum venenatis, ipsum nisi lobortis risus, non finibus nisi ex vitae dolor. Duis augue nulla, finibus ut turpis ac, dictum laoreet sapien. Morbi vel ullamcorper dolor. Ut tempus sed metus quis consequat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean tempor pharetra nisi ut aliquet. Phasellus sit amet justo enim. </p>
                                                 </div>                                               
                                             </div>
