@@ -15,9 +15,9 @@ class VacancyController extends Controller
      */
     public function index()
     {
-        $lista = (Employer::join("vacancies", "vacancies.id_employer","=","employers.id")
+        $lista = (Employer::select("users.name","employers.company","users.email","vacancies.job","employers.location","users.phone", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id")
+        ->join("vacancies", "vacancies.id_employer","=","employers.id")
         ->join("users", "users.id", "=", "employers.id_user")
-        ->select("users.name","employers.company","users.email","vacancies.job","employers.location","users.phone", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id")
         ->orderby("vacancies.created_at", "desc")
         ->get());
         return view('dashboard.vacancies.index',['vacancies'=> $lista]);
@@ -110,9 +110,12 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {   
-         $vacancy = (Vacancy::where('id', $id)->get())[0];
-         $vacancy->delete();
-         return back()->with('status', "La vacante ha sido eliminada con éxito");
+        dd($id);
+        //  $vacancy = (Vacancy::where('id', $id)->get())[0];
+        //  $vacancy->delete();
+        //  return back()->with('status', "La vacante ha sido eliminada con éxito");
+
+        
         
     }
 

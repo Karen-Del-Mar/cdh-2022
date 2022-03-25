@@ -35,7 +35,7 @@ class StoreUserRequest extends FormRequest
     }
 
     public function messages(){
-        return = [
+        return [
             'name.required' => 'nombre requerido.',
         ];
     }

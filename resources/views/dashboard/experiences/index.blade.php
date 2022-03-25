@@ -44,7 +44,7 @@
                         @endif
                     @endif
                 </div>
-
+                @endforeach
                 <form action="{{ route('experience.update', ['experience' => $experience->id]) }}" method="post">
 
                     @method('PUT')
@@ -121,7 +121,7 @@
                     </div>
 
                 </form>
-            @endforeach
+            
 
 
 

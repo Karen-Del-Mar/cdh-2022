@@ -7,9 +7,7 @@
         @endif
 
         @if (Auth::guest())
-
         @else
-
             @if (auth()->user()->rol->key == 'employer')
                 <a href="{{ route('vacancies.create') }}" class="mt-4 btn btn-success btn-lg mb-3">
                     Nueva vacante
@@ -63,26 +61,48 @@
                         </div>
 
                     </div>
-                    <a href="{{ route('vacancies.show', $vacancy->id) }}" class="btn btn-info"><strong>Aplicar?</strong></a>
+                    @if (Auth::guest())
+                        <a href="/login" class="btn btn-info">Aplicar</a>
+                    @else
+                        @if (auth()->user()->rol->key === 'student')
+                            
+                                <form action="{{ route('postulates.store') }}" method="POST">
+                                    @csrf
+                                    <input id="id_user" hidden name="id_user" value="{{ auth()->user()->id }}">
+    
+                                    <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancy->id }}">
+    
+                                    <button type="submit" class="btn btn-outline-success btn-sm">Postularme</button>
+                                </form>
+
+                            {{-- <form class="delete-form"
+                                action="{{ route('vacancies.destroy', ['vacancy' => $vacancy->id]) }}" method="post">
+
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Eliminar</button>
+                            </form> --}}
+                        @endif
+                    @endif
+
 
                 </div><br>
-
-                {{-- TODO --}}
-                {{-- <a href="{{ route('vacancies.edit', $vacancy->id) }}" class="btn btn-info btn-sm">Editar</a>
-                        <form id="eliminarVacante" action="{{ route('admins.destroy',$vacancy->id) }}"
-                            data-action="{{ route('vacancies.destroy', $vacancy->id) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form> --}}
-
             @endforeach
         </div>
+
     </div>
 @endsection
+
+
+
+
 <style>
     .light-blue {
         background: #d9eaf5;
     }
 
 </style>
+
+<script>
+ 
+</script>

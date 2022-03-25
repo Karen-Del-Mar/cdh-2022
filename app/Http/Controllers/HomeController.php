@@ -41,13 +41,23 @@ class HomeController extends Controller
         if(auth()->user()->rol->key=='employer')
         {
             // $lista = Postulate::get();
-            $lista = Postulate::join("users","users.id","=","postulates.id_student")
+            $lista = Postulate::join("students","students.id","=","postulates.id_student")
+                    ->join("users","users.id","=","students.id_user")
                     ->join("vacancies","vacancies.id","=","postulates.id_vacancy")
-                    ->select("postulates.id","postulates.created_at","users.name","users.email",
-                    "vacancies.job","vacancies.profile","users.document","postulates.id_vacancy","vacancies.id_employer")
-                    ->where("vacancies.id_employer","=",auth()->user()->id)
+                    ->select("postulates.id","postulates.created_at","users.name","users.email","vacancies.job","vacancies.profile", "users.id AS id_user")
                     ->where("postulates.state","=",1)
                     ->get();
+
+
+                    // $lista = Postulate::join("students","students.id","=","postulates.id_student")
+                    // ->join("users","users.id","=","students.id_user")
+                    // ->join("vacancies","vacancies.id","=","postulates.id_vacancy")
+                    // ->join("employers","employers.id","=","vacancies.id_employer")
+                    // ->select("postulates.id","postulates.created_at","users.name","users.email",
+                    // "vacancies.job","vacancies.profile","users.document","postulates.id_vacancy","vacancies.id_employer")
+                    // ->where("vacancies.id_employer","=",'employers.id')
+                    // ->where("postulates.state","=",1)
+                    // ->get();
 
              return view('home', ['lista'=>$lista]);
         }

@@ -17,7 +17,7 @@
             <br>
             <div class="card w-75" style="margin: 2%">
                 <div class="card-body">
-                    <h1>{{ $vacancy->id }}</h1>
+                  
                     <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}</h5>
 
                     <div class="d-flex">

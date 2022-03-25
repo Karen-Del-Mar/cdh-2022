@@ -7,7 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\ExperienceController;
-use App\Http\Controllers\PostulateeController;
+use App\Http\Controllers\PostulateController;
 
 
 /*
