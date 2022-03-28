@@ -42,7 +42,11 @@ class HomeController extends Controller
                             ->join("users","users.id","=","employers.id_user")
                             ->get();
 
-            return view('home', ['lista'=>$lista, 'lista_student'=>$lista_student, 'users'=>$list_employer_dis]);
+            $list_vacancies_dis = Vacancy::where("vacancies.hidden", 1)
+                            ->join("employers","employers.id","=","vacancies.id_employer")
+                            ->get();
+
+            return view('home', ['lista'=>$lista, 'lista_student'=>$lista_student, 'users'=>$list_employer_dis, 'vacancies'=>$list_vacancies_dis]);
         }
 
         if(auth()->user()->rol->key=='employer')

@@ -1,16 +1,5 @@
-@extends('dashboard.master')
-@section('content')
-
-
     <div class="container">
         @if (session('status'))
-        @endif
-
-        @if (Auth::guest())
-        @else
-            @if (auth()->user()->rol->key == 'employer')
-                <a href="{{ route('vacancies.create') }}" class="btn btn-info btn-sm mb-3">Nueva vacante</a>
-            @endif
         @endif
 
         <div class="table-responsive">
@@ -18,6 +7,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Empleo</th>
+                        <th scope="col">Empresa</th>
                         <th scope="col">Perfil requerido</th>
                         <th scope="col">Disponibilidad</th>
                         <th scope="col">Salario</th>
@@ -27,6 +17,7 @@
                     @foreach ($vacancies as $vacancy)
                         <tr>
                             <td>{{ $vacancy->job }}</td>
+                            <td>{{ $vacancy->company }}</td>
                             <td>{{ $vacancy->profile }}</td>
                             <td>{{ $vacancy->availability }}</td>
                             <td>{{ $vacancy->payment }}</td>
@@ -49,4 +40,3 @@
             </table>
         </div>
     </div>
-@endsection
