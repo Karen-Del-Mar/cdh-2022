@@ -6,22 +6,22 @@
             <li>Oportunidades laborales para 
                 estudiantes
             </li>
-            <br><br>
+            <br>
             <li>
                 Ingresos extras para los 
                 estudiantes. 
             </li>
-            <br><br>
+            <br>
             <li>
                 Espacio de formación y 
                 aprendizaje. 
             </li>
-            <br><br>
+            <br>
             <li>
                 Dar a conocer el nombre de la 
                 universidad
             </li>
-            <br><br>
+         
         </ul>
 
     </div>

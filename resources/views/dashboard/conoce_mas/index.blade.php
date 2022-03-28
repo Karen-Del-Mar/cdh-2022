@@ -1,7 +1,7 @@
 @extends('dashboard.master')
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container mt-4 col-8">
 
         <div class="accordion" id="accordionExample">
 
