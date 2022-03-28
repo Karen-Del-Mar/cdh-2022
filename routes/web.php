@@ -45,7 +45,7 @@ Route::resource('vacancies', VacancyController::class);
 Route::post('/userEmployer/{id}', [EmployerController::class, 'accept_request'])
     ->name('userEmployer.accept_request');
 
-Route::put('/userEmployer/{id}', [EmployerController::class, 'disable_employer'])
+Route::put('/userEmployer/{id}/{action}', [EmployerController::class, 'disable_employer'])
     ->name('employer.disable_employer');
 
 

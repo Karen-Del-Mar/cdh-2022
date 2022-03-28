@@ -39,9 +39,14 @@
                                     {{ __('Deshabilitar perfil') }}
                                 </a>
                             @else
-                            <a class="btn btn-success" href="{{ route('employer.confirm_disable', $user) }}">
+                            {{-- <a class="btn btn-success" href="{{ route('employer.disable_employer', [$user, false]) }}">
                                 {{ __('Habilitar perfil') }}
-                            </a>
+                            </a> --}}<h1>{{$employer->id}}</h1>
+                            <form action="{{route('employer.disable_employer', ['id' => $employer->id, 0])}}" method="post">
+                                @method('PUT')
+                                @csrf
+                                <button type="submit" class="btn btn-warning btn-sm">Habilitar cuenta</button>
+                            </form>
                             @endif
                         @endif
                     </div>

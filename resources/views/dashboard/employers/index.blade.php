@@ -4,8 +4,10 @@
 
 
     <div class="container">
-
-        <hr>
+@if (sizeof($employers) == 0 )
+    <h1>Todavia no se registran empresas</h1>
+@endif
+        
         <div class="row px-sm-2 px-0 pt-3">
             @foreach ($employers as $employer)
                 <div class="col-md-4 offset-md-0 offset-sm-2 offset-1 col-sm-8 col-10 offset-sm-2 offset-1 mb-3">

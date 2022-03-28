@@ -21,10 +21,10 @@ class EmployerController extends Controller
     {
         // Listar solo las empresas que están habilitadas 
         // Envia lista de empresas y lista de usuarios asociados a esas empresas
-        $users;
+        $users = null;
 
         $employers = Employer::where('hidden', 0)->get();
-
+        
         foreach ($employers as $employer) {
             $users = User::where('id', $employer->id_user)->get();
 
@@ -171,9 +171,15 @@ class EmployerController extends Controller
         return view('dashboard.employers.disable',['employer'=>$employer]);
     }
 
-    public function disable_employer($id){
+    public function disable_employer($id, $action){
+        
         $employer = (Employer::where('id', $id)->get())[0];
-        $employer -> hidden = 1;
+
+        if($action == 1){
+            $employer -> hidden = 1;}
+        else{
+            $employer -> hidden = 0;
+        }
         $employer -> save();
 
         return redirect()->route('employer.index');

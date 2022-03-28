@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <h6>Gestionar Solicitudes</i></h6>
+        <h6>Lista de empresas inhabilitadas</i></h6>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
