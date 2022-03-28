@@ -75,7 +75,6 @@
                                     <button type="submit" class="btn btn-success btn-sm">Postularme</button>
                                 </form>
 
-                           
                         @endif
                     @endif
 

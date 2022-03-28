@@ -8,6 +8,7 @@ use App\Models\Solicitude;
 use App\Models\Postulate;
 use App\Models\Vacancy;
 use App\Models\Contract;
+use App\Models\Employer;
 
 
 class HomeController extends Controller
@@ -37,7 +38,11 @@ class HomeController extends Controller
             $lista_student = User::where("rol_id","=",3)
                             ->get();
 
-            return view('home', ['lista'=>$lista, 'lista_student'=>$lista_student]);
+            $list_employer_dis = Employer::where("hidden", 1)
+                            ->join("users","users.id","=","employers.id_user")
+                            ->get();
+
+            return view('home', ['lista'=>$lista, 'lista_student'=>$lista_student, 'users'=>$list_employer_dis]);
         }
 
         if(auth()->user()->rol->key=='employer')

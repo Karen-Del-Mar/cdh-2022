@@ -62,7 +62,7 @@ class EmployerController extends Controller
      */
     public function show($id)
     {
-       
+      
         $user = (User::where('id', $id)->get())[0];
         $employer = (Employer::where('id_user', $id)->get())[0];
 
@@ -176,7 +176,7 @@ class EmployerController extends Controller
         $employer -> hidden = 1;
         $employer -> save();
 
-        return view('dashboard.employers.index',['users'=>$users,'employers'=>$employers]);
+        return redirect()->route('employer.index');
     }
 
     public function disable_list(){

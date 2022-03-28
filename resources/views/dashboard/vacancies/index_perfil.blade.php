@@ -48,23 +48,25 @@
                     <a href="/login" class="btn btn-info">Aplicar</a>
                 @else
                     @if (auth()->user()->id === $user->id)
-                        
                         <div class="btn-group btn-group-sm">
-                            <div class="col-2">
-                                {{-- Falta poner la opción de vigencia en el form para no recibir más postulaciones  --}}
-
-                                <a href="{{ route('vacancies.edit', $vacancy->id) }}"
-                                    class="btn btn-primary btn-sm">Editar</a>
-                            </div>
-
-                            <div class="col-2">
-                                {{-- no deja eliminar si hay postulaciones  --}}
+                            <div class="d-flex">
+                                {{-- Falta poner la opción de vigencia en el form para no recibir más postulaciones --}}
+                                <form>
+                                    <a href="{{ route('vacancies.edit', $vacancy->id) }}"
+                                        class="btn btn-primary btn-sm">Editar</a>
+                                </form>
+                                <form>
+                                    <a class="btn btn-success btn-sm"
+                                        href="{{ route('postulates.list_postulates_vacancy', $vacancy->id) }}">Ver
+                                        postulaciones</a>
+                                </form>
+                                {{-- no deja eliminar si hay postulaciones --}}
 
                                 <form action="{{ route('vacancies.destroy', ['vacancy' => $vacancy->id]) }}"
                                     method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                    <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
                                 </form>
 
                             </div>
@@ -75,9 +77,10 @@
                     @if (auth()->user()->rol->key === 'student')
                         <form action="{{ route('postulates.store') }}" method="POST">
                             @csrf
-                            {{-- <input id="id_student" hidden name="id_student" value="{{ auth()->user()->id }}">
 
-                                <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancies->id }}"> --}}
+                            <input id="id_user" hidden name="id_user" value="{{ auth()->user()->id }}">
+
+                            <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancy->id }}">
 
                             <button type="submit" class="btn btn-info btn-sm">Postularme</button>
                         </form>

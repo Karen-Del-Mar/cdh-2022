@@ -70,5 +70,14 @@ class UserSeeder extends Seeder
             'phone'=>'3105204692',
             'rol_id' => '2'
         ]);
+
+        User::create([
+            'document'=>'9898767651',
+            'name'=> 'Paulina Vega',
+            'email' =>'paulina123@hotmail.com',
+            'password'=>bcrypt('12345678'),
+            'phone'=>'3105204900',
+            'rol_id' => '2'
+        ]);
     }
 }

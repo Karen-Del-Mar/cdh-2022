@@ -106,4 +106,16 @@ class PostulateController extends Controller
     {
         //
     }
+
+    public function postulate_vacancy($id_vacancy){
+
+        $lista = Postulate::join("students","students.id","=","postulates.id_student")
+        ->join("users","users.id","=","students.id_user")
+        ->select("postulates.id","postulates.created_at","users.name","users.email", "users.id AS id_user", "students.career")
+        ->where("postulates.state","=",1)
+        ->where("postulates.id_vacancy", "=",$id_vacancy )
+        ->get();
+
+        return view('dashboard.postulates.index_postulateforv', ['lista'=>$lista]);
+    }
 }

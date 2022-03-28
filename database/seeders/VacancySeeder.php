@@ -55,6 +55,15 @@ class VacancySeeder extends Seeder
             'availability' => "Todos los días de 6 a 11 pm",
             'hidden'=>0,
         ]);
+
+        Vacancy::create([
+            'id_employer' => 3,
+            'job' => "Modelo en el estudio X",
+            'profile' => "Persona proactiva con conocimiento en  cuidar aldultos mayores",
+            'payment' => 500000,
+            'availability' => "Todos los días de 6 a 11 pm",
+            'hidden'=>1,
+        ]);
         
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');
     }

@@ -34,10 +34,14 @@
                                     {{ __('Editar perfil') }}
                                 </a>
                             @endif
-                            @if (auth()->user()->rol->key === 'admin')
+                            @if (auth()->user()->rol->key === 'admin' && $employer->hidden == 0)
                                 <a class="btn btn-danger" href="{{ route('employer.confirm_disable', $user) }}">
                                     {{ __('Deshabilitar perfil') }}
                                 </a>
+                            @else
+                            <a class="btn btn-success" href="{{ route('employer.confirm_disable', $user) }}">
+                                {{ __('Habilitar perfil') }}
+                            </a>
                             @endif
                         @endif
                     </div>

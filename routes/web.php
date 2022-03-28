@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('/prueba', function () {
-    return view('dashboard.contracts.index');
+    return view('dashboard.partials.prueba');
 });
 
 
@@ -84,4 +84,8 @@ Route::get('/contact', function () {
 
 Route::get('/contracts/{id}/{id_postulate}', [ContractController::class, 'create_contract'])
                 ->name('contracts.created_contract');
+
 Route::resource('contracts', ContractController::class);
+
+Route::get('/postulate/{id}', [PostulateController::class, 'postulate_vacancy'])
+                ->name('postulates.list_postulates_vacancy');
