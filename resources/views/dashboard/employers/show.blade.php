@@ -39,14 +39,12 @@
                                     {{ __('Deshabilitar perfil') }}
                                 </a>
                             @else
-                            {{-- <a class="btn btn-success" href="{{ route('employer.disable_employer', [$user, false]) }}">
-                                {{ __('Habilitar perfil') }}
-                            </a> --}}<h1>{{$employer->id}}</h1>
-                            <form action="{{route('employer.disable_employer', ['id' => $employer->id, 0])}}" method="post">
-                                @method('PUT')
-                                @csrf
-                                <button type="submit" class="btn btn-warning btn-sm">Habilitar cuenta</button>
-                            </form>
+                                <form action="{{ route('employer.disable_employer', ['id' => $employer->id, 0]) }}"
+                                    method="post">
+                                    @method('PUT')
+                                    @csrf
+                                    <button type="submit" class="btn btn-warning btn-sm">Habilitar cuenta</button>
+                                </form>
                             @endif
                         @endif
                     </div>
@@ -69,7 +67,8 @@
                     <p class="card-text" style="margin-right: 2%; font-weight:bold">Teléfono</p>
                     <p class="card-text" style="margin-right: 2%">{{ $user->phone }}</p>
                     <p class="card-text" style="margin-right: 2%; font-weight:bold">Correo</p>
-                    <div class="card-text" style="margin-right: 2%; word-wrap: break-word;"><span> {{ $user->email }} </span> </div>
+                    <div class="card-text" style="margin-right: 2%; word-wrap: break-word;"><span>
+                            {{ $user->email }} </span> </div>
                 </div>
             </div>
         </div>
@@ -78,7 +77,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
         <br><br>
         <div class="card w-75">
-        
+
 
             @include('dashboard.vacancies.index_perfil')
         </div>
@@ -90,7 +89,8 @@
         width: 50%;
         height: 50%;
     }
-    .card-text span{
+
+    .card-text span {
         word-wrap: break-word;
     }
 

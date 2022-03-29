@@ -127,7 +127,7 @@
 
             <div class="p-3 bg-white mt-2 rounded text-center mb-5">
                 <h5>¿Eres egresado? Contáctanos para compartir tu experiencia</h5>
-                <a class="btn btn-primary btn-sm px-3" href="/teams">Contacto</a>
+                <a class="btn btn-primary btn-sm px-3" href="/contact">Contacto</a>
             </div>
         </div>
 

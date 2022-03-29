@@ -4,30 +4,37 @@
 
 
     <div class="container">
-@if (sizeof($employers) == 0 )
-    <h1>Todavia no se registran empresas</h1>
-@endif
-        
+        @if (sizeof($employers) == 0)
+            <h1>Todavia no se registran empresas</h1>
+        @endif
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+
         <div class="row px-sm-2 px-0 pt-3">
             @foreach ($employers as $employer)
                 <div class="col-md-4 offset-md-0 offset-sm-2 offset-1 col-sm-8 col-10 offset-sm-2 offset-1 mb-3">
                     <div class="card" style="background-color: rgb(236, 236, 236);">
                         <div class="d-flex justify-content-center">
 
-                            <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" class="product" alt="">
+                            <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" class="product"
+                                alt="">
 
-                        </div> <b class="px-2">
-                            <p class="h4">{{ $employer->company }}</p>
-                        </b>
-                        <div class="d-flex align-items-center justify-content-start rating border-top border-bottom py-2">
-                            <div class="text-muted text-uppercase px-2 border-right">Ofertas 6</div>
-                            <div class="px-lg-2 px-1"> <span class="fas fa-star"></span> <span
-                                    class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                    class="fas fa-star"></span> <span class="fas fa-star"></span> <a href="#"
-                                    class="px-lg-2 px-1 reviews">{3 Reviews}</a> </div>
+                        </div>
+                        <div id="search">
+                            <b class="px-2">
+                                <p class="h4">{{ $employer->company }}</p>
+                            </b>
+                            <div
+                                class="d-flex align-items-center justify-content-start rating border-top border-bottom py-2">
+                                <div class="text-muted text-uppercase px-2 border-right">Ofertas 6</div>
+                                <div class="px-lg-2 px-1"> <span class="fas fa-star"></span> <span
+                                        class="fas fa-star"></span> <span class="fas fa-star"></span> <span
+                                        class="fas fa-star"></span> <span class="fas fa-star"></span> <a href="#"
+                                        class="px-lg-2 px-1 reviews">{3 Reviews}</a> </div>
+                            </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-between py-2 px-3">
-                            <a href="{{ route('employer.show', $employer->id_user) }}" class="btn btn-dark text-uppercase">
+                            <a href="{{ route('employer.show', $employer->id_user) }}"
+                                class="btn btn-dark text-uppercase">
                                 Ver</a>
                             {{-- <div> <button class="btn btn-dark text-uppercase"> Ver </button> </div> --}}
                         </div>
@@ -36,7 +43,7 @@
             @endforeach
         </div>
     </div>
-
+    
 @endsection
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Lora&family=Roboto+Slab&display=swap');
@@ -47,7 +54,7 @@
         box-sizing: border-box
     }
 
-   
+
 
     select {
         border-radius: 20px;
@@ -145,3 +152,14 @@
     }
 
 </style>
+
+<script>
+    $(document).ready(function() {
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#search *").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
