@@ -56,15 +56,24 @@ class ContractController extends Controller
     {
         Contract::create($request->validated());
 
-        $lista = Postulate::join("students","students.id","=","postulates.id_student")
-                    ->join("users","users.id","=","students.id_user")
-                    ->join("vacancies","vacancies.id","=","postulates.id_vacancy")
-                    ->select("postulates.id","postulates.created_at","users.name","users.email","vacancies.job","vacancies.profile", "users.id AS id_user")
-                    ->where("postulates.state","=",1)
-                    ->get();
+        $lista_post = Postulate::join("students","students.id","=","postulates.id_student")
+        ->join("users","users.id","=","students.id_user")
+        ->join("vacancies","vacancies.id","=","postulates.id_vacancy")
+        ->join("employers","employers.id","=","vacancies.id_employer")
+        ->select("postulates.id","postulates.created_at","users.name","users.email","vacancies.job","vacancies.profile", "users.id AS id_user")
+        ->where("postulates.state","=",1)
+        ->where("employers.id_user","=",auth()->user()->id)
+        ->get();
+
+        $lista_student = Contract::join("students", "students.id", "=", "contracts.id_student")
+        ->join("users", "users.id", "=", "students.id_user")
+        ->select("users.name", "users.email", "users.phone", "contracts.start_date",
+                "contracts.final_date", "contracts.description", "contracts.payment",
+                "contracts.job")
+        ->get();
 
 
-        return view('home', ['lista' => $lista])->with('status', 'Contrato creado exitosamente');;
+        return view('home', ['lista_post' => $lista_post, 'lista_student' => $lista_student])->with('status', 'Contrato creado exitosamente');;
     }
 
     /**

@@ -34,17 +34,19 @@
                                     {{ __('Editar perfil') }}
                                 </a>
                             @endif
-                            @if (auth()->user()->rol->key === 'admin' && $employer->hidden == 0)
-                                <a class="btn btn-danger" href="{{ route('employer.confirm_disable', $user) }}">
-                                    {{ __('Deshabilitar perfil') }}
-                                </a>
-                            @else
-                                <form action="{{ route('employer.disable_employer', ['id' => $employer->id, 0]) }}"
-                                    method="post">
-                                    @method('PUT')
-                                    @csrf
-                                    <button type="submit" class="btn btn-warning btn-sm">Habilitar cuenta</button>
-                                </form>
+                            @if (auth()->user()->rol->key === 'admin')
+                                @if ($employer->hidden == 0)
+                                    <a class="btn btn-danger" href="{{ route('employer.confirm_disable', $user) }}">
+                                        {{ __('Deshabilitar perfil') }}
+                                    </a>
+                                @else
+                                    <form action="{{ route('employer.disable_employer', ['id' => $employer->id, 0]) }}"
+                                        method="post">
+                                        @method('PUT')
+                                        @csrf
+                                        <button type="submit" class="btn btn-warning btn-sm">Habilitar cuenta</button>
+                                    </form>
+                                @endif
                             @endif
                         @endif
                     </div>

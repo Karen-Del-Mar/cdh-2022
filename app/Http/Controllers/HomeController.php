@@ -52,11 +52,13 @@ class HomeController extends Controller
         if(auth()->user()->rol->key=='employer')
         {
             // $lista = Postulate::get();
-            $lista = Postulate::join("students","students.id","=","postulates.id_student")
+            $lista_post = Postulate::join("students","students.id","=","postulates.id_student")
                     ->join("users","users.id","=","students.id_user")
                     ->join("vacancies","vacancies.id","=","postulates.id_vacancy")
+                    ->join("employers","employers.id","=","vacancies.id_employer")
                     ->select("postulates.id","postulates.created_at","users.name","users.email","vacancies.job","vacancies.profile", "users.id AS id_user")
                     ->where("postulates.state","=",1)
+                    ->where("employers.id_user","=",auth()->user()->id)
                     ->get();
 
             $lista_student = Contract::join("students", "students.id", "=", "contracts.id_student")
@@ -66,12 +68,11 @@ class HomeController extends Controller
                             "contracts.job")
                     ->get();
 
-             return view('home', ['lista'=>$lista, 'lista_student' => $lista_student]);
+             return view('home', ['lista_post'=>$lista_post, 'lista_student' => $lista_student]);
         }
         if(auth()->user()->rol->key=='student')
         {
-            $lista = Vacancy::get();
-             return view('home', ['lista'=>$lista]);
+            
         }
 
         return view('home');

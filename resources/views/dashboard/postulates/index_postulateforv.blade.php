@@ -27,7 +27,7 @@
                                 <td>{{ $postulados->career }}</td>
 
 
-                                <td><a href="{{ route('postulates.show', $postulados->id) }}"
+                                <td><a href="{{ route('postulates.show',['postulate'=> $postulados->id]) }}"
                                         class="btn btn-warning btn-sm">
                                         Ver
                                     </a></td>

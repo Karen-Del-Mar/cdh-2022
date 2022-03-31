@@ -30,7 +30,7 @@ class EmployerController extends Controller
 
         }
 
-        return view('dashboard.employers.prueba2',['users'=>$users,'employers'=>$employers]);
+        return view('dashboard.employers.index',['users'=>$users,'employers'=>$employers]);
     }
 
     /**

@@ -46,10 +46,10 @@ class PostulateController extends Controller
             $postulation->id_student = $student->id;
             $postulation->id_vacancy = $request->id_vacancy;
             $postulation->save();
-
-            return redirect()->route('home')->with('status','Postulación enviada');
+            return back()->with('postulated', 'ok'); // a donde direccionar? perfil, home, vacancies index?
+           // return redirect()->route('home')->with('status','Postulación enviada');
           } catch(\Illuminate\Database\QueryException $ex){
-
+            
             return redirect()->route('vacancies.index')->with('status','Ya estás postulado a esta vacante');
           }
     }
@@ -106,7 +106,9 @@ class PostulateController extends Controller
     {
         //
     }
-
+    /**
+    * Lista las postulaciones según la vacante seleccionada 
+    */
     public function postulate_vacancy($id_vacancy){
 
         $lista = Postulate::join("students","students.id","=","postulates.id_student")

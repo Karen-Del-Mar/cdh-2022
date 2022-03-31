@@ -75,28 +75,19 @@
                     @endif
 
                     @if (auth()->user()->rol->key === 'student')
-                        <form action="{{ route('postulates.store') }}" method="POST">
+                        <form class="formulario-postular" action="{{ route('postulates.store') }}" method="POST">
                             @csrf
 
                             <input id="id_user" hidden name="id_user" value="{{ auth()->user()->id }}">
 
                             <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancy->id }}">
 
-                            <button type="submit" class="btn btn-info btn-sm">Postularme</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Postularme</button>
                         </form>
                     @endif
                 @endif
             </div><br>
         @endforeach
-        {{-- TODO --}}
-        {{-- <a href="{{ route('vacancies.edit', $vacancy->id) }}" class="btn btn-info btn-sm">Editar</a>
-                        <form id="eliminarVacante" action="{{ route('admins.destroy',$vacancy->id) }}"
-                            data-action="{{ route('vacancies.destroy', $vacancy->id) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form> --}}
-
     </div>
 </div>
 
@@ -108,6 +99,26 @@
 </style>
 
 <script>
+    $('.formulario-postular').submit(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Su postulación se enviará al empleador de la vacante",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, enviar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+
+    });  
+
     var exampleModal = document.getElementById('exampleModal')
     exampleModal.addEventListener('show.bs.modal', function(event) {
         // Button that triggered the modal

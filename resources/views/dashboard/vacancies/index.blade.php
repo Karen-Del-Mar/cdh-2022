@@ -22,14 +22,14 @@
                 <div class="card w-75" style="margin: 2%">
                     <div class="card-body">
                         <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}</h5>
-                        <div class="d-flex">
+                        <div class="d-lg-flex d-sm-block">
                             <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->company }}</p>
                             <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->email }}</p>
                             <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->location }}</p>
 
                         </div>
 
-                        <div class="d-flex">
+                        <div class="d-lg-flex d-sm-block">
                             <p class="card-text" style="margin-right: 2%; font-weight:bold">Perfil requerido:</p>
                             <p class="card-text" style="margin-right: 2%">{{ $vacancy->profile }}</p>
                         </div>
@@ -54,7 +54,7 @@
                                     <p class="card-text" style="margin-right: 2%">{{ $vacancy->phone }}</p>
                                 </div>
                             </div>
-                            <div class="col-2">
+                            <div class="col-lg-2 col-sm-4">
                                 <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" alt=""
                                     class="mr-1" id="profile" width="100%">
                             </div>
@@ -65,16 +65,16 @@
                         <a href="/login" class="btn btn-info">Aplicar</a>
                     @else
                         @if (auth()->user()->rol->key === 'student')
-                            
-                                <form action="{{ route('postulates.store') }}" method="POST">
-                                    @csrf
-                                    <input id="id_user" hidden name="id_user" value="{{ auth()->user()->id }}">
-    
-                                    <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancy->id }}">
-    
-                                    <button type="submit" class="btn btn-success btn-sm">Postularme</button>
-                                </form>
+                            <form class="formulario-postular" action="{{ route('postulates.store') }}" method="POST"
+                                id="formulario-postular">
+                                @csrf
 
+                                <input id="id_user" hidden name="id_user" value="{{ auth()->user()->id }}">
+
+                                <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancy->id }}">
+
+                                <button type="submit" class="btn btn-primary btn-sm">Postularme</button>
+                            </form>
                         @endif
                     @endif
 
@@ -86,16 +86,32 @@
     </div>
 @endsection
 
-
-
-
 <style>
     .light-blue {
-        background: #d9eaf5;
+        background: #db9107;
     }
 
 </style>
 
 <script>
- 
+    $('.formulario-postular').submit(function(e) {
+        alert('as');
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Su postulación se enviará al empleador de la vacante",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, enviar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+
+    });
 </script>
