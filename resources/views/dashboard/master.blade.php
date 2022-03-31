@@ -19,6 +19,8 @@
     @include('dashboard.partials.header')
     {{-- @include('dashboard.partials.nav-menu') --}}
     @include('dashboard.partials.status')
+    @include('dashboard.partials.deleted')
+
 
 
     @yield('content')

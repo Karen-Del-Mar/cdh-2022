@@ -108,6 +108,6 @@ class ExperienceController extends Controller
     {
         $experience = (Experience::where('id', $id)->get())[0];
         $experience->delete();
-        return back()->with('status', "La experiencia ha sido eliminada con éxito");
+        return back()->with('deleted', 'ok');
     }
 }

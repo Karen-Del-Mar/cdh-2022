@@ -37,93 +37,59 @@
                                     data-bs-target="#exampleModal"
                                     data-bs-whatever="{{ $experience }}">Editar</button>
 
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal2"
-                                    data-bs-whatever="{{ $experience }}">Eliminar</button>
+                                <form  class="formulario-eliminar" action="{{ route('experience.destroy', ['experience' => $experience->id]) }}"
+                                    method="post">
+
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+
+                                </form>
+
                             </div>
                         @endif
                     @endif
                 </div>
-                @endforeach
-                <form action="{{ route('experience.update', ['experience' => $experience->id]) }}" method="post">
+            @endforeach
 
-                    @method('PUT')
-                    @csrf
+            <form action="{{ route('experience.update', ['experience' => $experience->id]) }}" method="post">
 
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
+                @method('PUT')
+                @csrf
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
 
 
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label">Experiencia:</label>
-                                            <textarea type="text" class="form-control" rows="5" id="experience"
-                                                name="experience">{{ $experience->experience }}</textarea>
-                                        </div>
-
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                </div>
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
 
-                        </div>
-                    </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="recipient-name" class="col-form-label">Experiencia:</label>
+                                        <textarea type="text" class="form-control" rows="5" id="experience"
+                                            name="experience">{{ $experience->experience }}</textarea>
+                                    </div>
 
-                </form>
-
-                <form action="{{ route('experience.destroy', ['experience' => $experience->id]) }}" method="post">
-
-                    @method('DELETE')
-                    @csrf
-
-                    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-
-
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label"> ¿Desea eliminar la
-                                                Experiencia?</label>
-                                        </div>
-
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Eliminar</button>
-                                </div>
+                                </form>
                             </div>
-
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
                         </div>
+
                     </div>
+                </div>
 
-                </form>
-            
-
-
+            </form>
 
             <div class="p-3 bg-white mt-2 rounded text-center mb-5">
                 <h5>¿Eres egresado? Contáctanos para compartir tu experiencia</h5>
@@ -157,37 +123,23 @@
 </style>
 
 <script>
-    var exampleModal = document.getElementById('exampleModal')
-    exampleModal.addEventListener('show.bs.modal', function(event) {
-        // Button that triggered the modal
-        var button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        var recipient = button.getAttribute('data-bs-whatever')
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        var modalTitle = exampleModal.querySelector('.modal-title')
-        var modalBodyInput = exampleModal.querySelector('.modal-body input')
+    $('.formulario-eliminar').submit(function(e) {
+        e.preventDefault();
 
-        modalTitle.textContent = 'Editar experiencia'
-        modalBodyInput.value = recipient
-    })
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Esta experiencia se eliminará definitivamente",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, eliminar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {              
+                this.submit();
+            }
+        })
 
-    var exampleModal2 = document.getElementById('exampleModal2')
-    exampleModal2.addEventListener('show.bs.modal', function(event) {
-        // Button that triggered the modal
-        var button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        var recipient = button.getAttribute('data-bs-whatever')
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        var modalTitle = exampleModal2.querySelector('.modal-title')
-        var modalBodyInput = exampleModal2.querySelector('.modal-body input')
-
-        modalTitle.textContent = 'Eliminar experiencia'
-        modalBodyInput.value = recipient
-    })
+    });
 </script>
