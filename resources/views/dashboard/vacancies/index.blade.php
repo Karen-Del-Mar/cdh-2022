@@ -93,25 +93,3 @@
 
 </style>
 
-<script>
-    $('.formulario-postular').submit(function(e) {
-        alert('as');
-        e.preventDefault();
-
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "Su postulación se enviará al empleador de la vacante",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: '¡Si, enviar!',
-            cancelButtonText: 'Cancelar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                this.submit();
-            }
-        })
-
-    });
-</script>

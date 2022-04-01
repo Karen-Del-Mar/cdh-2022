@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row height d-flex justify-content-center align-items-center mt-4">
                 <div class="col-md-6">
-                    <div class="form">
+                    <div class="form-search">
                         <i class="bi bi-search"></i>
                         <input type="text" class="form-control form-input" placeholder="Buscar por nombre..." id="myInput" style=" border-color: #0069A3">
                     </div>
@@ -183,14 +183,14 @@
    
     }
 
-    .form {
+    .form-search {
         position: relative;
         border-radius: 25%;
         color: #0069A3;
         border-color: #0069A3;
     }
 
-    .form .bi-search {
+    .form-search .bi-search {
         position: absolute;
         top: 20px;
         left: 20px;
@@ -199,7 +199,7 @@
 
     }
 
-    .form span {
+    .form-search span {
         color: #0069A3;
 
         position: absolute;

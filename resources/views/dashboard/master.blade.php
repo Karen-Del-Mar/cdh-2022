@@ -27,23 +27,24 @@
 </body>
 
 </html>
-
 <script>
-    window.addEventListener('message', () => {
-        Swal.fire({
-            icon: 'success',
-            title: 'Acción Exitosa',
-            showConfirmButton: false,
-            timer: 1000,
-        })
-    });
+      $('.formulario-postular').submit(function(e) {
+        e.preventDefault();
 
-    window.addEventListener('prueba', () => {
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong!',
-            footer: '<a href="">Why do I have this issue?</a>'
+            title: '¿Estás seguro?',
+            text: "Su postulación se enviará al empleador de la vacante",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, enviar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
         })
+
     });
 </script>
