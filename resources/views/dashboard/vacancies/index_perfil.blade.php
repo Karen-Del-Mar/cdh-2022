@@ -17,7 +17,9 @@
             <br>
             <div class="card w-75" style="margin: 2%">
                 <div class="card-body">
-
+                    @if ($vacancy->hidden == 1)
+                        <h5 class="font-weight-bold text-danger">Vacante Reportada: No se recibiran postulaciones</h5>
+                    @endif
                     <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}</h5>
 
                     <div class="d-flex">
@@ -117,7 +119,7 @@
             }
         })
 
-    });  
+    });
 
     var exampleModal = document.getElementById('exampleModal')
     exampleModal.addEventListener('show.bs.modal', function(event) {

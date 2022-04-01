@@ -15,7 +15,7 @@
                         @endif
 
                         {{-- {{ __('You are logged in!') }} --}}
-                        <h4>Bienvenido, {{ auth()->user()->name }} </h4>
+                        <h4>Bienvenid@, {{ auth()->user()->name }} </h4>
                     </div>
 
                     @if (auth()->user()->rol->key == 'student')
@@ -36,14 +36,26 @@
 
                                         <div class="container mt-5">
                                             <ul class="m-0 nav nav-fill nav-pills nav-justified nav-tabs" id="myTab" role="tablist">
-                                                <li class="nav-item" role="presentation"> <button class="active nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> <i class="fas fa-home"></i> Solicitudes </button> </li>
-                                                <li class="nav-item" role="presentation"> <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"> <i class="fas fa-user-astronaut"></i> Estudiantes </button> </li>
-                                                <li class="nav-item" role="presentation"> <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false"> <i class="far fa-envelope-open"></i> Empresas Inhabilitadas </button> </li>
-                                                <li class="nav-item" role="presentation"> <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="false"> <i class="far fa-envelope-open"></i> Vacantes reportadas </button> </li>
-                                                <li class="nav-item" role="presentation"> <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false"> <i class="fas fa-sliders-h"></i> Comentarios inapropiados </button> </li>
+                                                <li class="nav-item" role="presentation"> <button class="active nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">
+                                                    <img src="https://img.icons8.com/dotty/50/F4D73B/add-user-group-woman-woman.png"/> Solicitudes 
+                                                </button> </li>
+                                                <li class="nav-item" role="presentation"> 
+                                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"> 
+                                                        <img src="https://img.icons8.com/external-wanicon-lineal-wanicon/50/F4D73B/external-student-back-to-school-wanicon-lineal-wanicon-1.png"/> Estudiantes 
+                                                    </button> </li>
+                                                <li class="nav-item" role="presentation"> 
+                                                    <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false"> 
+                                                        <img src="https://img.icons8.com/external-prettycons-lineal-prettycons/37/F4D73B/external-hidden-security-prettycons-lineal-prettycons.png"/>Empresas Inhabilitadas 
+                                                    </button> </li>
+                                                <li class="nav-item" role="presentation"> <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="false"> 
+                                                    <img src="https://img.icons8.com/external-prettycons-lineal-prettycons/50/F4D73B/external-warning-delivery-prettycons-lineal-prettycons.png"/> Vacantes reportadas 
+                                                </button> </li>
+                                                <li class="nav-item" role="presentation"> <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false"> 
+                                                     Comentarios inapropiados <img src="https://img.icons8.com/pastel-glyph/30/F4D73B/info--v1.png"/> </button> </li>
                                             </ul>
                                             <div class="border-grey bg-white p-3 tab-content">
                                                 <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                
                                                     @include('dashboard.solicitudes.index')
                                                 </div>
                                                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -72,7 +84,8 @@
                     @if (auth()->user()->rol->key == 'employer')
                              
                         <a class="btn btn-primary" href="{{ route('employer.show', auth()->user()->id) }}">
-                            {{ __('Ver perfil') }}
+                            <img src="https://img.icons8.com/pastel-glyph/50/F4D73B/person-male--v3.png"/>
+                            {{ __('Mi perfil') }}           
                         </a>
 
                       
@@ -84,16 +97,20 @@
 
                                         <div class="container mt-5">
                                             <ul class="m-0 nav nav-fill nav-pills nav-justified nav-tabs" id="myTab" role="tablist">
-                                                <li class="nav-item" role="presentation"> <button class="active nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> <i class="fas fa-home"></i> Postulaciones </button> </li>
-                                                <li class="nav-item" role="presentation"> <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"> <i class="fas fa-user-astronaut"></i> Contratos </button> </li>               
+                                                <li class="nav-item" role="presentation"> 
+                                                    <button class="active nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> 
+                                                        <img src="https://img.icons8.com/ios/50/F4D73B/groups.png"/>Postulaciones Recibidas
+                                                    </button> </li>
+                                                <li class="nav-item" role="presentation"> 
+                                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                                        <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/50/F4D73B/external-document-business-vitaliy-gorbachev-lineal-vitaly-gorbachev-1.png"/>Contratos Realizados</button> </li>               
                                             </ul>
                                             <div class="border-grey bg-white p-3 tab-content">
                                                 <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                     @include('dashboard.postulates.index')
-                                                </div>
+                                                </div>                                                
 
                                                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                                    {{-- <a href="{{ route('contracts.index') }} ">Contratos..</a> --}}
                                                      @include('dashboard.contracts.index') 
                                                     {{-- <p>  auctor nisl. Nulla facilisi. Integer imperdiet faucibus ante.</p> --}}
                                                 </div>                                               

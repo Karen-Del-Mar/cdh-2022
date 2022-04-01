@@ -35,7 +35,7 @@ class HomeController extends Controller
         {
             $lista = Solicitude::where("state","=",1)
                             ->get();
-            $lista_student = User::where("rol_id","=",3)
+            $lista_student = User::where("rol_id","=",3)->join("students","students.id_user","=","users.id")
                             ->get();
 
             $list_employer_dis = Employer::where("hidden", 1)

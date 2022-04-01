@@ -17,7 +17,7 @@
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->phone }}</td>
-                    {{-- <td>{{ $student->career }}</td> --}}
+                    <td>{{ $student->career }}</td>
                     <td>
                         <a href="{{ route('student.show', $student) }}" class="btn btn-warning btn-sm">
                             Ver

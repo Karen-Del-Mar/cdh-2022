@@ -68,7 +68,7 @@ class EmployerController extends Controller
 
         $id_employer = $employer->id;
 
-        $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id")
+        $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden")
                  ->where("vacancies.id_employer","=",$id_employer)
                  ->get());
 
@@ -204,7 +204,7 @@ class EmployerController extends Controller
         $employer = (Employer::where('id_user', $id_user)->get())[0];
         $id_employer = $employer->id;
 
-        $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id")
+        $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden")
                  ->where("vacancies.id_employer","=",$id_employer)
                  ->get());
 
