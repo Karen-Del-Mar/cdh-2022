@@ -28,7 +28,7 @@ class CreatePostulatesTable extends Migration
                 ->onUpdate('cascade');
 
             $table->foreign('id_vacancy')->references('id')->on('vacancies')
-                ->onDelete('restrict')
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
 
             $table->timestamps();

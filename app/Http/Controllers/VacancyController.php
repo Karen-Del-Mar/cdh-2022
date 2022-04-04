@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vacancy;
 use App\Models\Employer;
+use App\Models\Postulate;
 use Illuminate\Http\Request;
 
 class VacancyController extends Controller
@@ -110,13 +111,18 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {   
-        
-         $vacancy = (Vacancy::where('id', $id)->get())[0];
-         $vacancy->delete();
-         return back()->with('status', "La vacante ha sido eliminada con éxito");
-
-        
-        
+        $hasPostulates = Postulate::select(['reserves.*'])
+                       ->where('id_vacancy','=',$id)
+                       ->count();
+        if($hasPostulates>0){
+            return back()->with('deleteV', "fail");
+        }
+        else{
+            $vacancy = (Vacancy::where('id', $id)->get())[0];
+            $vacancy->delete();
+            return back()->with('deleteV', "ok");
+        }
+       
     }
 /** No se esta usando */
     public function index_perfil(){

@@ -38,3 +38,23 @@
         )
     </script>
 @endif
+
+@if (session('deleteV') == 'fail')
+    <script>
+        Swal.fire(
+            '¡Error!',
+            'La vacante no puede ser eliminada porque tiene postulaciones.',
+            'error'
+        )
+    </script>
+@endif
+
+@if (session('deleteV') == 'ok')
+    <script>
+        Swal.fire(
+            '¡Hecho!',
+            'La vacante fue eliminada.',
+            'success'
+        )
+    </script>
+@endif
