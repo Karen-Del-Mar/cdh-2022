@@ -25,7 +25,7 @@
                             <td>
 
                                 <a href="{{ route('employer.show', $user ->id_user) }}"
-                                    class="btn btn-warning btn-sm"><i class="fas fa-eye"></i>
+                                    class="btn btn-warning btn-sm"><i class="bi bi-eye"></i>
                                     Habilitar</a>
                             </td>
                         </tr>

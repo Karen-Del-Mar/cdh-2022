@@ -31,7 +31,7 @@
                         @else
                             @if (auth()->user()->id === $user->id)
                                 <a class="btn btn-info" href="{{ route('employer.edit', $user->id) }}">
-                                    {{ __('Editar perfil') }}
+                                    <i class="bi bi-pencil-fill"></i> {{ __('Editar perfil') }}
                                 </a>
                             @endif
                             @if (auth()->user()->rol->key === 'admin')

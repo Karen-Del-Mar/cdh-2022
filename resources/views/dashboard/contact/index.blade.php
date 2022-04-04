@@ -67,7 +67,7 @@
             <div class="col-md-3">
                 <div class="bg-white p-3 text-center rounded box">
                     <img class="img-responsive rounded-circle"
-                        src="{{ asset('images/admins-profiles/paola-cortes.jpg') }}" width="120" height="120">
+                        src="{{ asset('images/admins-profiles/karen-castano.jpg') }}" width="120" height="120">
                     <h5 class="mt-3 name">Karen Castaño</h5><span class="work d-block">Coordinadora Cadena de
                         Honor</span>
                     <div class="mt-4 about"><span>karen.castanor@autonoma.edu.co</span></div>

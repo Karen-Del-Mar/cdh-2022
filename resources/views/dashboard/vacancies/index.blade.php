@@ -10,7 +10,7 @@
         @else
             @if (auth()->user()->rol->key == 'employer')
                 <a href="{{ route('vacancies.create') }}" class="mt-4 btn btn-success btn-lg mb-3">
-                    Nueva vacante
+                    <i class="bi bi-plus-circle"></i> Nueva vacante
                 </a>
             @endif
         @endif
@@ -88,7 +88,7 @@
 
 <style>
     .light-blue {
-        background: #db9107;
+        background: #d9eaf5;
     }
 
 </style>

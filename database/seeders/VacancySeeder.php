@@ -50,7 +50,7 @@ class VacancySeeder extends Seeder
         Vacancy::create([
             'id_employer' => 2,
             'job' => "Auxiliar de enfermería",
-            'profile' => "Persona con conocimiento en  cuidar aldultos mayores",
+            'profile' => "Persona con conocimiento en  cuidar adultos mayores",
             'payment' => 500000,
             'availability' => "Todos los días de 6 a 11 pm",
             'hidden'=>0,
@@ -59,7 +59,7 @@ class VacancySeeder extends Seeder
         Vacancy::create([
             'id_employer' => 3,
             'job' => "Modelo en el estudio X",
-            'profile' => "Persona proactiva con conocimiento en  cuidar aldultos mayores",
+            'profile' => "Persona proactiva con conocimiento en  cuidar adultos mayores",
             'payment' => 500000,
             'availability' => "Todos los días de 6 a 11 pm",
             'hidden'=>1,

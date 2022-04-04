@@ -26,7 +26,7 @@
                             <td>
 
                                 <a href="{{ route('solicitudes.show', $solicitude->id) }}"
-                                    class="btn btn-warning btn-sm"><i class="fas fa-eye"></i>
+                                    class="btn btn-warning btn-sm"><i class="bi bi-eye"></i>
                                     Ver</a>
                             </td>
                         </tr>

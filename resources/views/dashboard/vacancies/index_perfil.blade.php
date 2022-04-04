@@ -6,7 +6,7 @@
     @else
         @if (auth()->user()->id === $user->id)
             <a href="{{ route('vacancies.create') }}" class="mt-4 btn btn-success btn-lg mb-3">
-                Nueva vacante
+                <i class="bi bi-plus-circle"></i> Nueva vacante
             </a>
         @endif
     @endif
@@ -55,11 +55,11 @@
                                 {{-- Falta poner la opción de vigencia en el form para no recibir más postulaciones --}}
                                 <form>
                                     <a href="{{ route('vacancies.edit', $vacancy->id) }}"
-                                        class="btn btn-primary btn-sm">Editar</a>
+                                        class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i> Editar</a>
                                 </form>
                                 <form>
-                                    <a class="btn btn-success btn-sm"
-                                        href="{{ route('postulates.list_postulates_vacancy', $vacancy->id) }}">Ver
+                                    <a class="btn btn-warning btn-sm"
+                                        href="{{ route('postulates.list_postulates_vacancy', $vacancy->id) }}"><i class="bi bi-eye"></i> Ver
                                         postulaciones</a>
                                 </form>
                                 {{-- no deja eliminar si hay postulaciones --}}
@@ -68,7 +68,7 @@
                                     method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"><i class="bi bi-trash3"></i> Eliminar</button>
                                 </form>
 
                             </div>

@@ -18,9 +18,9 @@ class EmployerSeeder extends Seeder
         Employer::create([
             'id_user'=>'5',
             'company'=>'SELF S.A.S',
-            'location' => 'Cualquier parte del mundo',
+            'location' => 'Bulevar de la 23',
             'Sector'=>'Restaurante',
-            'description' => 'Cualquier cosa es la ganancia más grande que tenemos en nuetras manos, tocará que nos depará en el futuro',
+            'description' => 'En Grupo SELF S.A.S. buscamos personas apasionadas y comprometidas con su labor para que hagan parte del mejor equipo de trabajo. Si cuentas con las siguientes características, envíanos tu hoja de vida.',
             'score'=>4,
             'hidden' => false,
         ]);
@@ -29,9 +29,9 @@ class EmployerSeeder extends Seeder
         Employer::create([
             'id_user'=>'6',
             'company'=>'UNIVERSIDAD AUTONOMA DE MANIZALES',
-            'location' => 'Cualquier parte del mundo',
+            'location' => 'CRA 23 # 20 - 15 Centro',
             'Sector'=>'Bar',
-            'description' => 'Cualquier cosa es la ganancia más grande que tenemos en nuetras manos, tocará que nos depará en el futuro',
+            'description' => 'Somos una empresa de servicios y alimentos que busca crecer y consolidarse como una cadena especializada en pollo, con un amplio menú, con marcas bien posicionadas en el mercado nacional que brinda experiencias agradables atendiendo las necesidades de sus clientes.',
             'score'=>4,
             'hidden' => false,
         ]);
@@ -39,7 +39,7 @@ class EmployerSeeder extends Seeder
         Employer::create([
             'id_user'=>'7',
             'company'=>'Restaurante la pradera',
-            'location' => 'Milán',
+            'location' => 'Cll 10 # 50 - 2 Milán',
             'Sector'=>'Bar',
             'description' => 'Un lugar para pasar un rato agradable con comida deliciosa',
             'score'=>4,
