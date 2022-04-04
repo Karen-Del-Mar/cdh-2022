@@ -24,18 +24,29 @@
                             </div>
 
                             <div class="comment-text text-justify mt-2">
-                                <p class="comment-text">{{ $experience->experience }} </p>
+                                @if (Auth::guest() || auth()->user()->id !== $experience->id_user)
+                                    <p class="comment-text">{{ $experience->experience }} </p>
+                                @endif
                             </div>
 
                         </div>
                     </div>
                     @if (auth()->user())
                         @if (auth()->user()->id === $experience->id_user)
-                            <div class="btn-group btn-group-sm">
+                            <div class="d-block btn-group btn-group-sm">
 
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                    data-bs-whatever="{{ $experience }}">Editar</button>
+                                <form class="formulario-editar"
+                                    action="{{ route('experience.update', ['experience' => $experience->id]) }}"
+                                    method="post">
+                                    @method('PUT')
+                                    @csrf
+
+                                    <textarea class="form-control inputs h-auto mb-2" name="experience" id="experience"
+                                        readonly>{{ $experience->experience }}</textarea>
+                                    <div class="d-flex">
+                                        <button type="submit" class="btn btn-primary" id="savebutton">Editar</button>
+
+                                </form>
 
                                 <form class="formulario-eliminar"
                                     action="{{ route('experience.destroy', ['experience' => $experience->id]) }}"
@@ -45,64 +56,24 @@
                                     @csrf
 
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
-
-                                </form>
-
-                            </div>
-                        @endif
-                    @endif
-                </div>
-            @endforeach
-
-            <form action="{{ route('experience.update', ['experience' => $experience->id]) }}" method="post">
-
-                @method('PUT')
-                @csrf
-
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-
-
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-
-                            <div class="modal-body">
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="recipient-name" class="col-form-label">Experiencia:</label>
-                                        <textarea type="text" class="form-control" rows="5" id="experience"
-                                            name="experience">{{ $experience->experience }}</textarea>
                                     </div>
+                            </form>
 
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
-
-            </form>
-
-            <div class="p-3 bg-white mt-2 rounded text-center mb-5">
-                <h5>¿Eres egresado? Contáctanos para compartir tu experiencia</h5>
-                <a class="btn btn-primary btn-sm px-3" href="/contact">Contacto</a>
-            </div>
+            @endif
+            @endif
         </div>
+        @endforeach
 
+        <div class="p-3 bg-white mt-2 rounded text-center mb-5">
+            <h5>¿Eres egresado? Contáctanos para compartir tu experiencia</h5>
+            <a class="btn btn-primary btn-sm px-3" href="/contact">Contacto</a>
+        </div>
     </div>
 
 </div>
 
-
+</div>
 
 
 <style>
@@ -121,11 +92,21 @@
         color: #0069A3
     }
 
+    .card .inputs textarea {
+        height: 40px;
+        padding: 0px 10px;
+        font-size: 17px;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .card .inputs taxtarea[readonly] {
+        border: 2px solid rgba(30, 217, 171, 0)
+    }
+
 </style>
 
 <script>
-   
-
     const {
         value: text
     } = await Swal.fire({

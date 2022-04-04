@@ -28,7 +28,7 @@
 
 </html>
 <script>
-      $('.formulario-postular').submit(function(e) {
+    $('.formulario-postular').submit(function(e) {
         e.preventDefault();
 
         Swal.fire({
@@ -65,6 +65,30 @@
                 this.submit();
             }
         })
+
+    });
+
+    $('.formulario-editar').submit(function(e) {
+
+
+        var savebutton = document.getElementById('savebutton');
+        var readonly = true;
+        var inputs = document.querySelectorAll('textarea[name="experience"]');
+        // savebutton.addEventListener('click', function() {
+
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].toggleAttribute('readonly');
+        };
+        if (savebutton.innerHTML == "Editar") {
+            savebutton.innerHTML = "Guardar";
+            savebutton.setAttribute("class", "btn btn-warning");
+            e.preventDefault();
+        } else {
+            /*Llega acá al dar click en guardar*/
+            savebutton.innerHTML = "Editar";
+            this.submit();
+        }
+        //  });
 
     });
 </script>

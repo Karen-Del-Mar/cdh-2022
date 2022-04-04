@@ -18,3 +18,23 @@
         )
     </script>
 @endif
+
+@if (session('postulated') == 'no')
+    <script>
+        Swal.fire(
+            '¡Error!',
+            'Ya estás postulado a esta vacante.',
+            'error'
+        )
+    </script>
+@endif
+
+@if (session('updated') == 'ok')
+    <script>
+        Swal.fire(
+            '¡Hecho!',
+            'Su experiencia fue actualizada.',
+            'success'
+        )
+    </script>
+@endif

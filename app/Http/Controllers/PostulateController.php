@@ -50,7 +50,7 @@ class PostulateController extends Controller
            // return redirect()->route('home')->with('status','Postulación enviada');
           } catch(\Illuminate\Database\QueryException $ex){
             
-            return redirect()->route('vacancies.index')->with('status','Ya estás postulado a esta vacante');
+            return redirect()->route('vacancies.index')->with('postulated','no');
           }
     }
 

@@ -95,7 +95,7 @@ class ExperienceController extends Controller
         $experience ->experience = $request->experience;
         $experience ->save();
       
-        return back()->with('status', 'Experiencia actualizada exitosamente');
+        return back()->with('updated', 'ok');
     }
 
     /**

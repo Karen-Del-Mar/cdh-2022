@@ -1,8 +1,5 @@
 @csrf
-{{-- @extends('dashboard.master') --}}
-{{-- @include('dashboard.partials.validation-error')
-@include('dashboard.partials.nav-menu') --}}
-{{-- @section('content') --}}
+
 <div class="container mb-5">
 
     <div class="d-flex justify-content-center row">
@@ -55,4 +52,4 @@
 
 </style>
 
-{{-- @endsection --}}
+
