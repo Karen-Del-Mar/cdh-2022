@@ -37,7 +37,7 @@ class HomeController extends Controller
                             ->get();
             $lista_student = User::where("rol_id","=",3)->join("students","students.id_user","=","users.id")
                             ->get();
-
+                            
             $list_employer_dis = Employer::where("hidden", 1)
                             ->join("users","users.id","=","employers.id_user")
                             ->get();

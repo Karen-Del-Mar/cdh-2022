@@ -16,7 +16,7 @@ class ContractSeeder extends Seeder
         Contract::create([
         'start_date' => '2023-01-01',
         'final_date' => '2050-01-01',
-        'job' => 'Esclavo',
+        'job' => 'Chef',
         'payment' => 450000,
         'id_student' => '2',
         'id_employer' => '2',      

@@ -20,8 +20,8 @@
                     <td>{{ $student->email }}</td>
                     <td>{{ $student->phone }}</td>
                     <td>{{ $student->career }}</td>
-                    <td>
-                        <a href="{{ route('student.show', $student->id) }}" class="btn btn-warning btn-sm">
+                    <td> {{-- $student-> id es id de usuario--}}
+                        <a href="{{ route('student.show', $student->id_user) }}" class="btn btn-warning btn-sm">
                             Ver
                         </a>
 

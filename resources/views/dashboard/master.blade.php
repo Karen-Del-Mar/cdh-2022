@@ -91,4 +91,15 @@
         //  });
 
     });
+/* Función buscar para empleadores y vacantes */
+    var original = $('div[data-role="recipe"]');
+
+    $(document).ready(function() {
+        $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $('div[data-role="recipe"]').filter(function() {
+                $(this).toggle($(this).find('h4').text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
 </script>

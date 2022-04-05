@@ -30,7 +30,7 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'id_employer' => 2,
-            'job' => "Técnico laboral en salud oral",
+            'job' => "Técnico laboral en sistemas",
             'profile' => "Persona con aptitud y deseo por trabajar y aprender",
             'payment' => 1200000,
             'availability' => "lunes a viernes de 2 a 6pm",

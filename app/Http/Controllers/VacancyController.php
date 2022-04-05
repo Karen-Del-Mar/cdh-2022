@@ -19,7 +19,8 @@ class VacancyController extends Controller
         $lista = (Employer::select("users.name","employers.company","users.email","vacancies.job","employers.location","users.phone", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id")
         ->join("vacancies", "vacancies.id_employer","=","employers.id")
         ->join("users", "users.id", "=", "employers.id_user")
-        ->orderby("vacancies.created_at", "desc")
+        ->where("vacancies.hidden", "=", "0")
+        ->orderby("vacancies.id", "DESC")
         ->get());
         return view('dashboard.vacancies.index',['vacancies'=> $lista]);
     }

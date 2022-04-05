@@ -41,7 +41,7 @@
                 @else
                     @if (auth()->user()->rol_id == 3)
                         <a class="btn btn-info" href="{{ route('student.edit', $user->id) }}">
-                            {{ __('Editar perfil') }}
+                            <i class="bi bi-pencil-fill"></i> {{ __('Editar perfil') }}
                         </a>
                     @endif
                 @endif
