@@ -21,7 +21,7 @@
                     <td>{{ $student->phone }}</td>
                     <td>{{ $student->career }}</td>
                     <td>
-                        <a href="{{ route('student.show', $student) }}" class="btn btn-warning btn-sm">
+                        <a href="{{ route('student.show', $student->id) }}" class="btn btn-warning btn-sm">
                             Ver
                         </a>
 

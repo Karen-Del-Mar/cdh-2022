@@ -55,7 +55,8 @@ class VacancyController extends Controller
   
         $vacancy->save();
 
-        return back()->with('status','Vacante creada');
+       // return back()->with('status','Vacante creada');
+        return redirect()->route('vacancies.index')->with('status','Vacante creada');
     }
 
     /**
@@ -111,7 +112,7 @@ class VacancyController extends Controller
      */
     public function destroy($id)
     {   
-        $hasPostulates = Postulate::select(['reserves.*'])
+        $hasPostulates = Postulate::select(['postulates.*'])
                        ->where('id_vacancy','=',$id)
                        ->count();
         if($hasPostulates>0){

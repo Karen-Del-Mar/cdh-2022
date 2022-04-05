@@ -28,7 +28,7 @@ class EmployerSeeder extends Seeder
 
         Employer::create([
             'id_user'=>'6',
-            'company'=>'UNIVERSIDAD AUTONOMA DE MANIZALES',
+            'company'=>'La Bohemia Taberna Bar',
             'location' => 'CRA 23 # 20 - 15 Centro',
             'Sector'=>'Bar',
             'description' => 'Somos una empresa de servicios y alimentos que busca crecer y consolidarse como una cadena especializada en pollo, con un amplio menú, con marcas bien posicionadas en el mercado nacional que brinda experiencias agradables atendiendo las necesidades de sus clientes.',

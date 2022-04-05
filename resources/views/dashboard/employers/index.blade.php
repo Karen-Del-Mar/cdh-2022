@@ -1,7 +1,6 @@
 @extends('dashboard.master')
 @section('content')
     <div class="container">
-
         @if (sizeof($employers) == 0)
             <h1>Todavia no se registran empresas</h1>
         @endif
@@ -28,7 +27,9 @@
         <div id="myDIV">
 
             <div class="row px-sm-2 px-0 pt-3">
+                <div class="d-none">{{$i = -1}}</div> 
                 @foreach ($employers as $employer)
+                <div class="d-none">{{$i = $i+1}}</div> 
                     <div class="col-md-4 offset-md-0 offset-sm-2 offset-1 col-sm-8 col-10 offset-sm-2 offset-1 mb-3"
                         data-role="recipe">
                         <div class="card" style="background-color: rgb(236, 236, 236);">
@@ -43,13 +44,13 @@
                                 <h4 class="h4">{{ $employer->company }}</h4>
                             </b>
                             <div class="d-lg-flex d-sm-flex d-md-block align-items-center justify-content-start rating border-top border-bottom py-2">
-                                <div class="text-muted text-uppercase px-2 border-right color-warning">Ofertas 6</div>
+                                <div class="text-muted text-uppercase px-2 border-right color-warning">Ofertas {{$count[$i]}}</div>
                                 <div class="text-muted text-uppercase px-2 border-right sector">
                                     <h6>{{ $employer->sector }}</h6>
                                 </div>
-                                <div class="px-lg-2 px-1"> <span class="fas fa-star"></span> <span
-                                        class="fas fa-star"></span> <span class="fas fa-star"></span> <span
-                                        class="fas fa-star"></span> <span class="fas fa-star"></span> <a href="#"
+                                <div class="px-lg-2 px-1"> <span class="bi bi-star"></span> <span
+                                        class="bi bi-star"></span> <span class="bi bi-star"></span> <span
+                                        class="bi bi-star"></span> <span class="bi bi-star"></span> <a href="#"
                                         class="px-lg-2 px-1 reviews">{3 Reviews}</a>
                                 </div>
                             </div>

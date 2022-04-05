@@ -22,7 +22,7 @@
                         <div class="text-muted" id="count">Valoraciones</div>
                     </div>
                     <div class="d-flex flex-column align-items-center px-lg-3 px-md-2 px-1" id="border-right">
-                        <p class="h4">117</p>
+                        <p class="h4">{{$count}}</p>
                         <div class="text-muted" id="count">Ofertas</div>
                     </div>
                     <div class="d-flex flex-column align-items-center px-lg-3 px-md-2 px-1" id="border-right">

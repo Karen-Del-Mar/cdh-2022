@@ -43,7 +43,7 @@
     <script>
         Swal.fire(
             '¡Error!',
-            'La vacante no puede ser eliminada porque tiene postulaciones.',
+            'La vacante no puede ser eliminada porque ha recibido postulaciones.',
             'error'
         )
     </script>

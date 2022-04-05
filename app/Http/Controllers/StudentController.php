@@ -53,9 +53,9 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $user = (User::where('id', $id)->get())[0];
-        $student = (Student::where('id_user', $id)->get())[0];
+    {        
+        $student = (Student::where('id', $id)->get())[0];
+        $user = (User::where('id', $student->id_user)->get())[0];
 
         return view('dashboard.students.show',['user'=>$user, 'student'=>$student]);
     }

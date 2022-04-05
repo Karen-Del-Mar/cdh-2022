@@ -19,7 +19,7 @@ class SolicitudeSeeder extends Seeder
             'name'=> 'Patrick',
             'email' =>'unpatrick@autonoma.edu.co',
             'company'=>'Valkiria',
-            'location' => 'un lugar magico',
+            'location' => 'Av. Santander #56-25',
             'phone'=>'3105204692',
             'Sector'=>'Restaurante',
             'description' => 'Cualquier cosa es la ganancia más grande que tenemos en nuetras manos, tocará que nos depará en el futuro',

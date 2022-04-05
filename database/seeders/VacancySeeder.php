@@ -49,8 +49,8 @@ class VacancySeeder extends Seeder
 
         Vacancy::create([
             'id_employer' => 2,
-            'job' => "Auxiliar de enfermería",
-            'profile' => "Persona con conocimiento en  cuidar adultos mayores",
+            'job' => "Mesero/a",
+            'profile' => "Se requiere hombre o mujer para cargo de mesero (a) de MEDIO TIEMPO, de viernes a domingo, con disponibilidad para turnos nocturnos. Experiencia deseable, buena disposición y presentación personal.",
             'payment' => 500000,
             'availability' => "Todos los días de 6 a 11 pm",
             'hidden'=>0,

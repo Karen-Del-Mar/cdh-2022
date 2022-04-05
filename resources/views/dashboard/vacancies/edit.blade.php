@@ -1,5 +1,6 @@
 @extends('dashboard.master')
 @section('content')
+{{-- TODO: Poner opción de cerrar vacante para no recibir más postulaciones --}}
     <form action="{{ route('vacancies.update', ['vacancy' => $vacancy->id]) }}" method="post">
         @method('PUT')
         @csrf

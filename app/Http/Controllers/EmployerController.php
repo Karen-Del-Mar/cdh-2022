@@ -22,15 +22,19 @@ class EmployerController extends Controller
         // Listar solo las empresas que están habilitadas 
         // Envia lista de empresas y lista de usuarios asociados a esas empresas
         $users = null;
-
+        $count = array();
         $employers = Employer::where('hidden', 0)->get();
         
         foreach ($employers as $employer) {
             $users = User::where('id', $employer->id_user)->get();
 
+            $hasVacancies = Vacancy::select(['vacancies.*'])
+            ->where('vacancies.id_employer','=', $employer->id)
+            ->count();
+            array_push($count, strval($hasVacancies));
+            
         }
-
-        return view('dashboard.employers.index',['users'=>$users,'employers'=>$employers]);
+        return view('dashboard.employers.index',['users'=>$users,'employers'=>$employers,'count'=> $count]);
     }
 
     /**
@@ -61,18 +65,21 @@ class EmployerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-      
+    {          
         $user = (User::where('id', $id)->get())[0];
         $employer = (Employer::where('id_user', $id)->get())[0];
 
         $id_employer = $employer->id;
 
+        $hasVacancies = Vacancy::select(['vacancies.*'])
+        ->where('vacancies.id_employer','=', $id_employer)
+        ->count();
+
         $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden")
                  ->where("vacancies.id_employer","=",$id_employer)
                  ->get());
 
-        return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer, 'vacancies'=>$lista]);
+        return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer, 'vacancies'=>$lista, 'count'=>$hasVacancies]);
     }
 
     /**
