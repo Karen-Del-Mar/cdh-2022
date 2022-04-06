@@ -63,16 +63,37 @@ class HomeController extends Controller
 
             $lista_student = Contract::join("students", "students.id", "=", "contracts.id_student")
                     ->join("users", "users.id", "=", "students.id_user")
+                    ->join("employers", "employers.id", "=", "contracts.id_employer")
                     ->select("users.name", "users.email", "users.phone", "contracts.start_date",
                             "contracts.final_date", "contracts.description", "contracts.payment",
                             "contracts.job")
+                    ->where("employers.id_user","=",auth()->user()->id)
                     ->get();
+
 
              return view('home', ['lista_post'=>$lista_post, 'lista_student' => $lista_student]);
         }
         if(auth()->user()->rol->key=='student')
         {
-            
+            $my_postulates = Postulate::join("students","students.id","=","postulates.id_student")
+                    ->join("vacancies","vacancies.id","=","postulates.id_vacancy")
+                    ->join("employers","employers.id","=","vacancies.id_employer")
+                    ->join("users","users.id","=","employers.id_user")
+                    ->select("postulates.id","postulates.created_at","users.name","users.email","employers.company","vacancies.job","vacancies.profile", "users.id AS id_user")
+                    ->where("postulates.state","=",1)
+                    ->where("students.id_user","=",auth()->user()->id)
+                    ->get();
+
+            $my_contracts = Contract::join("students", "students.id", "=", "contracts.id_student")
+                    ->join("employers", "employers.id", "=", "contracts.id_employer")
+                    ->join("users", "users.id", "=", "employers.id_user")
+                    ->select("users.name","employers.company", "users.email", "users.phone", "contracts.start_date",
+                            "contracts.final_date", "contracts.description", "contracts.payment",
+                            "contracts.job")
+                    ->where("students.id_user","=",auth()->user()->id)
+                    ->get();
+
+            return view('home', ['my_postulates'=>$my_postulates, 'my_contracts' => $my_contracts]);
         }
 
         return view('home');

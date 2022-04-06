@@ -5,7 +5,7 @@
         <div class="col-md-8">
 
             <div class="text-left">
-                <h6>All comment(5)</h6>
+                <h6>All comment({{$comments}})</h6>
             </div>
 
             @foreach ($lista as $experience)

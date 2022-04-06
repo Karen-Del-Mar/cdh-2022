@@ -41,5 +41,6 @@
     </div>
 @else
     <br><br>
-    <h2>No existen postulados ...</h2>
+    <h2>No hay postulaciones en este momento ...</h2>
+    <img src="https://img.icons8.com/emoji/48/000000/hourglass-not-done.png"/>
 @endif

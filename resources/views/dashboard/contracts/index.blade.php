@@ -1,7 +1,5 @@
-{{-- @extends('dashboard.master')
-
-@section('content') --}}
 <div class="container">
+    @if (sizeof($lista_student) > 0)
     <h6>Lista de contratos </h6>
     {{-- <a href="{{ route('admins.create') }}" class="btn btn-info btn-sm mb-3"></a> --}}
     <div class="table-responsive">
@@ -32,5 +30,9 @@
             </tbody>
         </table>
     </div>
+    @else
+    <br><br>
+    <h2>Todavía no tienes contratos ...</h2>
+@endif
 </div>
-{{-- @endsection --}}
+

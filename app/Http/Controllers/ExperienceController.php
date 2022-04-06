@@ -34,9 +34,10 @@ class ExperienceController extends Controller
         ->orderby("experiences.created_at", "desc")
         ->get();
 
-       
+        $hasComments = Experience::select(['experiences.*'])
+                       ->count();
 
-        return view('dashboard.experiences.create', ['experience' => new Experience(), 'lista'=>$lista_experience]);
+        return view('dashboard.experiences.create', ['experience' => new Experience(), 'lista'=>$lista_experience, 'comments'=>$hasComments]);
     }
 
     /**

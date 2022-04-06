@@ -21,8 +21,42 @@
                     @if (auth()->user()->rol->key == 'student')
                         
                         <a class="btn btn-primary" href="{{ route('student.show', auth()->user()->id) }}">
+                            <img src="https://img.icons8.com/pastel-glyph/50/F4D73B/person-male--v3.png"/>
                             {{ __('Ver perfil') }}
                         </a>
+
+                        <div class="page-content page-container" id="page-content">
+                            <div class="padding">
+                                <div class="row container d-flex justify-content-center">
+                                    <div class="col-sm-12">
+                               
+
+                                        <div class="container mt-5">
+                                            <ul class="m-0 nav nav-fill nav-pills nav-justified nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item" role="presentation"> 
+                                                    <button class="active nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> 
+                                                        <img src="https://img.icons8.com/ios/50/F4D73B/open-folder-in-new-tab.png"/>Mis Postulaciones
+                                                    </button> </li>
+                                                <li class="nav-item" role="presentation"> 
+                                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
+                                                        <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/50/F4D73B/external-document-business-vitaliy-gorbachev-lineal-vitaly-gorbachev-1.png"/>Mis contratos</button> </li>               
+                                            </ul>
+                                            <div class="border-grey bg-white p-3 tab-content">
+                                                <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                    @include('dashboard.postulates.my_postulates')
+                                                </div>                                                
+
+                                                <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                     @include('dashboard.contracts.my_contracts') 
+                                                   
+                                                </div>                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
 
                     @endif
 
@@ -121,7 +155,6 @@
                             </div>
                         </div>
                         
-                        {{-- @include('dashboard.postulates.index') --}}
                     @endif 
 
                 </div>
@@ -129,19 +162,3 @@
         </div>
     </div>
 @endsection
-
-
-
-
-<style>
-   
-
-</style>
-
-<script>
-// var firstTabEl = document.querySelector('#myTab li:last-child a')
-// var firstTab = new bootstrap.Tab(firstTabEl)
-
-// firstTab.show()
-
-</script>
