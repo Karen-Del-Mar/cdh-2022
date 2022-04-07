@@ -58,3 +58,13 @@
         )
     </script>
 @endif
+
+@if (session('deletePost') == 'ok')
+    <script>
+        Swal.fire(
+            '¡Hecho!',
+            'La postulación fue eliminada.',
+            'success'
+        )
+    </script>
+@endif

@@ -93,7 +93,7 @@ class PostulateController extends Controller
      */
     public function update(Request $request, Postulate $postulate)
     {
-        //
+        
     }
 
     /**
@@ -102,9 +102,11 @@ class PostulateController extends Controller
      * @param  \App\Models\Postulate  $postulate
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Postulate $postulate)
-    {
-        //
+    public function destroy($id)
+    {   
+        $postulate = (Postulate::where('id', $id)->get())[0];
+        $postulate->delete();
+        return redirect()->route('home')->with('deletePost','ok');
     }
     /**
     * Lista las postulaciones según la vacante seleccionada 

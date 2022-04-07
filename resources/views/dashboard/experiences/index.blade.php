@@ -5,7 +5,7 @@
         <div class="col-md-8">
 
             <div class="text-left">
-                <h6>All comment({{$comments}})</h6>
+                <h6>All comment({{ $comments }})</h6>
             </div>
 
             @foreach ($lista as $experience)
@@ -57,7 +57,7 @@
 
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
                                     </div>
-                            </form>
+                                </form>
 
                 </div>
             @endif

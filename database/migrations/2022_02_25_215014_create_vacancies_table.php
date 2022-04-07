@@ -32,7 +32,7 @@ class CreateVacanciesTable extends Migration
             $table->double('payment', 15, 2)->nullable()->default(000.000);
             $table->text('availability')->nullable();
             $table->boolean('hidden')->nullable()->default(false);
-            $table->tinyInteger('state')->default(0);
+            $table->tinyInteger('state')->nullable()->default(0);
 
             $table->timestamps();
             
