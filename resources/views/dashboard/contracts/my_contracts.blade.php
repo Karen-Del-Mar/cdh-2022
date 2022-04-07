@@ -26,6 +26,7 @@
                             <td>{{ $contract->final_date }}</td>
                         </tr>
                     @endforeach
+                    
                 </tbody>
             </table>
         </div>

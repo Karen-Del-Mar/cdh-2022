@@ -33,4 +33,13 @@ class ContractRequest extends FormRequest
             'description' => 'required'
         ];
     }
+
+    public function messages(){
+        return [
+            'start_date.required' => 'La fecha de inicio es requerida', 
+            'payment.required' => 'Es necesario especificar el pago', 
+            'job.required' => 'Es necesario especificar el pago', 
+            'description.required' => 'Es necesario ingresar la descripción del contrato', 
+        ];
+    }
 }

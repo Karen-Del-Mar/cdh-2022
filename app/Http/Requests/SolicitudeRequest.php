@@ -41,6 +41,11 @@ class SolicitudeRequest extends FormRequest
     public function messages(){
         return [
             'name.required' => 'nombre requerido.',
+            'email.required' => 'Correo requerido.',
+            'company.required' => 'Nombre de empresa o empleador es requerido.',
+            'location.required' => 'Dirección requerido.',
+            'phone.required' => 'Dirección requerido.',
+            'description.required' => 'Descripción de la empresa es requerida.',
         ];
     }
 }

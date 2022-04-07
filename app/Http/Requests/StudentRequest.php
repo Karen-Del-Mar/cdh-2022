@@ -37,4 +37,11 @@ class StudentRequest extends FormRequest
             'languages'=> 'required',
         ];
     }
+    public function messages(){
+        return [
+            'gender.required' => 'Es necesario ingresar el campo del genero', 
+            'blood_typer.required' => 'Es necesario seleccionar un tipo sanguineo', 
+            'eps.required' => 'Es necesario ingresar el campo de la EPS',
+        ];
+    }
 }

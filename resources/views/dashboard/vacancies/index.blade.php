@@ -4,7 +4,7 @@
 
     <div class="container light-blue">
 
-<br>
+        <br>
         <div class="row height d-flex justify-content-center align-items-center mt-2">
             <div class="col-md-6">
                 <div class="form-search">
@@ -91,6 +91,11 @@
 
                                     <button type="submit" class="btn btn-primary btn-sm">Postularme</button>
                                 </form>
+                            @endif {{-- Hacer un sweet alert de confirmación esto debe hacer un update que cambie el estado de la vacante --}}
+                            @if (auth()->user()->rol->key == 'admin')
+                                <form class="formulario-ocultar" action="{{route('vacancies.update')}}" method="POST">
+                                    <button type="submit" class="btn btn-primary btn-sm">Ocultar</button>
+                                </form>
                             @endif
                         @endif
 
@@ -107,12 +112,14 @@
     .light-blue {
         background: #d9eaf5;
     }
+
     .form-search {
         position: relative;
         border-radius: 25%;
         color: #0069A3;
         border-color: #0069A3;
     }
+
     .form-search .bi-search {
         position: absolute;
         top: 20px;
@@ -121,6 +128,7 @@
         border-color: #0069A3;
 
     }
+
     .form-search span {
         color: #0069A3;
 
@@ -144,6 +152,7 @@
 
         padding-left: 10px
     }
+
     .form-input {
         color: #0069A3;
         height: 55px;
@@ -156,4 +165,5 @@
         box-shadow: none;
         border: none
     }
+
 </style>
