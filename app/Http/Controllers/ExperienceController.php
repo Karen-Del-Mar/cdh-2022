@@ -26,7 +26,7 @@ class ExperienceController extends Controller
     public function create()
     {
         $lista_experience = Experience::
-        select("experiences.experience", "experiences.created_at", "users.name","rols.rol", "users.id AS id_user", "experiences.id")
+        select("experiences.experience", "experiences.created_at", "users.name","rols.rol", "users.id AS id_user", "experiences.id", "experiences.hidden")
         ->from("experiences")
         ->join("students","experiences.id_student", "=", "students.id")
         ->join("users", "students.id_user","=","users.id")
@@ -110,5 +110,15 @@ class ExperienceController extends Controller
         $experience = (Experience::where('id', $id)->get())[0];
         $experience->delete();
         return back()->with('deleted', 'ok');
+    }
+/** Añadir campo hidden a base de datos */
+    public function change_hidden($id, $hidden){
+        $experience = (Experience::where('id', $id)->get())[0];
+        $experience -> hidden = $hidden;
+        $experience -> save();
+        if($hidden == 1){
+            return back()->with('hideExp', 'ok');
+        }
+        return back()->with('showExp', 'ok');
     }
 }

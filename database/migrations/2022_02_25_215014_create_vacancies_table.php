@@ -13,7 +13,7 @@ class CreateVacanciesTable extends Migration
      */
     public function up()
     {   
-        /*
+        /* SE AÑADIÓ 'STATE' SI ALGO FALLA ES POR ESO 
          * Cambiar hidden por state donde 
          * 0 sea habilitada => recibe postulaciones
          * 1 deshabilitada => no recibe postulaciones

@@ -68,3 +68,23 @@
         )
     </script>
 @endif
+
+@if (session('hideExp') == 'ok')
+    <script>
+        Swal.fire(
+            '¡Hecho!',
+            'El comentario no será visible.',
+            'success'
+        )
+    </script>
+@endif
+
+@if (session('showExp') == 'ok')
+    <script>
+        Swal.fire(
+            '¡Hecho!',
+            'El comentario será visible para todos los usuarios.',
+            'success'
+        )
+    </script>
+@endif

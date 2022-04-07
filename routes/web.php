@@ -89,3 +89,6 @@ Route::resource('contracts', ContractController::class);
 
 Route::get('/postulate/{id}', [PostulateController::class, 'postulate_vacancy'])
                 ->name('postulates.list_postulates_vacancy');
+
+Route::put('/userExperience/{id}/{hidden}', [ExperienceController::class, 'change_hidden'])
+                ->name('userExperience.change_hidden');

@@ -91,7 +91,49 @@
         //  });
 
     });
-/* Función buscar para empleadores y vacantes */
+
+    $('.formulario-ocultar-exp').submit(function(e) {
+    
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Ocultar comentario?',
+            text: "Si cosidera que este comentario no cumple con las normas del programa puede ocultarlo para los demás usuarios",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, ocultar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+
+    });
+  
+    $('.formulario-mostrar-exp').submit(function(e) {
+    
+    e.preventDefault();
+
+    Swal.fire({
+        title: '¿Mostrar comentario?',
+        text: "El comentario se volverá visible para todos los usuarios",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Si, mostrar!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+    })
+
+});
+    /* Función buscar para empleadores y vacantes */
     var original = $('div[data-role="recipe"]');
 
     $(document).ready(function() {

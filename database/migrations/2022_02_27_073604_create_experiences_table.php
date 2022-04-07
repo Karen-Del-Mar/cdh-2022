@@ -18,6 +18,7 @@ class CreateExperiencesTable extends Migration
             $table->id();
             $table->mediumText('experience')->nullable();
             $table->foreignId('id_student')->nullable();
+            $table->boolean('hidden')->default(false);
             $table->timestamps();
 
             $table->foreign('id_student')->references('id')->on('students')

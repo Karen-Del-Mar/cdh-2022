@@ -43,8 +43,8 @@
 
                                     <textarea class="form-control inputs h-auto mb-2" name="experience" id="experience"
                                         readonly>{{ $experience->experience }}</textarea>
-                                    <div class="d-flex">
-                                        <button type="submit" class="btn btn-primary" id="savebutton">Editar</button>
+                                    {{-- <div class="d-flex"> --}}
+                                    <button type="submit" class="btn btn-primary" id="savebutton">Editar</button>
 
                                 </form>
 
@@ -56,22 +56,43 @@
                                     @csrf
 
                                     <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </div>
+                                    {{-- </div> --}}
                                 </form>
 
+                            </div>
+                        @endif
+                        @if (auth()->user()->rol->key == 'admin')
+                            @if ($experience->hidden == 0)
+                                <form class="formulario-ocultar-exp"
+                                    action="{{ route('userExperience.change_hidden', ['id' => $experience->id, 1]) }}"
+                                    method="POST">
+                                    @method('PUT')
+                                    @csrf
+
+                                    <button id="hideButton" type="submit" class="btn btn-danger">Ocultar</button>
+                                </form>
+                            @else
+                                <form class="formulario-mostrar-exp"
+                                    action="{{ route('userExperience.change_hidden', ['id' => $experience->id, 0]) }}"
+                                    method="POST">
+                                    @method('PUT')
+                                    @csrf
+
+                                    <button id="hideButton" type="submit" class="btn btn-success">Mostrar</button>
+                                </form>
+                            @endif
+                        @endif
+                    @endif
                 </div>
-            @endif
-            @endif
-        </div>
-        @endforeach
+            @endforeach
 
-        <div class="p-3 bg-white mt-2 rounded text-center mb-5">
-            <h5>¿Eres egresado? Contáctanos para compartir tu experiencia</h5>
-            <a class="btn btn-primary btn-sm px-3" href="/contact">Contacto</a>
+            <div class="p-3 bg-white mt-2 rounded text-center mb-5">
+                <h5>¿Eres egresado? Contáctanos para compartir tu experiencia</h5>
+                <a class="btn btn-primary btn-sm px-3" href="/contact">Contacto</a>
+            </div>
         </div>
+
     </div>
-
-</div>
 
 </div>
 
@@ -105,21 +126,3 @@
     }
 
 </style>
-
-<script>
-    const {
-        value: text
-    } = await Swal.fire({
-        input: 'textarea',
-        inputLabel: 'Message',
-        inputPlaceholder: 'Type your message here...',
-        inputAttributes: {
-            'aria-label': 'Type your message here'
-        },
-        showCancelButton: true
-    })
-
-    if (text) {
-        Swal.fire(text)
-    }
-</script>
