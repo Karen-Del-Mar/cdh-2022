@@ -14,8 +14,9 @@ class Vacancy extends Model
         'job',
         'profile',
         'payment',
-        'availability',
+        'availability', /** Horario */
         'hidden',
+        'state'
     ];
 
 

@@ -16,7 +16,7 @@ class CreateVacanciesTable extends Migration
         /* SE AÑADIÓ 'STATE' SI ALGO FALLA ES POR ESO 
          * Cambiar hidden por state donde 
          * 0 sea habilitada => recibe postulaciones
-         * 1 deshabilitada => no recibe postulaciones
+         * 1 deshabilitada => no recibe postulaciones, lo hace el empleador  / se puede hacer con fecha limite? poner las 2 opciones?
          * 2 reportada => incumplimiento de reglas -> listar en administrador 
          * Añadir fecha limite para recibir postulaciones
          * Añadir campo de plazas para la vacante cuando el número de contratos sea igual a la plaza => deshabilitar
