@@ -5,7 +5,7 @@
         <div class="p-5 mb-2 bg-light rounded-3">
             <div class="container-fluid py-3">
                 <h4>
-                    <p style="color: #0069A3;; text-align: center;">
+                    <p style="color: #0069A3; text-align: center;">
                         Crear una nueva vacante laboral
                     </p>
                 </h4>
@@ -28,6 +28,12 @@
                             <br>
                             <label for="payment">Salario:</label>
                             <input type="number" class="form-control" name="payment" id="payment">
+
+                            <label for="places">Plazas (opcional):</label>
+                            <input type="number" class="form-control" name="places" id="places">
+
+                            <label for="limit_date">Fecha limite (opcional):</label>
+                            <input type="date" class="form-control" name="limit_date" id="limit_date">
 
                             <br>
                             <label for="">Disponibilidad de horario</label>

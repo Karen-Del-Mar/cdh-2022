@@ -28,8 +28,9 @@
         @endif
 
         <div class="justify-content-center row">
-
+      
             @foreach ($vacancies as $vacancy)
+            {{$vacancy->state}}
                 <div data-role="recipe">
                     <div class="card w-75 mx-auto my-2">
                         <div class="card-body">
@@ -92,10 +93,27 @@
                                     <button type="submit" class="btn btn-primary btn-sm">Postularme</button>
                                 </form>
                             @endif {{-- Hacer un sweet alert de confirmación esto debe hacer un update que cambie el estado de la vacante --}}
-                            @if (auth()->user()->rol->key == 'admin')
-                                <form class="formulario-ocultar" action="{{route('vacancies.update')}}" method="POST">
-                                    <button type="submit" class="btn btn-primary btn-sm">Ocultar</button>
-                                </form>
+                            @if (auth()->user()->rol->key == 'admin') 
+                            {{-- Traer campo state en la consulta --}}
+                                @if ($vacancy->state == 0)
+                                    <form class="formulario-ocultar-v"
+                                        action="{{ route('vacancies.set_state', ['id' => $vacancy->id, 2]) }}"
+                                        method="POST">
+                                        @method('PUT')
+                                        @csrf
+                                    
+                                        <button type="submit" class="btn btn-danger">Ocultar</button>
+                                    </form>
+                                @else
+                                    <form class="formulario-mostrar-v"
+                                        action="{{ route('vacancies.set_state', ['id' => $vacancy->id, 0]) }}"
+                                        method="POST">
+                                        @method('PUT')
+                                        @csrf
+
+                                        <button type="submit" class="btn btn-success">Mostrar</button>
+                                    </form>
+                                @endif
                             @endif
                         @endif
 

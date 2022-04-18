@@ -15,8 +15,13 @@ class VacancyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $lista = (Employer::select("users.name","employers.company","users.email","vacancies.job","employers.location","users.phone", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id")
+    {   date_default_timezone_set('America/Bogota');
+        $time = date('d-m-Y');
+       
+        if("18-04-2022" == $time){
+            /** IT works! */
+        }
+        $lista = (Employer::select("users.name","employers.company","users.email","vacancies.job","employers.location","users.phone", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.state")
         ->join("vacancies", "vacancies.id_employer","=","employers.id")
         ->join("users", "users.id", "=", "employers.id_user")
         ->where("vacancies.hidden", "=", "0")
@@ -42,7 +47,7 @@ class VacancyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $id_user = auth()->user()->id;
         $employer = (Employer::where('id_user', $id_user)->get())[0];
         $id_employer = $employer->id;
@@ -52,6 +57,9 @@ class VacancyController extends Controller
         $vacancy->job = $request->job;
         $vacancy->profile = $request->profile;
         $vacancy->payment = $request->payment;
+        $vacancy->places = $request->places;
+        $vacancy->limit_date = $request->limit_date;
+
         $vacancy->availability = $request->availability;
   
         $vacancy->save();
@@ -97,7 +105,10 @@ class VacancyController extends Controller
         $vacancy ->job = $request->job;
         $vacancy ->profile = $request->profile;
         $vacancy ->payment = $request->payment;
-        $vacancy ->availability = $request->availability ;
+        $vacancy ->availability = $request->availability;
+        $vacancy->places = $request->places;
+        $vacancy->limit_date = $request->limit_date;
+        $vacancy->state = $request->state;
        // $vacancy ->hidden = $request->hidden;
 
         $vacancy ->save();
@@ -126,7 +137,15 @@ class VacancyController extends Controller
         }
        
     }
-/** No se esta usando */
+    public function set_state($id, $state){
+       
+        $vacancy = (Vacancy::where('id',$id)->get())[0];
+        $vacancy->state = $state;
+        $vacancy ->save();
+
+        return back()->with('status', "Hecho");
+    }
+/** No se esta usando se usa el de EmployerController*/
     public function index_perfil(){
 
         $id_user = auth()->user()->id;

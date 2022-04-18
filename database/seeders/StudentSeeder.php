@@ -53,7 +53,7 @@ class StudentSeeder extends Seeder
             'birthday' => '2000-12-20',
             'gender' =>'Hombre',
             'semester' => 2,
-            'average'=>3.5,
+            'average'=>3.4,
             'career' =>'Ing. Industrial',
             'eps'=> 'EPS',
             'blood_type' => 'O-',

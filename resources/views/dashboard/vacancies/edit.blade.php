@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 @section('content')
-{{-- TODO: Poner opción de cerrar vacante para no recibir más postulaciones --}}
+    {{-- TODO: Poner opción de cerrar vacante para no recibir más postulaciones --}}
     <form action="{{ route('vacancies.update', ['vacancy' => $vacancy->id]) }}" method="post">
         @method('PUT')
         @csrf
@@ -26,6 +26,24 @@
                                 <label for="payment">Salario por hora:</label>
                                 <input type="number" class="form-control" name="payment" id="payment"
                                     value="{{ old('payment', $vacancy->payment) }}">
+
+                                <label for="places">Plazas (opcional):</label>
+                                <input type="number" class="form-control" name="places" id="places"
+                                    value="{{ old('places', $vacancy->places) }}">
+
+                                <label for="limit_date">Fecha limite (opcional):</label>
+                                <input type="date" class="form-control" name="limit_date" id="limit_date"
+                                    value="{{ old('limit_date', $vacancy->limit_date) }}">
+
+                                <label>Estado de la vacante</label><br>
+
+                                @if ($vacancy->state == 0)
+                                    <input type="radio" name="state" value="0" checked> Vigente, recibe postulaciones<br>
+                                    <input type="radio" name="state" value="1"> Cerrar, ya no recibirá postulaciones <br>
+                                @else
+                                    <input type="radio" name="state" value="0"> Vigente, recibe postulaciones<br>
+                                    <input type="radio" name="state" value="1" checked> Cerrar, ya no recibirá postulaciones <br>
+                                @endif
 
                                 <br>
                                 <label for="availability">Disponibilidad de horario</label>

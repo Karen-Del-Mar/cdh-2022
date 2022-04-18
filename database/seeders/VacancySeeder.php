@@ -27,6 +27,7 @@ class VacancySeeder extends Seeder
             'availability' => "Fines de semana de 2 a 6 pm",
             'hidden'=>0,
             'state'=>0,
+            'limit_date'=>date('Y-m-d'),
         ]);
 
         Vacancy::create([
@@ -37,6 +38,7 @@ class VacancySeeder extends Seeder
             'availability' => "lunes a viernes de 2 a 6pm",
             'hidden'=>0,
             'state'=>0,
+            'places'=>2
         ]);
 
 
@@ -67,7 +69,7 @@ class VacancySeeder extends Seeder
             'payment' => 500000,
             'availability' => "Todos los días de 6 a 11 pm",
             'hidden'=>1,
-            'state'=>1,
+            'state'=>2,
         ]);
         
         DB::statement('SET FOREIGN_KEY_CHECKS = 1;');

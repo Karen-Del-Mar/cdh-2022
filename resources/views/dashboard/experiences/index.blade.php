@@ -31,6 +31,8 @@
 
                         </div>
                     </div>
+
+
                     @if (auth()->user())
                         @if (auth()->user()->id === $experience->id_user)
                             <div class="d-block btn-group btn-group-sm">

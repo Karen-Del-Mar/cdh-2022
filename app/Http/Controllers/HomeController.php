@@ -9,6 +9,7 @@ use App\Models\Postulate;
 use App\Models\Vacancy;
 use App\Models\Contract;
 use App\Models\Employer;
+use App\Models\Experience;
 
 
 class HomeController extends Controller
@@ -42,11 +43,15 @@ class HomeController extends Controller
                             ->join("users","users.id","=","employers.id_user")
                             ->get();
 
-            $list_vacancies_dis = Vacancy::where("vacancies.hidden", 1)
+            $list_vacancies_dis = Vacancy::where("state", 2)
                             ->join("employers","employers.id","=","vacancies.id_employer")
                             ->get();
+            $list_experiences_dis = Experience::where("experiences.hidden", 1)
+                            ->join("students","students.id","=","experiences.id_student")
+                            ->join("users", "users.id", "=","students.id_user")
+                            ->get();
 
-            return view('home', ['lista'=>$lista, 'lista_student'=>$lista_student, 'users'=>$list_employer_dis, 'vacancies'=>$list_vacancies_dis]);
+            return view('home', ['lista'=>$lista, 'lista_student'=>$lista_student, 'users'=>$list_employer_dis, 'vacancies'=>$list_vacancies_dis, 'list_exp'=>$list_experiences_dis]);
         }
 
         if(auth()->user()->rol->key=='employer')
