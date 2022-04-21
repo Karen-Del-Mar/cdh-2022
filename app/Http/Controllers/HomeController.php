@@ -38,7 +38,7 @@ class HomeController extends Controller
                             ->get();
             $lista_student = User::where("rol_id","=",3)->join("students","students.id_user","=","users.id")
                             ->get();
-                            
+
             $list_employer_dis = Employer::where("hidden", 1)
                             ->join("users","users.id","=","employers.id_user")
                             ->get();
@@ -50,7 +50,7 @@ class HomeController extends Controller
                             ->join("students","students.id","=","experiences.id_student")
                             ->join("users", "users.id", "=","students.id_user")
                             ->get();
-
+               
             return view('home', ['lista'=>$lista, 'lista_student'=>$lista_student, 'users'=>$list_employer_dis, 'vacancies'=>$list_vacancies_dis, 'list_exp'=>$list_experiences_dis]);
         }
 

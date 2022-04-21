@@ -40,12 +40,16 @@ class PostulateController extends Controller
     {
         $id_user = $request->id_user;
         $student = (Student::where('id_user', $id_user)->get())[0];
-
+       
         try {
             $postulation = new Postulate();
             $postulation->id_student = $student->id;
             $postulation->id_vacancy = $request->id_vacancy;
             $postulation->save();
+
+            $student->state = 'Postulado';
+            $student->save();
+            
             return back()->with('postulated', 'ok'); // a donde direccionar? perfil, home, vacancies index?
            // return redirect()->route('home')->with('status','Postulación enviada');
           } catch(\Illuminate\Database\QueryException $ex){

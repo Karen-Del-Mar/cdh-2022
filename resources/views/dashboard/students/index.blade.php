@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-striped table-hover" id="tabla">
+    <table class="table table-hover" id="tabla">
         <thead>
             <tr>
                 <td colspan="4" class="d-flex">
@@ -8,11 +8,15 @@
                 </td>
             </tr>
             <tr>
+                {{-- 3 estados de estudiante: Ha enviado postulaciones, no se ha postulado, contratado
+                    Hacerlo desde las consultas --}}
                 <th scope="col">Nombre</th>
                 <th scope="col">Correo</th>
                 <th scope="col">Teléfono</th>
                 <th scope="col">Carrera</th>
                 <th scope="col">Promedio</th>
+                <th scope="col">Estado</th>
+
             </tr>
         </thead>
         <tbody>
@@ -24,27 +28,49 @@
                         <td>{{ $student->phone }}</td>
                         <td>{{ $student->career }}</td>
                         <td>{{ $student->average }}</td>
+
+                        @if ($student->state == 'No postulado')
+                            <td><label class="badge rounded-pill bg-secondary">{{ $student->state }}</label></td>
+                        @else
+                            @if ($student->state == 'Postulado')
+                                <td><label class="badge rounded-pill bg-info text-dark">{{ $student->state }}</label></td>
+                            @else
+                                <td><label class="badge rounded-pill bg-success">{{ $student->state }}</label></td>
+                            @endif
+                        @endif
+
                         <td> {{-- $student-> id es id de usuario --}}
                             <a href="{{ route('student.show', $student->id_user) }}" class="btn btn-warning btn-sm">
                                 Ver
                             </a>
                         </td>
                     </tr>
-                    @else
+                @else
                     <tr>
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{{ $student->phone }}</td>
                         <td>{{ $student->career }}</td>
                         <td>{{ $student->average }}</td>
+
+                        @if ($student->state == 'No postulado')
+                            <td><label class="badge rounded-pill bg-secondary">{{ $student->state }}</label></td>
+                        @else
+                            @if ($student->state == 'Postulado')
+                                <td><label class="badge rounded-pill bg-info text-dark">{{ $student->state }}</label></td>
+                            @else
+                                <td><label class="badge rounded-pill bg-success">{{ $student->state }}</label></td>
+                            @endif
+                        @endif
+
                         <td> {{-- $student-> id es id de usuario --}}
                             <a href="{{ route('student.show', $student->id_user) }}" class="btn btn-warning btn-sm">
                                 Ver
                             </a>
-    
+
                         </td>
                     </tr>
-                @endif      
+                @endif
             @endforeach
         </tbody>
     </table>

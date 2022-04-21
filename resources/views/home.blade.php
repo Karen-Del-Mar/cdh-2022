@@ -67,6 +67,10 @@
                                 <div class="row container d-flex justify-content-center">
                                     <div class="col-sm-12">
                                
+                                        <a class="btn btn-outline-primary" href="{{ route('employer.show', auth()->user()->id) }}">
+                                            <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/50/F4D73B/external-document-business-vitaliy-gorbachev-lineal-vitaly-gorbachev-1.png"/>
+                                            {{ __('Estudiantes empleados') }}           
+                                        </a>
 
                                         <div class="container mt-5">
                                             <ul class="m-0 nav nav-fill nav-pills nav-justified nav-tabs" id="myTab" role="tablist">

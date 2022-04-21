@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->string('eps', 50)->nullable();
             $table->string('blood_type', 4)->default('-1');
             $table->enum('job_skills', ['Atención al cliente','Habilidades comunicativas', 'Trabajo en equipo', 'Creatividad'])->nullable(); // ? deberia ser enum
+            $table->enum('state', ['Postulado','No postulado','Contratado'])->default('No postulado');
             $table->text('office_tools', 7000)->nullable(); // cuales? deberia ser enum?
             $table->text('work_experience', 7000)->nullable(); // mostrar formato segun cv en canva
             $table->text('languages', 7000)->nullable();

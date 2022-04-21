@@ -23,5 +23,11 @@ class ExperienceSeeder extends Seeder
             'experience' => 'Aprendí mucho de esta gran experiencia y tengo mucho que agradecer al programa. Me gustó muchisimo!!',           
             'id_student' => '3',
             ]);
+
+        Experience::create([
+            'experience' => 'No me gustó muchisimo!! fue una mala experiencia; No me gustó muchisimo!! fue una mala experiencia; No me gustó muchisimo!! fue una mala experiencia',           
+            'id_student' => '2',
+            'hidden' => '1'
+            ]);
     }
 }

@@ -104,4 +104,26 @@ class StudentController extends Controller
     {
         //
     }
+    public function hasPostulates($id){
+        $hasPostulates = Postulate::select(['postulates.*'])
+                       ->where('id_student','=',$id)
+                       ->count();
+        if($hasPostulates>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public function hasContracts(){
+         $hasContracts = Contract::select(['contracts.*'])
+                       ->where('id_student','=',$id)
+                       ->count();
+        if($hasContracts>0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }
