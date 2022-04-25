@@ -9,6 +9,7 @@ use App\Models\Vacancy;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Hash;
+use Helpers\auxCode;
 
 class EmployerController extends Controller
 {
@@ -149,12 +150,12 @@ class EmployerController extends Controller
     {
         
     }
-    public function accept_request(StoreUserRequest $request, $id){
+    public function accept_request(StoreUserRequest $request, Auxcode $codifica, $id){
         // Hacer un try catch para que no cambie el estado sin guardar el usuario
         // Cambiar estado de solicitud
         // Estado:  2 => solicitud aceptada
-        $avatar = assignImage($request->sector);
-        dd($avatar);
+        $avatar = $codifica->assignImage($request->sector);
+  
         $solicitudes = (Solicitude::where('id',$id)->get())[0];
         $solicitudes->state = 2;
         $solicitudes->save();
@@ -166,6 +167,7 @@ class EmployerController extends Controller
         $user->document = $request->document;
         $user->phone = $request->phone;
         $user->rol_id='2';
+        $user->avatar = $avatar;
         $user->save();
       
         $id_user=$user->id;
@@ -231,24 +233,5 @@ class EmployerController extends Controller
         // return view('dashboard.vacancies.index_perfil',['vacancies'=> $lista]);
     }
 
-    public function assignImage($sector){
-        if($sector == "Resturante"){
-            return 'restaurant-profile.svg';
-        }else if($sector == "Bar"){
-            return 'bar-profile.svg';
-        }else if($sector == "Comercio"){
-            return 'restaurant-profile.svg';
-        }else if($sector == "Tecnología"){
-            return 'tech-profile.svg';
-        }else if($sector == "Atención al cliente"){
-            return 'client-profile.svg';
-        }else if($sector == "Marketing"){
-            return 'marketing-profile.svg';
-        }else if($sector == "Entretenomiento"){
-            return 'entertainment-profile.svg';
-        }
-        else if($sector == "Otro"){
-            return 'default-employer-profile.svg';
-        }
-    }
+    
 }
