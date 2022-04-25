@@ -153,7 +153,6 @@ class EmployerController extends Controller
         // Hacer un try catch para que no cambie el estado sin guardar el usuario
         // Cambiar estado de solicitud
         // Estado:  2 => solicitud aceptada
-
         $solicitudes = (Solicitude::where('id',$id)->get())[0];
         $solicitudes->state = 2;
         $solicitudes->save();
@@ -173,6 +172,7 @@ class EmployerController extends Controller
         $employer->id_user=$id_user;
         $employer->company=$request->company;
         $employer->location=$request->location;
+        $employer->sector=$request->sector;
         $employer->description=$request->description;
         $employer->score=0;
         $employer->hidden=0;
