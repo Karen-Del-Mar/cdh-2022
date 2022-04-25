@@ -26,7 +26,13 @@ class StudentSeeder extends Seeder
             'job_skills'=>'Atención al cliente',
             'state'=>'Postulado',
             'office_tools' =>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
-            'work_experience'=>'Mesera en un lugar de la mancha',
+            'work_experience'=>'Empresa: Restaurante Barbacoa 
+                                Ciudad: Manizales
+                                Cargo: Cajero
+                                Tiempo laborado: 18 meses
+                                Jefe Inmediato: Felipe Perdomo
+                                Cargo del Jefe: Administrador
+                                Teléfono Empresa: 3159284946',
             'languages'=>'Inglés B1 - Francés A2',
             'score'=>4,
             'hidden' => false,
@@ -43,7 +49,13 @@ class StudentSeeder extends Seeder
             'blood_type' => 'O-',
             'job_skills'=>'Habilidades comunicativas',
             'office_tools' =>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
-            'work_experience'=>'Barman en Skal',
+            'work_experience'=>'Empresa: Restaurante Barbacoa 
+                                Ciudad: Manizales
+                                Cargo: Cajero
+                                Tiempo laborado: 18 meses
+                                Jefe Inmediato: Felipe Perdomo
+                                Cargo del Jefe: Administrador
+                                Teléfono Empresa: 3159284946',
             'languages'=>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
             'score'=>4, 
             'hidden' => false,
@@ -60,7 +72,13 @@ class StudentSeeder extends Seeder
             'blood_type' => 'O-',
             'job_skills'=>'Atención al cliente',
             'office_tools' =>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
-            'work_experience'=>'Empresa de seguros',
+            'work_experience'=>'Empresa: Restaurante Barbacoa 
+                                Ciudad: Manizales
+                                Cargo: Cajero
+                                Tiempo laborado: 18 meses
+                                Jefe Inmediato: Felipe Perdomo
+                                Cargo del Jefe: Administrador
+                                Teléfono Empresa: 3159284946',
             'languages'=>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
             'score'=>5,
             'hidden' => false,

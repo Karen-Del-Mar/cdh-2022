@@ -81,6 +81,12 @@
             </div>
             <div class="card w-75">
                 <div class="card-body">
+                    <h5 class="card-title" style="color:#0069A3">Experiencia laboral</h5>
+                    <p class="card-text">{!! nl2br(e($student->work_experience)) !!}</p>
+                </div>
+            </div>
+            <div class="card w-75">
+                <div class="card-body">
                     <h5 class="card-title" style="color:#0069A3">Otros datos personales</h5>
                     <div class="d-flex">
                         <p class="card-text" style="margin-right: 2%; font-weight:bold">Tipo de documento</p>

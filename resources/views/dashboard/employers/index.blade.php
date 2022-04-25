@@ -57,7 +57,7 @@
 
                             <div class="d-flex align-items-center justify-content-between py-2 px-3">
                                 <a href="{{ route('employer.show', $employer->id_user) }}"
-                                    class="btn btn-dark text-uppercase"><i class="bi bi-eye"></i>
+                                    class="btn btn-warning text-uppercase fw-bold"><i class="bi bi-eye"></i>
                                     Ver</a>
                                 {{-- <div> <button class="btn btn-dark text-uppercase"> Ver </button> </div> --}}
                             </div>
