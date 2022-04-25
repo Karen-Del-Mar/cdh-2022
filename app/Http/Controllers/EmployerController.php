@@ -23,10 +23,12 @@ class EmployerController extends Controller
         // Envia lista de empresas y lista de usuarios asociados a esas empresas
         $users = null;
         $count = array();
-        $employers = Employer::where('hidden', 0)->get();
+        $employers = Employer::join("users", "users.id","=","employers.id_user")
+        ->select("users.avatar","employers.company","employers.sector","employers.id_user", "employers.id")
+        ->where("employers.hidden", 0)->get();
         
         foreach ($employers as $employer) {
-            $users = User::where('id', $employer->id_user)->get();
+            //$users = User::where('id', $employer->id_user)->get();
 
             $hasVacancies = Vacancy::select(['vacancies.*'])
             ->where('vacancies.id_employer','=', $employer->id)
@@ -34,7 +36,7 @@ class EmployerController extends Controller
             array_push($count, strval($hasVacancies));
             
         }
-        return view('dashboard.employers.index',['users'=>$users,'employers'=>$employers,'count'=> $count]);
+        return view('dashboard.employers.index',['employers'=>$employers,'count'=> $count]);
     }
 
     /**
@@ -106,7 +108,7 @@ class EmployerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(StoreUserRequest $request, $id)
-    {
+    {   
         /** 
          *  Debería poder editar la cédula?
          */
@@ -116,6 +118,14 @@ class EmployerController extends Controller
         $user -> name = $request ->name;
         $user -> email = $request ->email;
         $user -> phone = $request ->phone;
+        /** Estaba acá */
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/employers-profile/', $name); 
+            //$user -> avatar = $request ->file('avatar')->store('public');
+            $user -> avatar = $name;
+        }
         //$user -> password = $request -> password;
 
         $user->save();

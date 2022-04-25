@@ -58,6 +58,7 @@ class UserSeeder extends Seeder
             'email' =>'employer@autonoma.edu.co',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204692',
+            'avatar'=>'1650662240negro.PNG',
             'rol_id' => '2'
         ]);
 

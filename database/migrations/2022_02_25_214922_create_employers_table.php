@@ -20,7 +20,7 @@ class CreateEmployersTable extends Migration
 
             $table->string('company', 100)->nullable();
             $table->string('location', 100)->nullable();
-            $table->enum('sector', ['Restaurante', 'Bar','Comercio', 'Entretenimiento', 'Atención al cliente', 'Marketing', 'Otro'])->nullable(); // Sector? a que se dedica la empresa
+            $table->enum('sector', ['Restaurante', 'Bar','Comercio', 'Entretenimiento', 'Atención al cliente', 'Marketing','Tecnología','Otro'])->nullable(); // Sector? a que se dedica la empresa
             $table->string('description', 8000); // sirve en caso de que seleccione 'otro' en sector y para profundizar sobre que hace la empresa
             
             $table->tinyInteger('score')->nullable();

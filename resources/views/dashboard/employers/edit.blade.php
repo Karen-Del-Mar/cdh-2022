@@ -1,6 +1,6 @@
 @extends('dashboard.master')
 @section('content')
-    <form action="{{route('employer.update', ['employer' => $user->id])}}" method="post">
+    <form action="{{route('employer.update', ['employer' => $user->id])}}" method="post" enctype = 'multipart/form-data'>
         @method('PUT')
         @csrf
         <div class="container bg-light py-4">
@@ -9,6 +9,10 @@
                     <div class="form-group">
                         <div class="row center">
                             <div class="col mb-3">
+
+                                <label for="avatar"> <input type="file" name="avatar"> </label>
+                                <br>
+
                                 <label>Nombre y apellido del empleador</label>
                                 <input type="text" class="form-control" name="name" id="name"
                                     placeholder="Nombre y apellido del empleador" value="{{ old('name', $user->name) }}">

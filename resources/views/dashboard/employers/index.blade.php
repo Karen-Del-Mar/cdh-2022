@@ -34,9 +34,9 @@
                         data-role="recipe">
                         <div class="card" style="background-color: rgb(236, 236, 236);">
                             <div class="d-flex justify-content-center">
-
-                                <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" class="product"
-                                    alt="">
+                               
+                                <img src="{{ asset('images/employers-profile/'.$employer->avatar) }}" class="product"
+                                    alt="Imagén no disponible">
 
                             </div>
 

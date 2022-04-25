@@ -7,8 +7,8 @@
         <div class="d-flex flex-md-row justify-content-around align-items-center">
             <div class="d-flex flex-md-row align-items-center">
                 <div class="p-md-2">
-                    <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" alt="" class="rounded-circle"
-                        id="profile">
+                    <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" alt=""
+                        id="profile" class="img-fluid">
                 </div>
                 <div class="p-md-2 p-1" id="info">
                     <h5>{{ $employer->company }}</h5>
