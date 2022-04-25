@@ -21,7 +21,7 @@
         }else if($sector == "Bar"){
             return 'bar-profile.svg';
         }else if($sector == "Comercio"){
-            return 'default-employer-profile.svg';
+            return 'commerce-profile.svg';
         }else if($sector == "Tecnología"){
             return 'tech-profile.svg';
         }else if($sector == "Atención al cliente"){

@@ -137,7 +137,7 @@ class EmployerController extends Controller
 
         $employer ->save();
 
-        return back()->with('status','Perfil actualizado con éxito');
+        return redirect()->route('employer.show',[$id]);
     }
 
     /**

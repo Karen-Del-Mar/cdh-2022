@@ -75,16 +75,9 @@ class UserController extends Controller
     {   
         $user = (User::where('id', $id)->get())[0];
 
-        if($user->rol_id == 2){
-            $employer = (Employer::where('id_user', $id)->get())[0];
-            $id_employer = $employer->id;
-
-            $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id")
-                     ->where("vacancies.id_employer","=",$id_employer)
-                     ->get());
-    
-            return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer, 'vacancies'=>$lista]);
-    
+        if($user->rol_id == 2){           
+            //return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer, 'vacancies'=>$lista]);
+            return redirect()->route('employer.show',[$id]);
         }
        
         if($user->rol_id == 3){

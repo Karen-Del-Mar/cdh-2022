@@ -22,7 +22,7 @@ class StoreUserRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
+    { 
         return [
             'document' => 'min:5 | max:11',
             'email'=> '  min:10 | max:50',
