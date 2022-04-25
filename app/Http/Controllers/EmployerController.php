@@ -153,6 +153,8 @@ class EmployerController extends Controller
         // Hacer un try catch para que no cambie el estado sin guardar el usuario
         // Cambiar estado de solicitud
         // Estado:  2 => solicitud aceptada
+        $avatar = assignImage($request->sector);
+        dd($avatar);
         $solicitudes = (Solicitude::where('id',$id)->get())[0];
         $solicitudes->state = 2;
         $solicitudes->save();
@@ -227,5 +229,26 @@ class EmployerController extends Controller
 
         return view('dashboard.employers.show', ['vacancies'=>$lista]);
         // return view('dashboard.vacancies.index_perfil',['vacancies'=> $lista]);
+    }
+
+    public function assignImage($sector){
+        if($sector == "Resturante"){
+            return 'restaurant-profile.svg';
+        }else if($sector == "Bar"){
+            return 'bar-profile.svg';
+        }else if($sector == "Comercio"){
+            return 'restaurant-profile.svg';
+        }else if($sector == "Tecnología"){
+            return 'tech-profile.svg';
+        }else if($sector == "Atención al cliente"){
+            return 'client-profile.svg';
+        }else if($sector == "Marketing"){
+            return 'marketing-profile.svg';
+        }else if($sector == "Entretenomiento"){
+            return 'entertainment-profile.svg';
+        }
+        else if($sector == "Otro"){
+            return 'default-employer-profile.svg';
+        }
     }
 }

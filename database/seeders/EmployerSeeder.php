@@ -38,9 +38,9 @@ class EmployerSeeder extends Seeder
 
         Employer::create([
             'id_user'=>'7',
-            'company'=>'Restaurante la pradera',
+            'company'=>'Agencia la pradera',
             'location' => 'Cll 10 # 50 - 2 Milán',
-            'Sector'=>'Bar',
+            'Sector'=>'Entretenimiento',
             'description' => 'Un lugar para pasar un rato agradable con comida deliciosa',
             'score'=>4,
             'hidden' => true,

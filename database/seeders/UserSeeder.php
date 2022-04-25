@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             'email' =>'employer@autonoma.edu.co',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204692',
-            'avatar'=>'1650662240negro.PNG',
+            'avatar'=>'restaurant-profile.svg',
             'rol_id' => '2'
         ]);
 
@@ -69,6 +69,7 @@ class UserSeeder extends Seeder
             'email' =>'albertocardona@autonoma.edu.co',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204692',
+            'avatar'=>'bar-profile.svg',
             'rol_id' => '2'
         ]);
 
@@ -78,6 +79,7 @@ class UserSeeder extends Seeder
             'email' =>'paulina123@hotmail.com',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204900',
+            'avatar'=>'entertainment-profile.svg',
             'rol_id' => '2'
         ]);
     }
