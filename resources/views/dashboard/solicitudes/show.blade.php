@@ -47,11 +47,20 @@
                             placeholder="Nombre de la empresa" value="{{ old('company', $solicitudes->company) }}"
                             readonly>
 
-                        <p style="color: #0069A3;;">(En caso de no ser una empresa poner el nombre del empleador)
+                        <p style="color: #0069A3;">(En caso de no ser una empresa poner el nombre del empleador)
                         </p>
 
                         <input type="text" class="form-control" name="location" id="location" placeholder="Dirección"
                             value="{{ old('location', $solicitudes->location) }}" readonly>
+                        
+                        <br>
+                        <label for="sector">Sector</label>
+                        <select class="form-control form-select" name="sector" id="sector" readonly>
+                            <option value=""></option>
+                            @include('dashboard/partials/option-sector', [
+                                'val' => $solicitudes->sector,
+                            ])
+                        </select>
                         <br>
                         <textarea name="description" id="description" class="form-control" rows="3" placeholder="Descipción de la empresa"
                             readonly>{{ $solicitudes->description }}

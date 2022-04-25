@@ -31,7 +31,7 @@ class SolicitudeRequest extends FormRequest
             'location' => 'required | min:5 | max:50',
             'phone' => 'required |max:10',
             'description' => 'required | min: 5 | max:8000',
-            'sector',
+            'sector'=>'required',
             'state',
         ];
 

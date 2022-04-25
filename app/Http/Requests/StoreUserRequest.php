@@ -31,6 +31,7 @@ class StoreUserRequest extends FormRequest
             'location' => 'min:5 | max:50',
             'phone' => 'max:10',
             'avatar' => 'image',
+            'sector'=>'required',
             'description' => ''
         ];
     }
@@ -38,6 +39,7 @@ class StoreUserRequest extends FormRequest
     public function messages(){
         return [
             'name.required' => 'nombre requerido.',
+            'sector.required' => 'seleccione un sector'
         ];
     }
 }

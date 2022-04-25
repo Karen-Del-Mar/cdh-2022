@@ -24,6 +24,7 @@ class StudentSeeder extends Seeder
             'eps'=> 'SURA',
             'blood_type' => 'AB-',
             'job_skills'=>'Atención al cliente',
+            'state'=>'Postulado',
             'office_tools' =>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
             'work_experience'=>'Mesera en un lugar de la mancha',
             'languages'=>'Inglés B1 - Francés A2',
@@ -44,7 +45,7 @@ class StudentSeeder extends Seeder
             'office_tools' =>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
             'work_experience'=>'Barman en Skal',
             'languages'=>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
-            'score'=>4,
+            'score'=>4, 
             'hidden' => false,
         ]);
 
