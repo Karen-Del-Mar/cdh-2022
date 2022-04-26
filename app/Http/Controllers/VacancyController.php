@@ -15,18 +15,19 @@ class VacancyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   date_default_timezone_set('America/Bogota');
-        $time = date('d-m-Y');
-       
-        if("18-04-2022" == $time){
-            /** IT works! */
-        }
+    {   
+        date_default_timezone_set('America/Bogota');
+        $time = date('Y-m-d');     
+
+        $prueba = Vacancy::whereDate('limit_date', '<=', $time)->update(array('state' => 1));
+
         $lista = (Employer::select("users.name","employers.company","users.email","vacancies.job","employers.location","users.phone", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.state")
         ->join("vacancies", "vacancies.id_employer","=","employers.id")
         ->join("users", "users.id", "=", "employers.id_user")
         ->where("vacancies.hidden", "=", "0")
         ->orderby("vacancies.id", "DESC")
         ->get());
+            
         return view('dashboard.vacancies.index',['vacancies'=> $lista]);
     }
 

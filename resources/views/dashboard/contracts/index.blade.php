@@ -11,7 +11,9 @@
                     <th scope="col">Cargo</th>
                     <th scope="col">Salario</th>
                     <th scope="col">Contacto</th>
+                    <th scope="col">Descripción</th>
                     <th scope="col">Fecha finalización</th>
+                    <th scope="col">Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +26,12 @@
                         <td>{{ $list_student->job }} </td>
                         <td>{{ $list_student->payment }}</td>
                         <td>{{ $list_student->phone }}</td>
+                        <td>{{ $list_student->description }}</td>
                         <td>{{ $list_student->final_date }}</td>
+                        <td>
+                            <a href="" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="" class="btn btn-danger btn-sm">Terminar</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
