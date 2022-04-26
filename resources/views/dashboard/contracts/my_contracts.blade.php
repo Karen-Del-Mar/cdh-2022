@@ -12,6 +12,7 @@
                         <th scope="col">Salario</th>
                         <th scope="col">Contacto</th>
                         <th scope="col">Fecha finalización</th>
+                        <th scope="col">Estado</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,11 @@
                             <td>{{ $contract->payment }}</td>
                             <td>{{ $contract->phone }}</td>
                             <td>{{ $contract->final_date }}</td>
+                            @if ($contract->state == 0)
+                                <td><label class="badge rounded-pill bg-success">Vigente</label></td>
+                            @else
+                            <td><label class="badge rounded-pill bg-secondary">Finalizado</label></td>                                
+                            @endif
                         </tr>
                     @endforeach
                     

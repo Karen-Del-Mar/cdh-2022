@@ -100,7 +100,9 @@ class ContractController extends Controller
      */
     public function update(Request $request, Contract $contract)
     {
-        //
+        $contract->state = 1;
+        $contract->save();
+        return back();
     }
 
     /**
@@ -126,6 +128,13 @@ class ContractController extends Controller
         $vacancy = (Vacancy::where('id',$postulados->id_vacancy)->get())[0];
         // return redirect()->route('home')->with('status','Solicitud aceptada');
         return view('dashboard.contracts.create', ['contract' => new Contract(), 'id' => $id_student,'vacancy'=>$vacancy]);
+    }
+
+    public function change_state($id){
+        $contract = (Contract::where('id', $id)->get())[0];
+        $contract -> state = 1;
+        $contract -> save();
+        return back()->with('showExp', 'ok');
     }
 
 }

@@ -21,7 +21,7 @@
                 @foreach ($lista_student as $list_student)
 
                     <tr>
-                        <td>{{ $list_student->name }}</td>
+                        <td id="name">{{ $list_student->name }}</td>
                         <td>{{ $list_student->start_date }}</td>
                         <td>{{ $list_student->job }} </td>
                         <td>{{ $list_student->payment }}</td>
@@ -29,8 +29,17 @@
                         <td>{{ $list_student->description }}</td>
                         <td>{{ $list_student->final_date }}</td>
                         <td>
-                            <a href="" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="" class="btn btn-danger btn-sm">Terminar</a>
+                            @if ($list_student->state == 0)
+                                <form class="formulario-finalizar-contracto"
+                                    action="{{ route('userContract.change_state', ['id' => $list_student->id]) }}"
+                                    method="POST">
+                                    @method('PUT')
+                                    @csrf
+
+                                    <button id="hideButton" type="submit" class="btn btn-danger">Finalizar</button>
+                                </form>
+                            @endif
+                            <a href="" class="btn btn-warning btn-sm">Editar</a> 
                         </td>
                     </tr>
                 @endforeach
@@ -43,3 +52,25 @@
 @endif
 </div>
 
+<script>
+
+$('.formulario-finalizar-contracto').submit(function(e) {
+    
+    e.preventDefault();
+    Swal.fire({
+        title: '¿Finalizar contrato?',
+        text: "El estudiante ya no hará parte de su empresa",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Si, Finalizar!',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+    })
+
+});
+</script>

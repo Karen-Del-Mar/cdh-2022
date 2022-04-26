@@ -23,7 +23,9 @@ class CreateContractsTable extends Migration
 
             $table->foreignId('id_student')->default(0);
             $table->foreignId('id_employer')->default(0);
-
+            /** state 0 = Vigente  1 = Finalizado  */
+            $table->tinyInteger('state')->default(0);
+        
             $table->text('description')->nullable();
             $table->timestamps();
 

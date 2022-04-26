@@ -96,6 +96,9 @@ Route::get('/postulate/{id}', [PostulateController::class, 'postulate_vacancy'])
 Route::put('/userExperience/{id}/{hidden}', [ExperienceController::class, 'change_hidden'])
                 ->name('userExperience.change_hidden');
 
+Route::put('/contract/{id}', [ContractController::class, 'change_state'])
+                ->name('userContract.change_state');
+
 Route::get('/hasContracts/{id}', [StudentController::class, 'hasContracts'])
                 ->name('student.hasContracts');
 

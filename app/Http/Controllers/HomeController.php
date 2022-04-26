@@ -72,10 +72,9 @@ class HomeController extends Controller
                     ->join("employers", "employers.id", "=", "contracts.id_employer")
                     ->select("users.name", "users.email", "users.phone", "contracts.start_date",
                             "contracts.final_date", "contracts.description", "contracts.payment",
-                            "contracts.job")
+                            "contracts.job", "contracts.state", "contracts.id")
                     ->where("employers.id_user","=",auth()->user()->id)
                     ->get();
-
 
              return view('home', ['lista_post'=>$lista_post, 'lista_student' => $lista_student]);
         }
@@ -94,8 +93,9 @@ class HomeController extends Controller
                     ->join("employers", "employers.id", "=", "contracts.id_employer")
                     ->join("users", "users.id", "=", "employers.id_user")
                     ->select("users.name","employers.company", "users.email", "users.phone", "contracts.start_date",
-                            "contracts.final_date", "contracts.description", "contracts.payment",
+                            "contracts.final_date", "contracts.description", "contracts.payment", "contracts.state",
                             "contracts.job")
+                    ->orderby("contracts.state", "ASC")
                     ->where("students.id_user","=",auth()->user()->id)
                     ->get();
 
