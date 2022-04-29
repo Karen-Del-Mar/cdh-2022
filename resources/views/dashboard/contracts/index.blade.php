@@ -30,7 +30,7 @@
                             <td>
                                 @if ($list_student->state == 0)
                                     <div class="d-flex">
-                                        <a href="" class="btn btn-warning" title="Editar"><i class="bi bi-pencil-fill"></i></a>
+                                        <a href="" class="btn btn-warning btn-sm" title="Editar"><i class="bi bi-pencil-fill"></i></a>
                                         <a href="{{ route('survey.createSurvey',[$list_student->id_receiver]) }}" class="btn btn-success" title="Evaluar"><i class="bi bi-graph-up-arrow"></i></a>
                                         <form class="formulario-finalizar-contracto"
                                             action="{{ route('userContract.change_state', ['id' => $list_student->id]) }}"

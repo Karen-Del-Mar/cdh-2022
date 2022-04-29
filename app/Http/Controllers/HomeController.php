@@ -92,7 +92,7 @@ class HomeController extends Controller
             $my_contracts = Contract::join("students", "students.id", "=", "contracts.id_student")
                     ->join("employers", "employers.id", "=", "contracts.id_employer")
                     ->join("users", "users.id", "=", "employers.id_user")
-                    ->select("users.name","employers.company", "users.email", "users.phone", "contracts.start_date",
+                    ->select("users.name","employers.company","users.id AS id_receiver","users.email", "users.phone", "contracts.start_date",
                             "contracts.final_date", "contracts.description", "contracts.payment", "contracts.state",
                             "contracts.job")
                     ->orderby("contracts.state", "ASC")

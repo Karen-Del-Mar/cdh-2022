@@ -11,8 +11,10 @@
                         <th scope="col">Cargo</th>
                         <th scope="col">Salario</th>
                         <th scope="col">Contacto</th>
+                        <th scope="col">Descripción</th>
                         <th scope="col">Fecha finalización</th>
                         <th scope="col">Estado</th>
+                        <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,12 +26,17 @@
                             <td>{{ $contract->job }} </td>
                             <td>{{ $contract->payment }}</td>
                             <td>{{ $contract->phone }}</td>
+                            <td>{{ $contract->description }}</td>
                             <td>{{ $contract->final_date }}</td>
                             @if ($contract->state == 0)
                                 <td><label class="badge rounded-pill bg-success">Vigente</label></td>
                             @else
-                            <td><label class="badge rounded-pill bg-secondary">Finalizado</label></td>                                
+                                <td><label class="badge rounded-pill bg-secondary">Finalizado</label></td>                                
                             @endif
+                            <td>
+                                <a href="{{ route('survey.createSurvey',[$contract->id_receiver]) }}" class="btn btn-info" title="Evaluar"><i class="bi bi-graph-up-arrow"></i></a>
+                            </td>
+
                         </tr>
                     @endforeach
                     

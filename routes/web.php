@@ -28,7 +28,7 @@ Route::get('/', function () {
 });
 
 Route::get('/prueba', function () {
-    return view('dashboard.surveys._form');
+    return view('dashboard.partials.prueba');
 });
 
 
