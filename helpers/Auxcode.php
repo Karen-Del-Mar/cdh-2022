@@ -34,4 +34,17 @@
             return 'default-employer-profile.svg';
         }
     }
+
+    public function calculateScore(){
+        
+        foreach ($users as $user) {
+            //$users = User::where('id', $employer->id_user)->get();
+
+            $hasVacancies = Vacancy::select(['vacancies.*'])
+            ->where('vacancies.id_employer','=', $employer->id)
+            ->count();
+            array_push($count, strval($hasVacancies));
+            
+        }
+    }
  }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Survey;
+use App\Models\Employer;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Requests\SurveyRequest;
+use Illuminate\Support\Facades\DB;
 
 class SurveyController extends Controller
 {
@@ -35,9 +38,26 @@ class SurveyController extends Controller
      */
     public function store(SurveyRequest $request)
     {  
-       Survey::create($request->validated());
-       return redirect()->route('home')->with('status', 'Hecho');
+      Survey::create($request->validated());
+
+       if (auth()->user()->rol->key=='employer') {
+        $receiver = (Student::where('id_user', $request->receiver)->get())[0];
+       }else {
+        $receiver = (Employer::where('id_user', $request->receiver)->get())[0];  
+       }
+      
+        $suma = DB::table('surveys')
+        ->where('receiver', '=', $request->receiver)
+        ->sum(\DB::raw('(q1 + q2 + q3 + q4 + q5)/5'));
         
+        $cant = Survey::where('receiver', '=', $request->receiver)->count();
+        
+        $score = $suma/$cant;
+
+        $receiver->score = $score;
+        $receiver->save();
+       
+        return redirect()->route('home')->with('status', 'Hecho');     
     }
 
     /**
