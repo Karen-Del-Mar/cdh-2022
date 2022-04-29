@@ -72,7 +72,7 @@ class HomeController extends Controller
                     ->join("employers", "employers.id", "=", "contracts.id_employer")
                     ->select("users.name", "users.email", "users.phone", "contracts.start_date",
                             "contracts.final_date", "contracts.description", "contracts.payment",
-                            "contracts.job", "contracts.state", "contracts.id")
+                            "contracts.job", "contracts.state", "contracts.id", "users.id AS id_receiver")
                     ->where("employers.id_user","=",auth()->user()->id)
                     ->get();
 

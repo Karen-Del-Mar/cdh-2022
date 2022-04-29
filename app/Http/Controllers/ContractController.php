@@ -126,7 +126,13 @@ class ContractController extends Controller
         $id_student = $postulados->id_student;
 
         $vacancy = (Vacancy::where('id',$postulados->id_vacancy)->get())[0];
+    
+        if($vacancy->places > 0){
+            $vacancy->places-=1; 
+            $vacancy->save();
+        } // PLACES PUEDE SER NULL O SEA QUE RECIBE POSTULACIONES ILIMITADAS
         // return redirect()->route('home')->with('status','Solicitud aceptada');
+        // TENER EN CUENTA QUE PUEDE CANCELAR AL MOMENTO DE HACER EL CONTRATO, PROBLEMA CON LAS MODIFICACIONES ARRIBA
         return view('dashboard.contracts.create', ['contract' => new Contract(), 'id' => $id_student,'vacancy'=>$vacancy]);
     }
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\PostulateController;
 use App\Http\Controllers\ContractController;
+use App\Http\Controllers\SurveyController;
 
 
 /*
@@ -27,7 +28,7 @@ Route::get('/', function () {
 });
 
 Route::get('/prueba', function () {
-    return view('dashboard.partials.prueba3');
+    return view('dashboard.surveys._form');
 });
 
 
@@ -61,7 +62,7 @@ Route::resource('student', StudentController::class);
 Route::resource('employer', EmployerController::class);
 Route::resource('experience', ExperienceController::class);
 Route::resource('postulates', PostulateController::class);
-
+Route::resource('surveys', SurveyController::class);
 
 
 Route::get('/list_employer', function () {
@@ -104,3 +105,6 @@ Route::get('/hasContracts/{id}', [StudentController::class, 'hasContracts'])
 
 Route::get('/hasPostulates/{id}', [StudentController::class, 'hasPostulates'])
                 ->name('student.hasPostulates');
+
+Route::get('/createSurvey/{id}', [SurveyController::class, 'createSurvey'])
+                ->name('survey.createSurvey');
