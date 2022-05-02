@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
             'email' =>'estudiante@autonoma.edu.co',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204692',
+            'avatar'=>'student-profile-1.jpg',
             'rol_id' => '3'
         ]);
 
@@ -38,6 +39,7 @@ class UserSeeder extends Seeder
             'email' =>'jorge@autonoma.edu.co',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204692',
+            'avatar'=>'student-profile-2.jpg',
             'rol_id' => '3'
         ]);
 
@@ -48,6 +50,7 @@ class UserSeeder extends Seeder
             'email' =>'juanc@autonoma.edu.co',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204692',
+            'avatar'=>'student-profile-3.jpg',
             'rol_id' => '3'
         ]);
 

@@ -12,26 +12,27 @@
                 <div class="card p-3 mb-2 mt-2">
 
                     <div class="d-flex flex-row">
-
-                        <img src="https://i.imgur.com/dwiGgJr.jpg" height="40" width="40" class="rounded-circle">
+                        <img src="{{ asset('images/students-profiles/' . $experience->avatar) }}" height="40"
+                            width="40" class="rounded-circle">
 
                         <div class="d-flex flex-column ms-2 ml-2">
 
                             <h6 class="mb-1">{{ $experience->name }} - {{ $experience->rol }} </h6>
 
                             <div class="d-flex flex-row">
-                                <span class="text-muted fw-normal fs-10">{{ $experience->created_at }}</span>
+                                <span class="text-muted fw-normal fs-10">{{ $experience->created_at->format('d-m-Y H:i:s') }}</span>
                             </div>
 
                             <div class="comment-text text-justify mt-2">
-                                @if (Auth::guest() || auth()->user()->id !== $experience->id_user)
-                                    <p class="comment-text">{{ $experience->experience }} </p>
+                                @if ($experience->hidden == 0)
+                                    @if (Auth::guest() || auth()->user()->id !== $experience->id_user)
+                                        <p class="comment-text">{{ $experience->experience }} </p>
+                                    @endif
                                 @endif
                             </div>
 
                         </div>
                     </div>
-
 
                     @if (auth()->user())
                         @if (auth()->user()->id === $experience->id_user)
@@ -42,7 +43,9 @@
                                     method="post">
                                     @method('PUT')
                                     @csrf
-
+                                    @if ($experience->hidden == 1)
+                                    <p class="card-text text-danger">Su comentario se ha ocultado por infringir las normas de Cadena de Honor.</p>
+                                    @endif
                                     <textarea class="form-control inputs h-auto mb-2" name="experience" id="experience"
                                         readonly>{{ $experience->experience }}</textarea>
                                     {{-- <div class="d-flex"> --}}

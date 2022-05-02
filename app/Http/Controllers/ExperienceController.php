@@ -26,7 +26,7 @@ class ExperienceController extends Controller
     public function create()
     {
         $lista_experience = Experience::
-        select("experiences.experience", "experiences.created_at", "users.name","rols.rol", "users.id AS id_user", "experiences.id", "experiences.hidden")
+        select("experiences.experience", "experiences.created_at", "users.name","users.avatar","rols.rol", "users.id AS id_user", "experiences.id", "experiences.hidden")
         ->from("experiences")
         ->join("students","experiences.id_student", "=", "students.id")
         ->join("users", "students.id_user","=","users.id")

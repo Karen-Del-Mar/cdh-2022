@@ -21,9 +21,9 @@
 
                 </div>              
             @else
-                <span>
+                <span class="fw-bold text-center">
                     Si quieres registrar un comentario sobre tu experiencia vivida
-                    con el programa cadena de honor, por favor inicia sesión
+                    con el programa cadena de honor, por favor inicia sesión.
                 </span>
             @endif
 

@@ -10,7 +10,7 @@
                 {{-- <div class="upper"> <img src="https://i.imgur.com/Qtrsrk5.jpg" class="img-fluid"> </div> --}}
                 <div class="">
                     <div class="user text-center">
-                        <div class="profile"> <img src="{{ asset('images/students-profiles/student-profile.jpg') }}"
+                        <div class="profile"> <img src="{{ asset('images/students-profiles/'.$user->avatar) }}"
                                 class="rounded-circle" width="80">
                         </div>
                     </div>
