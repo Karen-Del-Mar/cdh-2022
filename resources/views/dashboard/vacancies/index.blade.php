@@ -51,11 +51,11 @@
                                 @endif
                             </div>
                             <div class="d-lg-flex d-sm-block">
-                                <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->company }}
+                                <p class="card-text" style="color:#0069A3">{{ $vacancy->company }}
                                 </p>
-                                <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->email }}
+                                <p class="card-text ms-4" style="color:#0069A3">{{ $vacancy->email }}
                                 </p>
-                                <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->location }}
+                                <p class="card-text ms-4" style="color:#0069A3">{{ $vacancy->location }}
                                 </p>
 
                             </div>

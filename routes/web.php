@@ -69,11 +69,11 @@ Route::get('/list_employer', function () {
     return view('dashboard.perfil.index');
 })->name('list_employer');
 
-Route::get('/employer_vacancies', [EmployerController::class, 'index_perfil'])
-        ->name('employers.index_perfil');
+// Route::get('/employer_vacancies', [EmployerController::class, 'index_perfil'])
+//         ->name('employers.index_perfil');
         
-Route::get('/vacancies_index', [VacancyController::class, 'index_perfil'])
-    ->name('vacancies.index_perfil');
+// Route::get('/vacancies_index', [VacancyController::class, 'index_perfil'])
+//     ->name('vacancies.index_perfil');
 
 Route::put('/vacancies_state/{id}/{state}', [VacancyController::class, 'set_state'])
     ->name('vacancies.set_state');

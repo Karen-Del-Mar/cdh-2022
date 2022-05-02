@@ -88,3 +88,33 @@
         )
     </script>
 @endif
+
+@if (session('vacaState') == 'ok')
+    <script>
+        Swal.fire(
+            '¡Hecho!',
+            'La vacante será visible para todos los usuarios.',
+            'success'
+        )
+    </script>
+@endif
+
+@if (session('vacaState') == 'expired')
+    <script>
+        Swal.fire(
+            '¡Hecho!',
+            'La vacante no recibirá postulaciones.',
+            'success'
+        )
+    </script>
+@endif
+
+@if (session('vacaState') == 'reported')
+    <script>
+        Swal.fire(
+            '¡Hecho!',
+            'La vacante no será visible.',
+            'success'
+        )
+    </script>
+@endif

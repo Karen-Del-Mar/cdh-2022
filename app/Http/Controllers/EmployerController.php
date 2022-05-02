@@ -78,8 +78,9 @@ class EmployerController extends Controller
         ->where('vacancies.id_employer','=', $id_employer)
         ->count();
 
-        $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden")
+        $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden", "vacancies.state", "vacancies.places", "vacancies.limit_date")
                  ->where("vacancies.id_employer","=",$id_employer)
+                 ->orderby("vacancies.id", "DESC")
                  ->get());
 
         return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer, 'vacancies'=>$lista, 'count'=>$hasVacancies]);
@@ -219,19 +220,19 @@ class EmployerController extends Controller
         return view('dashboard.employers.index',['users'=>$users,'employers'=>$employers]);
     }
 
-    public function index_perfil(){
+    // public function index_perfil(){
 
-        $id_user = auth()->user()->id;
-        $employer = (Employer::where('id_user', $id_user)->get())[0];
-        $id_employer = $employer->id;
+    //     $id_user = auth()->user()->id;
+    //     $employer = (Employer::where('id_user', $id_user)->get())[0];
+    //     $id_employer = $employer->id;
 
-        $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden")
-                 ->where("vacancies.id_employer","=",$id_employer)
-                 ->get());
+    //     $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden", "vacancies.places", "vacancies.state")
+    //              ->where("vacancies.id_employer","=",$id_employer)
+    //              ->get());
 
-        return view('dashboard.employers.show', ['vacancies'=>$lista]);
-        // return view('dashboard.vacancies.index_perfil',['vacancies'=> $lista]);
-    }
+    //     return view('dashboard.employers.show', ['vacancies'=>$lista]);
+    //     // return view('dashboard.vacancies.index_perfil',['vacancies'=> $lista]);
+    // }
 
     
 }

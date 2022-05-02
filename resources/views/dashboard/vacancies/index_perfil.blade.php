@@ -14,40 +14,120 @@
     <div class="justify-content-center row">
 
         @foreach ($vacancies as $vacancy)
-            <br>
             <div class="card w-75" style="margin: 2%">
-                <div class="card-body">
-                    @if ($vacancy->hidden == 1)
-                        <h5 class="font-weight-bold text-danger">Vacante Reportada: No se recibiran postulaciones</h5>
-                    @endif
-                    <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}</h5>
 
-                    <div class="d-flex">
-                        <p class="card-text" style="margin-right: 2%; font-weight:bold">Perfil requerido:</p>
-                        <p class="card-text" style="margin-right: 2%">{{ $vacancy->profile }}</p>
+                @if ($vacancy->state !== 2 && (Auth::guest() || auth()->user()->rol->key === 'student'))
+                    <div class="card-body">
+
+                        <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}
+                        </h5>
+
+                        <div class="d-lg-flex d-sm-block">
+                            @if ($vacancy->state == 1)
+                                <p class="card-text text-danger">Venció {{ $vacancy->limit_date }}</p>
+                            @else
+                                @if ($vacancy->limit_date !== null)
+                                    <p class="card-text text-success">Vence {{ $vacancy->limit_date }}</p>
+                                @endif
+                                @if ($vacancy->places > 0)
+                                    <p class="card-text text-success ms-3">Plazas {{ $vacancy->places }}</p>
+                                @else
+                                    @if ($vacancy->places == 0)
+                                        <p class="card-text text-danger ms-3">Sin Plazas</p>
+                                    @endif
+                                @endif
+                            @endif
+                        </div>
+                        <div class="d-flex">
+                            <p class="card-text" style="margin-right: 2%; font-weight:bold">Perfil
+                                requerido:</p>
+                            <p class="card-text" style="margin-right: 2%">{{ $vacancy->profile }}</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex">
+                                    <p class="card-text" style="margin-right: 2%; font-weight:bold">
+                                        Horario:</p>
+                                    <p class="card-text" style="margin-right: 2%">
+                                        {{ $vacancy->availability }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex">
+                                    <p class="card-text" style="margin-right: 2%; font-weight:bold">
+                                        Salario:</p>
+                                    <p class="card-text" style="margin-right: 2%">
+                                        ${{ $vacancy->payment }}</p>
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
+                @else
+                    @if ($vacancy->state == 2 && !Auth::guest() && (auth()->user()->id === $user->id || auth()->user()->rol->key === 'admin'))
+                        <div class="card-body">
 
-                    <div class="row">
-                        <div class="col">
+                            <h5 class="font-weight-bold text-danger">Vacante Reportada: No se recibiran postulaciones
+                            </h5>
+
+                            <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}
+                            </h5>
+
+                            <div class="d-lg-flex d-sm-block">
+                                @if ($vacancy->state == 1)
+                                    <p class="card-text text-danger">Venció {{ $vacancy->limit_date }}</p>
+                                @else
+                                    @if ($vacancy->limit_date !== null)
+                                        <p class="card-text text-success">Vence {{ $vacancy->limit_date }}</p>
+                                    @endif
+                                    @if ($vacancy->places > 0)
+                                        <p class="card-text text-success ms-3">Plazas {{ $vacancy->places }}</p>
+                                    @else
+                                        @if ($vacancy->places == 0)
+                                            <p class="card-text text-danger ms-3">Sin Plazas</p>
+                                        @endif
+                                    @endif
+                                @endif
+                            </div>
                             <div class="d-flex">
-                                <p class="card-text" style="margin-right: 2%; font-weight:bold">Horario:</p>
-                                <p class="card-text" style="margin-right: 2%">{{ $vacancy->availability }}
+                                <p class="card-text" style="margin-right: 2%; font-weight:bold">Perfil requerido:
                                 </p>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="d-flex">
-                                <p class="card-text" style="margin-right: 2%; font-weight:bold">Salario:</p>
-                                <p class="card-text" style="margin-right: 2%">${{ $vacancy->payment }}</p>
+                                <p class="card-text" style="margin-right: 2%">{{ $vacancy->profile }}</p>
                             </div>
 
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex">
+                                        <p class="card-text" style="margin-right: 2%; font-weight:bold">Horario:
+                                        </p>
+                                        <p class="card-text" style="margin-right: 2%">
+                                            {{ $vacancy->availability }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex">
+                                        <p class="card-text" style="margin-right: 2%; font-weight:bold">Salario:
+                                        </p>
+                                        <p class="card-text" style="margin-right: 2%">${{ $vacancy->payment }}
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
 
-                </div>
+                    @endif
 
+                @endif
                 @if (Auth::guest())
-                    <a href="/login" class="btn btn-info">Aplicar</a>
+                    @if ($vacancy->state !== 2)
+                        <a href="/login" class="btn btn-info">Aplicar</a>
+                    @endif
                 @else
                     @if (auth()->user()->id === $user->id)
                         <div class="btn-group btn-group-sm">
@@ -59,7 +139,8 @@
                                 </form>
                                 <form>
                                     <a class="btn btn-warning btn-sm"
-                                        href="{{ route('postulates.list_postulates_vacancy', $vacancy->id) }}"><i class="bi bi-eye"></i> Ver
+                                        href="{{ route('postulates.list_postulates_vacancy', $vacancy->id) }}"><i
+                                            class="bi bi-eye"></i> Ver
                                         postulaciones</a>
                                 </form>
                                 {{-- no deja eliminar si hay postulaciones --}}
@@ -68,7 +149,8 @@
                                     method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-danger btn-sm" type="submit"><i class="bi bi-trash3"></i> Eliminar</button>
+                                    <button class="btn btn-danger btn-sm" type="submit"><i class="bi bi-trash3"></i>
+                                        Eliminar</button>
                                 </form>
 
                             </div>
@@ -76,7 +158,7 @@
                         </div>
                     @endif
 
-                    @if (auth()->user()->rol->key === 'student')
+                    @if (auth()->user()->rol->key === 'student' && $vacancy->state == 0 && $vacancy->places !== 0)
                         <form class="formulario-postular" action="{{ route('postulates.store') }}" method="POST">
                             @csrf
 
@@ -101,57 +183,5 @@
 </style>
 
 <script>
-    // $('.formulario-postular').submit(function(e) {
-    //     e.preventDefault();
 
-    //     Swal.fire({
-    //         title: '¿Estás seguro?',
-    //         text: "Su postulación se enviará al empleador de la vacante",
-    //         icon: 'question',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: '¡Si, enviar!',
-    //         cancelButtonText: 'Cancelar'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             this.submit();
-    //         }
-    //     })
-
-    // });
-
-    var exampleModal = document.getElementById('exampleModal')
-    exampleModal.addEventListener('show.bs.modal', function(event) {
-        // Button that triggered the modal
-        var button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        var recipient = button.getAttribute('data-bs-whatever')
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        var modalTitle = exampleModal.querySelector('.modal-title')
-        var modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-        modalTitle.textContent = 'Editar vacante'
-        modalBodyInput.value = recipient
-    })
-
-    var exampleModal2 = document.getElementById('exampleModal2')
-    exampleModal2.addEventListener('show.bs.modal', function(event) {
-        // Button that triggered the modal
-        var button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        // var recipient = button.getAttribute('data-bs-whatever')
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        var modalTitle = exampleModal2.querySelector('.modal-title')
-        var modalBodyInput = exampleModal2.querySelector('.modal-body input')
-
-        modalTitle.textContent = 'Eliminar vacante' + recipient
-        modalBodyInput.value = recipient
-    })
 </script>

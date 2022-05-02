@@ -144,19 +144,29 @@ class VacancyController extends Controller
         $vacancy->state = $state;
         $vacancy ->save();
 
-        return back()->with('status', "Hecho");
+        if($state == 0){
+            return back()->with('vacaState', 'ok');
+        } if($state == 1){
+            return back()->with('vacaState', 'expired');
+        }
+        return back()->with('vacaState', "reported");
     }
 /** No se esta usando se usa el de EmployerController*/
-    public function index_perfil(){
+    // public function index_perfil(){
 
-        $id_user = auth()->user()->id;
-        $employer = (Employer::where('id_user', $id_user)->get())[0];
-        $id_employer = $employer->id;
+    //     $id_user = auth()->user()->id;
+    //     $employer = (Employer::where('id_user', $id_user)->get())[0];
+    //     $id_employer = $employer->id;
 
-        $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden")
-                 ->where("vacancies.id_employer","=",$id_employer)
-                 ->get());
+    //     date_default_timezone_set('America/Bogota');
+    //     $time = date('Y-m-d');     
 
-        return view('dashboard.vacancies.index_perfil',['vacancies'=> $lista, 'id_user'=> $id_user]);
-    }
+    //     $prueba = Vacancy::whereDate('limit_date', '<=', $time)->update(array('state' => 1));
+        
+    //     $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden", "vacancies.places", "vacancies.state")
+    //              ->where("vacancies.id_employer","=",$id_employer)
+    //              ->get());
+
+    //     return view('dashboard.vacancies.index_perfil',['vacancies'=> $lista, 'id_user'=> $id_user]);
+    // }
 }
