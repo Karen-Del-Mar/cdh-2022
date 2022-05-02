@@ -38,7 +38,7 @@ class VacancySeeder extends Seeder
             'availability' => "lunes a viernes de 2 a 6pm",
             'hidden'=>0,
             'state'=>0,
-            'places'=>2
+            'limit_date'=>"2022-12-12",
         ]);
 
 
@@ -50,6 +50,8 @@ class VacancySeeder extends Seeder
             'availability' => "Todos los días de 6 a 11 pm",
             'hidden'=>0,
             'state'=>0,
+            'limit_date'=>"2022-07-21",
+            'places'=>0,
         ]);
 
         Vacancy::create([
@@ -59,6 +61,7 @@ class VacancySeeder extends Seeder
             'payment' => 500000,
             'availability' => "Todos los días de 6 a 11 pm",
             'hidden'=>0,
+            'places'=>5,
             'state'=>0,
         ]);
 

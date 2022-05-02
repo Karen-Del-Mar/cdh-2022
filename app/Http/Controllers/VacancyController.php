@@ -21,10 +21,10 @@ class VacancyController extends Controller
 
         $prueba = Vacancy::whereDate('limit_date', '<=', $time)->update(array('state' => 1));
 
-        $lista = (Employer::select("users.name","employers.company","users.email","vacancies.job","employers.location","users.phone", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.state")
+        $lista = (Employer::select("users.name","employers.company","users.email","vacancies.job","employers.location","users.avatar","users.phone", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.state", "vacancies.limit_date", "vacancies.places")
         ->join("vacancies", "vacancies.id_employer","=","employers.id")
         ->join("users", "users.id", "=", "employers.id_user")
-        ->where("vacancies.hidden", "=", "0")
+        ->where("vacancies.state", "!=", "2")
         ->orderby("vacancies.id", "DESC")
         ->get());
             

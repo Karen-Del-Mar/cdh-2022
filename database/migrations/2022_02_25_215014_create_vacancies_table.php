@@ -34,7 +34,7 @@ class CreateVacanciesTable extends Migration
             $table->boolean('hidden')->nullable()->default(false);
             $table->tinyInteger('state')->nullable()->default(0);
             $table->date('limit_date')->nullable();
-            $table->tinyInteger('places')->nullable();
+            $table->tinyInteger('places')->default(-1);
 
             $table->timestamps();
             

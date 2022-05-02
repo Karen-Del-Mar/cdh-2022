@@ -28,13 +28,28 @@
         @endif
 
         <div class="justify-content-center row">
-      
+
             @foreach ($vacancies as $vacancy)
-            {{$vacancy->state}}
                 <div data-role="recipe">
                     <div class="card w-75 mx-auto my-2">
                         <div class="card-body">
-                            <h4 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}</h4>
+                            <h4 class="card-title fw-bold" style="color:#0069A3">{{ $vacancy->job }}</h4>
+                            <div class="d-lg-flex d-sm-block">
+                                @if ($vacancy->state == 1)
+                                    <p class="card-text text-danger">Venció {{ $vacancy->limit_date }}</p>
+                                @else
+                                    @if ($vacancy->limit_date !== null)
+                                        <p class="card-text text-success">Vence {{ $vacancy->limit_date }}</p>
+                                    @endif
+                                    @if ($vacancy->places > 0)
+                                        <p class="card-text text-success ms-3">Plazas {{ $vacancy->places }}</p>
+                                    @else
+                                        @if ($vacancy->places == 0)
+                                            <p class="card-text text-danger ms-3">Sin Plazas</p>
+                                        @endif
+                                    @endif
+                                @endif
+                            </div>
                             <div class="d-lg-flex d-sm-block">
                                 <p class="card-text" style="color:#0069A3; margin-right: 2%">{{ $vacancy->company }}
                                 </p>
@@ -72,16 +87,16 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-2 col-sm-4">
-                                    <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" alt=""
+                                    <img src="{{ asset('images/employers-profile/' . $vacancy->avatar) }}" alt=""
                                         class="mr-1" id="profile" width="100%">
                                 </div>
                             </div>
 
                         </div>
                         @if (Auth::guest())
-                            <a href="/login" class="btn btn-info">Aplicar</a>
+                            <a href="/login" class="btn btn-warning btn-sm fw-bold">Aplicar</a>
                         @else
-                            @if (auth()->user()->rol->key === 'student')
+                            @if (auth()->user()->rol->key === 'student' && $vacancy->state == 0 && $vacancy->places !== 0)
                                 <form class="formulario-postular" action="{{ route('postulates.store') }}" method="POST"
                                     id="formulario-postular">
                                     @csrf
@@ -90,28 +105,28 @@
 
                                     <input id="id_vacancy" hidden name="id_vacancy" value="{{ $vacancy->id }}">
 
-                                    <button type="submit" class="btn btn-primary btn-sm">Postularme</button>
+                                    <button type="submit" class="btn btn-warning btn-sm fw-bold ms-3">Postularme</button>
                                 </form>
                             @endif {{-- Hacer un sweet alert de confirmación esto debe hacer un update que cambie el estado de la vacante --}}
-                            @if (auth()->user()->rol->key == 'admin') 
-                            {{-- Traer campo state en la consulta --}}
-                                @if ($vacancy->state == 0)
-                                    <form class="formulario-ocultar-v"
-                                        action="{{ route('vacancies.set_state', ['id' => $vacancy->id, 2]) }}"
-                                        method="POST">
-                                        @method('PUT')
-                                        @csrf
-                                    
-                                        <button type="submit" class="btn btn-danger">Ocultar</button>
-                                    </form>
-                                @else
+                            @if (auth()->user()->rol->key == 'admin')
+                                {{-- Traer campo state en la consulta --}}
+                                @if ($vacancy->state == 2)
                                     <form class="formulario-mostrar-v"
                                         action="{{ route('vacancies.set_state', ['id' => $vacancy->id, 0]) }}"
                                         method="POST">
                                         @method('PUT')
                                         @csrf
 
-                                        <button type="submit" class="btn btn-success">Mostrar</button>
+                                        <button type="submit" class="btn btn-success ms-2">Mostrar</button>
+                                    </form>
+                                @else
+                                    <form class="formulario-ocultar-v"
+                                        action="{{ route('vacancies.set_state', ['id' => $vacancy->id, 2]) }}"
+                                        method="POST">
+                                        @method('PUT')
+                                        @csrf
+
+                                        <button type="submit" class="btn btn-danger ms-2">Ocultar</button>
                                     </form>
                                 @endif
                             @endif

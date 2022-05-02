@@ -48,6 +48,7 @@ class StudentSeeder extends Seeder
             'eps'=> 'EPS',
             'blood_type' => 'O-',
             'job_skills'=>'Habilidades comunicativas',
+            'state'=>'Contratado',
             'office_tools' =>'Cualquier cosa que pase el día de hoy, podemos decir que es un avance',
             'work_experience'=>'Empresa: Restaurante Barbacoa 
                                 Ciudad: Manizales
