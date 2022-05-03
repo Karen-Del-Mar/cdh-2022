@@ -16,7 +16,7 @@
         @foreach ($vacancies as $vacancy)
             <div class="card w-75" style="margin: 2%">
 
-                @if ($vacancy->state !== 2 && (Auth::guest() || auth()->user()->rol->key === 'student'))
+                @if ($vacancy->state !== 2 && (Auth::guest() || auth()->check()))
                     <div class="card-body">
 
                         <h5 class="card-title" style="color:#0069A3; font-weight:bold">{{ $vacancy->job }}

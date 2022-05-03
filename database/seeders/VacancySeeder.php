@@ -39,6 +39,7 @@ class VacancySeeder extends Seeder
             'hidden'=>0,
             'state'=>0,
             'limit_date'=>"2022-12-12",
+            'places'=>0,
         ]);
 
 
@@ -51,7 +52,7 @@ class VacancySeeder extends Seeder
             'hidden'=>0,
             'state'=>0,
             'limit_date'=>"2022-07-21",
-            'places'=>0,
+            
         ]);
 
         Vacancy::create([

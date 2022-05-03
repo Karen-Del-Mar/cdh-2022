@@ -7,7 +7,7 @@
         <div class="d-flex flex-md-row justify-content-around align-items-center">
             <div class="d-flex flex-md-row align-items-center">
                 <div class="p-md-2">
-                    <img src="{{ asset('images/restaurants-logo/logo-example.png') }}" alt=""
+                    <img src="{{ asset('images/employers-profile/'.$user->avatar) }}" alt=""
                         id="profile" class="img-fluid">
                 </div>
                 <div class="p-md-2 p-1" id="info">
@@ -18,8 +18,8 @@
             <div class="rounded p-lg-2 p-1" id="blue-background">
                 <div class="d-flex flex-md-row align-items-center">
                     <div class="d-flex flex-column align-items-center px-lg-3 px-md-2 px-1" id="border-right">
-                        <p class="h4">40</p>
-                        <div class="text-muted" id="count">Valoraciones</div>
+                        <p class="h4">{{$employer->score}}</p>
+                        <div class="text-muted" id="count">Valoración</div>
                     </div>
                     <div class="d-flex flex-column align-items-center px-lg-3 px-md-2 px-1" id="border-right">
                         <p class="h4">{{$count}}</p>

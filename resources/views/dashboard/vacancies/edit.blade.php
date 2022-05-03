@@ -19,7 +19,7 @@
                                 <br>
                                 <label for="profile">Perfil requerido:</label>
                                 <textarea name="profile" id="profile" class="form-control" placeholder="Describa aquí el perfil solicitado"
-                                    style="min-width: 100%; height: 30px;">{{ old('profile', $vacancy->profile) }}</textarea>
+                                    style="min-width: 100%; height: 30px">{{ old('profile', $vacancy->profile) }}</textarea>
                                 {{-- <input id="id_employer" name="id_employer" type="number" value="{{ auth()->user()->id }}"
                                 hidden> --}}
                                 <br>
@@ -28,8 +28,12 @@
                                     value="{{ old('payment', $vacancy->payment) }}">
 
                                 <label for="places">Plazas (opcional):</label>
-                                <input type="number" class="form-control" name="places" id="places"
-                                    value="{{ old('places', $vacancy->places) }}">
+                                @if ($vacancy->places != -1)
+                                    <input type="number" class="form-control" name="places" id="places"
+                                        value="{{ old('places', $vacancy->places) }}">
+                                @else
+                                    <input type="number" class="form-control" name="places" id="places" value="">
+                                @endif
 
                                 <label for="limit_date">Fecha limite (opcional):</label>
                                 <input type="date" class="form-control" name="limit_date" id="limit_date"
@@ -42,7 +46,8 @@
                                     <input type="radio" name="state" value="1"> Cerrar, ya no recibirá postulaciones <br>
                                 @else
                                     <input type="radio" name="state" value="0"> Vigente, recibe postulaciones<br>
-                                    <input type="radio" name="state" value="1" checked> Cerrar, ya no recibirá postulaciones <br>
+                                    <input type="radio" name="state" value="1" checked> Cerrar, ya no recibirá postulaciones
+                                    <br>
                                 @endif
 
                                 <br>

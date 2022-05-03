@@ -76,7 +76,12 @@ class EmployerController extends Controller
 
         $hasVacancies = Vacancy::select(['vacancies.*'])
         ->where('vacancies.id_employer','=', $id_employer)
+        ->where('vacancies.state','!=', '2')
         ->count();
+
+        date_default_timezone_set('America/Bogota');
+        $time = date('Y-m-d');     
+        $prueba = Vacancy::whereDate('limit_date', '<=', $time)->update(array('state' => 1));
 
         $lista = (Vacancy::select("vacancies.job", "vacancies.profile","vacancies.availability", "vacancies.payment","vacancies.id", "vacancies.hidden", "vacancies.state", "vacancies.places", "vacancies.limit_date")
                  ->where("vacancies.id_employer","=",$id_employer)
