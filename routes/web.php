@@ -28,7 +28,7 @@ Route::get('/', function () {
 });
 
 Route::get('/prueba', function () {
-    return view('dashboard.partials.prueba');
+    return view('dashboard.partials.bar-chart');
 });
 
 
@@ -108,3 +108,6 @@ Route::get('/hasPostulates/{id}', [StudentController::class, 'hasPostulates'])
 
 Route::get('/createSurvey/{id}', [SurveyController::class, 'createSurvey'])
                 ->name('survey.createSurvey');
+
+Route::get('/bar-chart', [SurveyController::class, 'barchart'])
+                ->name('survey.barchart');
