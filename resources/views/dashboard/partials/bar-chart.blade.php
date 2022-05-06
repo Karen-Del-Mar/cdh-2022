@@ -36,7 +36,7 @@
 
             var barCanvas = document.getElementById('barChart').getContext('2d');
             var barChart = new Chart(barCanvas, {
-                type: 'bar', /*pie*/
+                type: 'bar', /*pie horizontalBar*/
                 data: {
                     labels: ['Ene', 'Feb', 'Mzo', 'Abr', 'May', 'Jun', 'Jul', 'Agt', 'Sept', 'Oct', 'Nov',
                         'Dec'
@@ -64,7 +64,8 @@
                     scales: {
                         yAxes: [{
                             ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                stepSize: 1
                             }
                         }]
                     }

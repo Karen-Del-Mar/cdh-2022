@@ -126,4 +126,34 @@ class StudentController extends Controller
             return false;
         }
     }
+
+    public function avgQuestion(){
+        
+        $q1 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q1) as q1_avg'))
+        ->get();
+
+        $q2 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q2) as q2_avg'))
+        ->get();
+
+        $q3 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q3) as q3_avg'))
+        ->get();
+
+        $q4 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q4) as q4_avg'))
+        ->get();
+
+        $q5 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q5) as q5_avg'))
+        ->get();
+
+        dd($q1);
+    }
 }

@@ -111,3 +111,6 @@ Route::get('/createSurvey/{id}', [SurveyController::class, 'createSurvey'])
 
 Route::get('/bar-chart', [SurveyController::class, 'barchart'])
                 ->name('survey.barchart');
+
+Route::get('/avg-question', [SurveyController::class, 'avgQuestion'])
+                ->name('survey.avgQuestion');
