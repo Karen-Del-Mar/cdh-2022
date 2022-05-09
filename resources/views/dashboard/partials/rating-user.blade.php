@@ -9,17 +9,16 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection
 
-    <div class="container">
+    {{-- <div class="container"> --}}
         <div class="row justify-content-center align-items-center mt-4">
             <div class="d-md-flex d-lg-flex d-sm-block">
                 <div>
                     <canvas id="horizontalChart" width="400"></canvas>
-
                 </div>
 
             </div>
         </div>
-    </div>
+    {{-- </div> --}}
 
 <script>
     $(function() {

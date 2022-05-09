@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\User;
+use App\Models\Survey;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StudentRequest;
 use Helpers\auxCode;
@@ -55,12 +56,14 @@ class StudentController extends Controller
      */
     public function show($id, Auxcode $codifica)
     {   
-        $datas = $codifica->avgQuestion();
+        $datas = $codifica->avgQuestion($id);
 
         $user = (User::where('id', $id)->get())[0];
         $student = (Student::where('id_user', $id)->get())[0];
 
-        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas]);
+        $count= Survey::where('receiver','=',$id)->get()->count();
+
+        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas, 'count'=>$count ]);
     }
 
     /**

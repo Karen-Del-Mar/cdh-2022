@@ -21,7 +21,7 @@
                         {{-- <button class="btn btn-primary btn-sm follow">Aceptar</button> --}}
                         <div class="d-flex justify-content-between align-items-center mt-4 px-4">
                             <div class="stats">
-                                <h6 class="mb-0">Valoración</h6> <span>9</span>
+                                <h6 class="mb-0">Valoración</h6> <span>{{ $student->score }}</span>
                             </div>
                             <div class="stats">
                                 <h6 class="mb-0">Semestre actual</h6> <span> {{ $student->semester }} </span>
@@ -63,7 +63,7 @@
             <div class="card w-75">
                 <div class="card-body">
                     <h5 class="card-title" style="color:#0069A3">Datos de contacto</h5>
-                    <div class="d-flex">
+                    <div class="d-lg-flex d-md-flex d-sm-block">
                         <p class="card-text" style="margin-right: 2%; font-weight:bold">Correo</p>
                         <p class="card-text" style="margin-right: 2%">{{ $user->email }}</p>
                         <p class="card-text" style="margin-right: 2%; font-weight:bold">Teléfono</p>
@@ -107,9 +107,20 @@
             <div class="card w-75">
                 <div class="card-body">
                     <h5 class="card-title">Valoración</h5>
-                    @component('dashboard.partials.rating-user', compact('datas'))
-                    @endcomponent()
+                    <div class="d-lg-flex d-md-flex d-sm-block">
 
+                        @component('dashboard.partials.rating-user', compact('datas'))
+                        @endcomponent()
+                        <div class="m-auto">
+                            <h1 class="m-auto">{{ $student->score }}</h1>
+                            <span class="bi bi-star">
+                            <span class="bi bi-star">
+                            <span class="bi bi-star">
+                            <span class="bi bi-star">
+                            <span class="bi bi-star">
+                            <p> {{ $count }} opiniones</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

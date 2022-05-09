@@ -81,9 +81,10 @@ class UserController extends Controller
         }
        
         if($user->rol_id == 3){
-            $student = (Student::where('id_user', $id)->get())[0];
+           /// $student = (Student::where('id_user', $id)->get())[0];
 
-            return view('dashboard.students.show',['user'=>$user, 'student'=>$student]);
+            return redirect()->route('student.show',[$id]);
+
         }     
     }
 

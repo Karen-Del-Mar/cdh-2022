@@ -6,6 +6,7 @@ use App\Models\Employer;
 use App\Models\User;
 use App\Models\Solicitude;
 use App\Models\Vacancy;
+use App\Models\Survey;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -67,7 +68,7 @@ class EmployerController extends Controller
      * @param  \App\Models\Employer  $employer
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Auxcode $codifica)
     {          
         $user = (User::where('id', $id)->get())[0];
         $employer = (Employer::where('id_user', $id)->get())[0];
@@ -79,6 +80,10 @@ class EmployerController extends Controller
         ->where('vacancies.state','!=', '2')
         ->count();
 
+        $datas = $codifica->avgQuestion($id);
+
+        $count_rates= Survey::where('receiver','=',$id)->get()->count();
+
         date_default_timezone_set('America/Bogota');
         $time = date('Y-m-d');     
         $prueba = Vacancy::whereDate('limit_date', '<=', $time)->update(array('state' => 1));
@@ -88,7 +93,7 @@ class EmployerController extends Controller
                  ->orderby("vacancies.id", "DESC")
                  ->get());
 
-        return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer, 'vacancies'=>$lista, 'count'=>$hasVacancies]);
+        return view('dashboard.employers.show',['user'=>$user, 'employer'=>$employer, 'vacancies'=>$lista, 'count'=>$hasVacancies, 'count_rates'=>$count_rates, 'datas'=>$datas]);
     }
 
     /**
