@@ -22,8 +22,9 @@
     @include('dashboard.partials.alerts')
 
 
-
     @yield('content')
+    @yield('aditional')  
+   
 </body>
 
 </html>
@@ -93,7 +94,7 @@
     });
 
     $('.formulario-ocultar-exp').submit(function(e) {
-    
+
         e.preventDefault();
 
         Swal.fire({
@@ -112,69 +113,69 @@
         })
 
     });
-  
+
     $('.formulario-mostrar-exp').submit(function(e) {
-    
-    e.preventDefault();
 
-    Swal.fire({
-        title: '¿Mostrar comentario?',
-        text: "El comentario se volverá visible para todos los usuarios",
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Si, mostrar!',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            this.submit();
-        }
-    })
+        e.preventDefault();
 
-});
+        Swal.fire({
+            title: '¿Mostrar comentario?',
+            text: "El comentario se volverá visible para todos los usuarios",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, mostrar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
 
-$('.formulario-ocultar-v').submit(function(e) {
-    
-    e.preventDefault();
+    });
 
-    Swal.fire({
-        title: '¿Ocultar vacante?',
-        text: "Si cosidera que esta vacante no cumple con las normas del programa puede ocultarla para los demás usuarios",
-        icon: 'info',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Si, ocultar!',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            this.submit();
-        }
-    })
+    $('.formulario-ocultar-v').submit(function(e) {
 
-});
+        e.preventDefault();
 
-$('.formulario-mostrar-v').submit(function(e) {
+        Swal.fire({
+            title: '¿Ocultar vacante?',
+            text: "Si cosidera que esta vacante no cumple con las normas del programa puede ocultarla para los demás usuarios",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, ocultar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
 
-e.preventDefault();
+    });
 
-Swal.fire({
-    title: '¿Mostrar vacante?',
-    text: "La vacante se volverá visible para todos los usuarios",
-    icon: 'info',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: '¡Si, mostrar!',
-    cancelButtonText: 'Cancelar'
-}).then((result) => {
-    if (result.isConfirmed) {
-        this.submit();
-    }
-})
+    $('.formulario-mostrar-v').submit(function(e) {
 
-});
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Mostrar vacante?',
+            text: "La vacante se volverá visible para todos los usuarios",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, mostrar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+
+    });
     /* Función buscar para empleadores y vacantes */
     var original = $('div[data-role="recipe"]');
 

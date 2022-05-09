@@ -157,6 +157,7 @@ class SurveyController extends Controller
         ->select(\DB::raw('AVG(q5) as q5_avg'))
         ->get();
 
+        $count= Survey::where('receiver','=',2)->get()->count();
         $datas = array((float)$q1[0]->q1_avg, (float)$q2[0]->q2_avg, (float)$q3[0]->q3_avg, (float)$q4[0]->q4_avg, (float)$q5[0]->q5_avg);
 
         return view('dashboard.partials.rating-user', compact('datas'));

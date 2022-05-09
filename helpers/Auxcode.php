@@ -3,6 +3,7 @@
  namespace Helpers;
 
  use Intervention\Image\Facades\Image;
+ use Illuminate\Support\Facades\DB;
 
  class Auxcode
  {
@@ -33,6 +34,39 @@
         }else if($sector == "Otro"){
             return 'default-employer-profile.svg';
         }
+    }
+
+
+    public function avgQuestion(){
+
+        $q1 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q1) as q1_avg'))
+        ->get();
+
+        $q2 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q2) as q2_avg'))
+        ->get();
+
+        $q3 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q3) as q3_avg'))
+        ->get();
+
+        $q4 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q4) as q4_avg'))
+        ->get();
+
+        $q5 = DB::table('surveys')
+        ->where('receiver', '=', 2)  /* $request->receiver */
+        ->select(\DB::raw('AVG(q5) as q5_avg'))
+        ->get();
+
+        $datas = array((float)$q1[0]->q1_avg, (float)$q2[0]->q2_avg, (float)$q3[0]->q3_avg, (float)$q4[0]->q4_avg, (float)$q5[0]->q5_avg);
+
+        return $datas;
     }
 
     public function calculateScore(){

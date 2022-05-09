@@ -6,6 +6,7 @@ use App\Models\Student;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StudentRequest;
+use Helpers\auxCode;
 
 use Illuminate\Http\Request;
 
@@ -52,12 +53,14 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Auxcode $codifica)
     {   
+        $datas = $codifica->avgQuestion();
+
         $user = (User::where('id', $id)->get())[0];
         $student = (Student::where('id_user', $id)->get())[0];
 
-        return view('dashboard.students.show',['user'=>$user, 'student'=>$student]);
+        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas]);
     }
 
     /**

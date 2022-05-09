@@ -1,5 +1,6 @@
 @csrf
 @extends('dashboard.master')
+
 @include('dashboard.partials.validation-error')
 
 @section('content')
@@ -10,7 +11,7 @@
                 {{-- <div class="upper"> <img src="https://i.imgur.com/Qtrsrk5.jpg" class="img-fluid"> </div> --}}
                 <div class="">
                     <div class="user text-center">
-                        <div class="profile"> <img src="{{ asset('images/students-profiles/'.$user->avatar) }}"
+                        <div class="profile"> <img src="{{ asset('images/students-profiles/' . $user->avatar) }}"
                                 class="rounded-circle" width="80">
                         </div>
                     </div>
@@ -20,7 +21,7 @@
                         {{-- <button class="btn btn-primary btn-sm follow">Aceptar</button> --}}
                         <div class="d-flex justify-content-between align-items-center mt-4 px-4">
                             <div class="stats">
-                                <h6 class="mb-0">Valoraciones</h6> <span>9</span>
+                                <h6 class="mb-0">Valoración</h6> <span>9</span>
                             </div>
                             <div class="stats">
                                 <h6 class="mb-0">Semestre actual</h6> <span> {{ $student->semester }} </span>
@@ -102,8 +103,20 @@
                     </div>
                 </div>
             </div>
+
+            <div class="card w-75">
+                <div class="card-body">
+                    <h5 class="card-title">Valoración</h5>
+                    @component('dashboard.partials.rating-user', compact('datas'))
+                    @endcomponent()
+
+                </div>
+            </div>
+
         </div>
+
     </div>
+
 @endsection
 
 <style>

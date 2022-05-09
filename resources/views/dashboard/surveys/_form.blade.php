@@ -6,7 +6,7 @@
 <!-- Card -->
 <div class="mx-0 mx-sm-auto mt-5">
     <!-- QUESTION 1-->
-    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Hola mi nombre es Frailejon Ernesto Peréz?":"¿Te vengo a saludar no me conoces?"])
+    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Conocimientos en el área?":"¿Dispones de todo lo necesario para realizar tu trabajo?"])
     @endcomponent
 
     <div class="form-control">
@@ -14,7 +14,7 @@
         @endcomponent
     </div>
     <!-- QUESTION 2-->
-    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Hola mi nombre es Frailejon Ernesto Peréz?":"¿Te vengo a saludar no me conoces?"])
+    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Cómo considera que fue el trato recibido?"])
     @endcomponent
 
 
@@ -23,7 +23,7 @@
         @endcomponent
     </div>
     <!-- QUESTION 3-->
-    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Hola mi nombre es Frailejon Ernesto Peréz?":"¿Te vengo a saludar no me conoces?"])
+    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Compromiso en la realización de actividades?":"¿Cómo valoraría el ambiente laboral?"])
     @endcomponent
 
     <div class="form-control">
@@ -31,7 +31,7 @@
         @endcomponent
     </div>
     <!-- QUESTION 4-->
-    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Hola mi nombre es Frailejon Ernesto Peréz":"Te vengo a saludar no me conoces?"])
+    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Puntualidad?":"¿Cumplió con sus expectativas?"])
     @endcomponent
 
 
@@ -39,7 +39,7 @@
         @include('dashboard/partials/survey-values', ['question' => 'q4'])
     </div>
     <!-- QUESTION 5-->   
-    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Hola mi nombre es Frailejon Ernesto Peréz":"Te vengo a saludar no me conoces?"])
+    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Presentación y cordialidad?":"¿Recomendaría la empresa a un compañero?"])
     @endcomponent
     <div class="form-control">
         @include('dashboard/partials/survey-values', ['question' => 'q5'])
