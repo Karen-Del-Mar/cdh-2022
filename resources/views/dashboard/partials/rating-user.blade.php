@@ -15,24 +15,29 @@
                 <div>
                     <canvas id="horizontalChart" width="400"></canvas>
                 </div>
-
             </div>
         </div>
     {{-- </div> --}}
 
 <script>
-    $(function() {
-        var datas = <?php echo json_encode($datas); ?>;
-        console.log(datas);
+    var jsvar = '<?=$rol?>';
+    console.log(jsvar);
+    var questions = [];
+    if(jsvar == '2'){
+        questions = ['Disposición','Trato recibido','Ambiente laboral','Expectativas','La recomendaría'];
+    }else{
+        questions =  ['Conocimiento', 'Desempeño', 'Compromiso', 'Puntualidad', 'Presentación y cordialidad'];
+    }
 
+    $(function() {
+        var datas = <?php echo json_encode($datas) ?>;
+               
         var barCanvas = document.getElementById('horizontalChart').getContext('2d');
         var barChart = new Chart(barCanvas, {
             type: 'horizontalBar',
             /*pie horizontalBar*/
             data: {
-                labels: ['Conocimiento', 'Desempeño', 'Compromiso', 'Puntualidad',
-                    'Presentación y cordialidad'
-                ],
+                labels: questions,
                 datasets: [{
                     label: '# Valoración promedio por pregunta',
                     data: datas,

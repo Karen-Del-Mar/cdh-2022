@@ -14,7 +14,7 @@
         @endcomponent
     </div>
     <!-- QUESTION 2-->
-    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Cómo considera que fue el trato recibido?"])
+    @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Cómo ha sido el desempeño?":"¿Cómo considera que fue el trato recibido?"])
     @endcomponent
 
 

@@ -56,7 +56,7 @@
             <div class="card w-75">
                 <div class="card-body">
                     <h5 class="card-title" style="color:#0069A3">Habilidades</h5>
-                    <p class="card-text">{{ $student->job_skills }}</p>
+                    <p class="card-text badge rounded-pill bg-secondary">{{ $student->job_skills }}</p>
                 </div>
             </div>
             <br>
@@ -103,13 +103,14 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="card w-75">
                 <div class="card-body">
                     <h5 class="card-title">Valoración</h5>
                     <div class="d-lg-flex d-md-flex d-sm-block">
+                        <input type="hidden" name="" value="{{ $rol = $user->rol_id }}">
 
-                        @component('dashboard.partials.rating-user', compact('datas'))
+                        @component('dashboard.partials.rating-user', compact('datas', 'rol'))
                         @endcomponent()
                         <div class="m-auto">
                             <h1 class="m-auto">{{ $student->score }}</h1>

@@ -90,7 +90,8 @@
                 <h5 class="card-title">Valoración</h5>
                 <div class="d-lg-flex d-md-flex d-sm-block">
 
-                    @component('dashboard.partials.rating-user', compact('datas'))
+                    <input type="hidden" name="" value="{{ $rol = $user->rol_id }}">
+                    @component('dashboard.partials.rating-user', compact('datas', 'rol'))
                     @endcomponent()
                     <div class="m-auto">
                         <h1 class="m-auto">{{ $employer->score }}</h1>
