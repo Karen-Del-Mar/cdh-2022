@@ -36,11 +36,16 @@
                             @endif
                             @if (auth()->user()->rol->key === 'admin')
                                 @if ($employer->hidden == 0)
+                                <form class="form-disable-employer" action="{{ route('employer.disable_employer', ['id' => $employer->id, 1]) }}" method="POST">
+                                    @method('PUT')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm">Deshabilitar perfil</button>
+                                </form>
                                     <a class="btn btn-danger" href="{{ route('employer.confirm_disable', $user) }}">
                                         {{ __('Deshabilitar perfil') }}
                                     </a>
                                 @else
-                                    <form action="{{ route('employer.disable_employer', ['id' => $employer->id, 0]) }}"
+                                    <form class="form-enable-employer" action="{{ route('employer.disable_employer', ['id' => $employer->id, 0]) }}"
                                         method="post">
                                         @method('PUT')
                                         @csrf

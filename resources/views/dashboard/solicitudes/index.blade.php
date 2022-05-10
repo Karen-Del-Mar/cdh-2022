@@ -26,8 +26,8 @@
                             <td>
 
                                 <a href="{{ route('solicitudes.show', $solicitude->id) }}"
-                                    class="btn btn-warning btn-sm"><i class="bi bi-eye"></i>
-                                    Ver</a>
+                                    class="btn btn-warning" title="Ver solicitud"><i class="bi bi-eye-fill"></i>
+                                    </a>
                             </td>
                         </tr>
                     @endforeach

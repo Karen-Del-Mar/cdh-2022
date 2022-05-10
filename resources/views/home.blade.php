@@ -69,7 +69,7 @@
                                
                                         <a class="btn btn-outline-primary" href="{{ route('employer.show', auth()->user()->id) }}">
                                             <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/50/F4D73B/external-document-business-vitaliy-gorbachev-lineal-vitaly-gorbachev-1.png"/>
-                                            {{ __('Estudiantes empleados') }}           
+                                            {{ __('Datos') }}           
                                         </a>
 
                                         <div class="container mt-5">

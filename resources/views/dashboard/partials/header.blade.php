@@ -51,7 +51,7 @@
 
           <span class="ms-3 me-auto titulo-inscripciones" id="estilo-texto-uno">
               <a href="https://intrauampruebas.autonoma.edu.co/inscripcion/"
-                  style="color: #0069A3; font-weight:bold;">CADENA DE <br> HONOR</a>
+                  class="fw-bold" style="color: #0069A3; text-decoration:none">CADENA DE <br> HONOR</a>
           </span>
 
           <button id="boton-h" class="navbar-toggler py-2 hamburguesita" type="button" data-bs-toggle="collapse"

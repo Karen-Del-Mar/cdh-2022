@@ -11,25 +11,34 @@
                         <th scope="col">Nombre Empleador</th>
                         <th scope="col">Empresa</th>
                         <th scope="col">Descripción</th>
+                        <th scope="col">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user )
-                        
-                    
+                    @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->document }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->company }}</td>
                             <td>{{ $user->description }}</td>
-                            <td>
 
-                                <a href="{{ route('employer.show', $user ->id_user) }}"
-                                    class="btn btn-warning btn-sm"><i class="bi bi-eye"></i>
-                                    Habilitar</a>
+                            <td>
+                                <div class="d-flex">
+                                    <a href="{{ route('employer.show', $user->id_user) }}" class="btn btn-warning"
+                                        title="Ver perfil"><i class="bi bi-eye-fill"></i>
+                                    </a>
+                                    <form class="form-enable-employer"
+                                        action="{{ route('employer.disable_employer', ['id' => $user->id_employer, 0]) }}"
+                                        method="post">
+                                        @method('PUT')
+                                        @csrf
+                                        <button type="submit" class="btn btn-success" title="Habilitar perfil"><i
+                                                class="bi bi-emoji-laughing"></i></button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
-                        @endforeach 
+                    @endforeach
                 </tbody>
             </table>
         </div>

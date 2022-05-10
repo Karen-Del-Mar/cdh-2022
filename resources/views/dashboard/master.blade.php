@@ -176,6 +176,47 @@
         })
 
     });
+
+    $('.form-disable-employer').submit(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Esta cuenta de empleador ya no será visible ni podrá publicar vacantes",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, deshabilitar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+
+    });
+
+    $('.form-enable-employer').submit(function(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Esta cuenta de empleador será visible y podrá publicar vacantes",
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, habilitar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+
+    });
+
     /* Función buscar para empleadores y vacantes */
     var original = $('div[data-role="recipe"]');
 

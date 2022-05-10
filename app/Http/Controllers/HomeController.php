@@ -42,6 +42,7 @@ class HomeController extends Controller
 
             $list_employer_dis = Employer::where("hidden", 1)
                             ->join("users","users.id","=","employers.id_user")
+                            ->select("employers.id AS id_employer", "employers.id_user", "users.document", "users.name", "employers.company", "employers.description")
                             ->get();
 
             $list_vacancies_dis = Vacancy::where("state", 2)

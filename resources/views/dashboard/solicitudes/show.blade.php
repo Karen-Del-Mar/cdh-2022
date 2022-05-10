@@ -62,6 +62,7 @@
                             ])
                         </select>
                         <br>
+                        <label>Descripción</label>
                         <textarea name="description" id="description" class="form-control" rows="3" placeholder="Descipción de la empresa"
                             readonly>{{ $solicitudes->description }}
                     </textarea>
@@ -88,5 +89,5 @@
             </button>
         </form>
     </div>
-    
+    <br>
 @endsection
