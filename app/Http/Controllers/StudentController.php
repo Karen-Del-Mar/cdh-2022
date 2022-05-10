@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Survey;
+use App\Models\Contract;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StudentRequest;
 use Helpers\auxCode;
@@ -62,8 +63,14 @@ class StudentController extends Controller
         $student = (Student::where('id_user', $id)->get())[0];
 
         $count= Survey::where('receiver','=',$id)->get()->count();
+        $empleo = null;
+        if($student->state=='Contratado'){
+            $empleo = (Contract::where('id_student',$student->id)
+                        ->join('employers', 'employers.id','contracts.id_employer')
+                        ->select('employers.company')->get())[0];
+        }
 
-        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas, 'count'=>$count ]);
+        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas, 'count'=>$count,'empleo'=>$empleo->company  ]);
     }
 
     /**

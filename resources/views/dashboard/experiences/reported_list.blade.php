@@ -21,15 +21,34 @@
                         <td>{{ $experience->phone }}</td>
                         <td>{{ $experience->experience }}</td>
                         <td>{{ $experience->created_at }}</td>
+                        <td>{{ $experience->id }}</td>
+
                         <td>
-                            <form class="formulario-mostrar-exp"
-                                action="{{ route('userExperience.change_hidden', ['id' => $experience->id, 0]) }}"
-                                method="post">
-                                @method('PUT')
-                                @csrf
-                                <button type="submit" class="btn btn-success" title="Mostrar comentario"><i
-                                        class="bi bi-emoji-laughing"></i></button>
-                            </form>
+                            <div class="d-flex">
+
+                                <form class="formulario-mostrar-exp"
+                                    action="{{ route('userExperience.change_hidden', ['id' => $experience->id, 0]) }}"
+                                    method="post">
+                                    @method('PUT')
+                                    @csrf
+                                    <button type="submit" class="btn btn-success" title="Mostrar comentario"><i
+                                            class="bi bi-emoji-laughing"></i></button>
+                                </form>
+
+                                <form class="formulario-eliminar"
+                                    action="{{ route('experience.destroy', ['experience' => $experience->id]) }}"
+                                    method="post">
+
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <button type="submit" class="btn btn-danger"><i
+                                        class="bi bi-trash3"></i></button>
+                                    {{-- </div> --}}
+                                </form>
+
+                            </div>
+
                         </td>
                     </tr>
                 @endforeach

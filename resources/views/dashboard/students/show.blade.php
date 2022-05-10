@@ -34,6 +34,7 @@
                                 </div>
                             @endif
                         </div>
+                        <label class="badge rounded-pill bg-success">{{$student->state}} {{$empleo}}</label>
                     </div>
                 </div>
                 <!---->

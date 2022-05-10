@@ -53,6 +53,7 @@ class HomeController extends Controller
             $list_experiences_dis = Experience::where("experiences.hidden", 1)
                             ->join("students","students.id","=","experiences.id_student")
                             ->join("users", "users.id", "=","students.id_user")
+                            ->select("users.name", "users.email", "users.phone", "experiences.experience", "experiences.created_at", "experiences.id")
                             ->get();
                
             return view('home', ['lista'=>$lista, 'lista_student'=>$lista_student, 'users'=>$list_employer_dis, 'vacancies'=>$list_vacancies_dis, 'list_exp'=>$list_experiences_dis]);
