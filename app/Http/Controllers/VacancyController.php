@@ -52,6 +52,10 @@ class VacancyController extends Controller
         $id_user = auth()->user()->id;
         $employer = (Employer::where('id_user', $id_user)->get())[0];
         $id_employer = $employer->id;
+
+        if($employer->hidden == 1){
+          return redirect()->route('vacancies.index')->with('userCantCreateVaca','userReported');
+        }
         
         $vacancy = new Vacancy();
         $vacancy->id_employer = $id_employer;

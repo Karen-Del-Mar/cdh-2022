@@ -11,6 +11,7 @@
                         <th scope="col">Perfil requerido</th>
                         <th scope="col">Disponibilidad</th>
                         <th scope="col">Salario</th>
+                        <th scope="col">Contacto</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,18 +22,19 @@
                             <td>{{ $vacancy->profile }}</td>
                             <td>{{ $vacancy->availability }}</td>
                             <td>{{ $vacancy->payment }}</td>
+                            <td>{{ $vacancy->phone }}</td>
                             <td>
-                                <a href="{{ route('vacancies.show', $vacancy->id) }}"
-                                    class="btn btn-warning btn-sm">Ver</a>
 
-                                {{-- TODO --}}
-                                {{-- <a href="{{ route('vacancies.edit', $vacancy->id) }}" class="btn btn-info btn-sm">Editar</a>
-                        <form id="eliminarVacante" action="{{ route('admins.destroy',$vacancy->id) }}"
-                            data-action="{{ route('vacancies.destroy', $vacancy->id) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form> --}}
+                                <form class="formulario-mostrar-v"
+                                    action="{{ route('vacancies.set_state', ['id' => $vacancy->id, 0]) }}"
+                                    method="POST">
+                                    @method('PUT')
+                                    @csrf
+
+                                    <button type="submit" class="btn btn-success ms-2" title="Habilitar vacante"><i
+                                        class="bi bi-emoji-laughing"></i></button>
+                                </form>
+
                             </td>
                         </tr>
                     @endforeach

@@ -5,6 +5,7 @@
 
     <div class="container border-bottom bg-white mt-1 pt-md-3 pt-2 w-75">
         <div class="d-flex flex-md-row justify-content-around align-items-center">
+
             <div class="d-flex flex-md-row align-items-center">
                 <div class="p-md-2">
                     <img src="{{ asset('images/employers-profile/' . $user->avatar) }}" alt="" id="profile"
@@ -15,6 +16,7 @@
                     <div class="text-muted">{{ $user->name }}</div>
                 </div>
             </div>
+
             <div class="rounded p-lg-2 p-1" id="blue-background">
                 <div class="d-flex flex-md-row align-items-center">
                     <div class="d-flex flex-column align-items-center px-lg-3 px-md-2 px-1" id="border-right">
@@ -36,16 +38,16 @@
                             @endif
                             @if (auth()->user()->rol->key === 'admin')
                                 @if ($employer->hidden == 0)
-                                <form class="form-disable-employer" action="{{ route('employer.disable_employer', ['id' => $employer->id, 1]) }}" method="POST">
-                                    @method('PUT')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger btn-sm">Deshabilitar perfil</button>
-                                </form>
-                                    <a class="btn btn-danger" href="{{ route('employer.confirm_disable', $user) }}">
-                                        {{ __('Deshabilitar perfil') }}
-                                    </a>
+                                    <form class="form-disable-employer"
+                                        action="{{ route('employer.disable_employer', ['id' => $employer->id, 1]) }}"
+                                        method="POST">
+                                        @method('PUT')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm">Deshabilitar perfil</button>
+                                    </form>
                                 @else
-                                    <form class="form-enable-employer" action="{{ route('employer.disable_employer', ['id' => $employer->id, 0]) }}"
+                                    <form class="form-enable-employer"
+                                        action="{{ route('employer.disable_employer', ['id' => $employer->id, 0]) }}"
                                         method="post">
                                         @method('PUT')
                                         @csrf
@@ -58,9 +60,10 @@
                 </div>
             </div>
 
-
         </div>
-
+        @if ($employer->hidden == 1 && auth()->user()->id === $user->id)
+            <h5 class="text-danger">Cuenta desahbilitada, comuniquese con el administrador</h5>
+        @endif
     </div>
     <div class="d-flex flex-column justify-content-center align-items-center">
         <br><br>

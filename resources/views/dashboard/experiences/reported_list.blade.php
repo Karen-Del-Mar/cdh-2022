@@ -22,9 +22,14 @@
                         <td>{{ $experience->experience }}</td>
                         <td>{{ $experience->created_at }}</td>
                         <td>
-                            {{-- <a href="{{ route('vacancies.show', $vacancy->id) }}"
-                                class="btn btn-warning btn-sm">Ver</a> --}}
-
+                            <form class="formulario-mostrar-exp"
+                                action="{{ route('userExperience.change_hidden', ['id' => $experience->id, 0]) }}"
+                                method="post">
+                                @method('PUT')
+                                @csrf
+                                <button type="submit" class="btn btn-success" title="Mostrar comentario"><i
+                                        class="bi bi-emoji-laughing"></i></button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

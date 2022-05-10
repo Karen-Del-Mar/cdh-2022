@@ -118,3 +118,13 @@
         )
     </script>
 @endif
+
+@if (session('userCantCreateVaca') == 'userReported')
+    <script>
+        Swal.fire(
+            '¡No puede crear vacantes!',
+            'Su cuenta ha sido reportada comuniquese con el administrador.',
+            'error'
+        )
+    </script>
+@endif

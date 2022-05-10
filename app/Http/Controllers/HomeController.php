@@ -47,6 +47,8 @@ class HomeController extends Controller
 
             $list_vacancies_dis = Vacancy::where("state", 2)
                             ->join("employers","employers.id","=","vacancies.id_employer")
+                            ->join("users", "users.id","employers.id_user")
+                            ->select("vacancies.job","vacancies.profile","vacancies.availability","vacancies.id","employers.company","users.phone" ,"vacancies.payment")
                             ->get();
             $list_experiences_dis = Experience::where("experiences.hidden", 1)
                             ->join("students","students.id","=","experiences.id_student")

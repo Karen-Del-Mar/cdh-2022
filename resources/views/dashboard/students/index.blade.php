@@ -40,8 +40,8 @@
                         @endif
 
                         <td> {{-- $student-> id es id de usuario --}}
-                            <a href="{{ route('student.show', $student->id_user) }}" class="btn btn-warning btn-sm">
-                                Ver
+                            <a href="{{ route('student.show', $student->id_user) }}" class="btn btn-warning btn-sm" title="Ver perfil">
+                                <i class="bi bi-eye-fill"></i>
                             </a>
                         </td>
                     </tr>
@@ -64,8 +64,8 @@
                         @endif
 
                         <td> {{-- $student-> id es id de usuario --}}
-                            <a href="{{ route('student.show', $student->id_user) }}" class="btn btn-warning btn-sm">
-                                Ver
+                            <a href="{{ route('student.show', $student->id_user) }}" class="btn btn-warning btn-sm" title="Ver perfil">
+                                <i class="bi bi-eye-fill"></i>
                             </a>
 
                         </td>
