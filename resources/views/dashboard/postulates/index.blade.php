@@ -21,8 +21,8 @@
                         <td>{{ $postulados->profile }}</td>
                         <td>
 
-                            <a href="{{ route('postulates.show',['postulate'=> $postulados->id]) }}" class="btn btn-warning btn-sm">
-                                Ver
+                            <a href="{{ route('postulates.show',['postulate'=> $postulados->id]) }}" class="btn btn-warning" title="Ver postulación">
+                                <i class="bi bi-eye-fill"></i>
                             </a> 
 
                             {{-- <a href="{{ route('solicitudes.edit', $postulados->document) }}"

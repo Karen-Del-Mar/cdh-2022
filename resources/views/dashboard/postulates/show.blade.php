@@ -1,18 +1,18 @@
-<div class="row">
+@include('dashboard.students.show')
 
-    <div class="col">
-        @include('dashboard.students.show')
-    </div>
 
-</div>
 
-<div class="container">
-    <div class="row ">
-        <div class="form-group">
-            <a href="{{ URL::previous() }}" class="btn btn-success">Cancelar</a>
+<div class="container d-flex justify-content-center align-items-center">
+    <div class="mx-auto mb-4">
+        <div class="form-group d-flex">
+            <div class="">
+                <a href="{{ URL::previous() }}" class="btn btn-success">Cancelar</a>
+            </div>
+            <div class="">
+                <a class="btn btn-primary"
+                    href="{{ route('contracts.created_contract', [$user->id, $postulate->id]) }}">Contratar</a>
+            </div>
 
-            <a class="btn btn-primary"
-                href="{{ route('contracts.created_contract', [$user->id, $postulate->id]) }}">Contratar</a>
             {{-- Usar otra palabra para rechazar --}}
 
             <form class="formulario-eliminar-post"
@@ -26,6 +26,7 @@
             </form>
         </div>
     </div>
+
 </div>
 
 <script>

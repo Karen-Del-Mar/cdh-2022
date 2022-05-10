@@ -6,6 +6,8 @@ use App\Models\Postulate;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Vacancy;
+use App\Models\Survey;
+use Helpers\auxCode;
 use Illuminate\Http\Request;
 
 class PostulateController extends Controller
@@ -64,7 +66,7 @@ class PostulateController extends Controller
      * @param  \App\Models\Postulate  $postulate
      * @return \Illuminate\Http\Response
      */
-    public function show($id_postulate)
+    public function show($id_postulate, Auxcode $codifica)
     {
         $postulate = (Postulate::where('id', $id_postulate)->get())[0];
         $student = (Student::where('id',$postulate->id_student)->get())[0];
@@ -73,8 +75,12 @@ class PostulateController extends Controller
 
         $vacancy = (Vacancy::where('id', $postulate->id_vacancy)->get())[0];
 
+        $datas = $codifica->avgQuestion($student->id_user);
 
-        return view('dashboard.postulates.show',['user'=>$user,'vacancy'=>$vacancy,'postulate'=>$postulate, 'student'=>$student]);
+        $count= Survey::where('receiver','=',$student->id_user)->get()->count();
+
+
+        return view('dashboard.postulates.show',['user'=>$user,'vacancy'=>$vacancy,'postulate'=>$postulate, 'student'=>$student, 'datas'=>$datas, 'count'=>$count]);
     }
 
     /**

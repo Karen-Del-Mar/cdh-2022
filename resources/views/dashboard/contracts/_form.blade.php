@@ -4,7 +4,7 @@
     <div class="jumbotron">
         <div class="form-group">
             <div class="row center">
-                <h1>{{$id}}</h1>
+              
                 <div class="col mb-3">
                     <label for="">Fecha inicio</label>
                     <input type="date" class="form-control" name="start_date" id="start_date">
@@ -25,7 +25,7 @@
                     <input type="number" class="form-control" class="form-control" name="payment" id="payment" value="{{$vacancy->payment}}">
                     <br>
 
-                    <textarea class="form-control" name="description" id="description" placeholder="Escriba aquí los detalles del contrato"></textarea>
+                    <textarea class="form-control" name="description" id="description" placeholder="Escriba aquí los detalles del contrato">{{ old('description', $contract->description) }}</textarea>
 
                 </div>
             </div>

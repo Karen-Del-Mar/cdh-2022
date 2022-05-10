@@ -63,6 +63,7 @@ Route::resource('employer', EmployerController::class);
 Route::resource('experience', ExperienceController::class);
 Route::resource('postulates', PostulateController::class);
 Route::resource('surveys', SurveyController::class);
+Route::resource('contracts', ContractController::class);
 
 
 Route::get('/list_employer', function () {
@@ -86,10 +87,9 @@ Route::get('/contact', function () {
         return view('dashboard.contact.index');
     })->name('contact');
 
-Route::get('/contracts/{id}/{id_postulate}', [ContractController::class, 'create_contract'])
+Route::get('/contract/{id}/{id_postulate}', [ContractController::class, 'create_contract'])
                 ->name('contracts.created_contract');
 
-Route::resource('contracts', ContractController::class);
 
 Route::get('/postulate/{id}', [PostulateController::class, 'postulate_vacancy'])
                 ->name('postulates.list_postulates_vacancy');

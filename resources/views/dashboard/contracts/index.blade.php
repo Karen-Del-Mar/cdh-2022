@@ -20,30 +20,37 @@
 
                     @foreach ($lista_student as $list_student)
                         <tr>
-                            <td id="name">{{ $list_student->name }}</td>
-                            <td>{{ $list_student->start_date }}</td>
-                            <td>{{ $list_student->job }} </td>
-                            <td>{{ $list_student->payment }}</td>
-                            <td>{{ $list_student->phone }}</td>
-                            <td>{{ $list_student->description }}</td>
-                            <td>{{ $list_student->final_date }}</td>
-                            <td>
-                                @if ($list_student->state == 0)
+                            @if ($list_student->state == 0)
+                                <td id="name">{{ $list_student->name }}</td>
+                                <td>{{ $list_student->start_date }}</td>
+                                <td>{{ $list_student->job }} </td>
+                                <td>{{ $list_student->payment }}</td>
+                                <td>{{ $list_student->phone }}</td>
+                                <td>{{ $list_student->description }}</td>
+                                <td>{{ $list_student->final_date }}</td>
+                                <td>
                                     <div class="d-flex">
-                                        <a href="" class="btn btn-warning btn-sm" title="Editar"><i class="bi bi-pencil-fill"></i></a>
-                                        <a href="{{ route('survey.createSurvey',[$list_student->id_receiver]) }}" class="btn btn-success" title="Evaluar"><i class="bi bi-graph-up-arrow"></i></a>
+
+                                        <a href="{{ route('contracts.edit', $list_student->id_contract) }}"
+                                            class="btn btn-warning btn-sm" title="Editar"><i
+                                                class="bi bi-pencil-fill"></i></a>
+                                        <a href="{{ route('survey.createSurvey', [$list_student->id_receiver]) }}"
+                                            class="btn btn-success" title="Evaluar"><i
+                                                class="bi bi-graph-up-arrow"></i></a>
                                         <form class="formulario-finalizar-contracto"
                                             action="{{ route('userContract.change_state', ['id' => $list_student->id]) }}"
                                             method="POST">
                                             @method('PUT')
                                             @csrf
 
-                                            <button id="hideButton" type="submit"
-                                                class="btn btn-danger" title="Finalizar"><i class="bi bi-hand-index-thumb"></i></button>
+                                            <button id="hideButton" type="submit" class="btn btn-danger"
+                                                title="Finalizar"><i class="bi bi-hand-index-thumb"></i></button>
                                         </form>
                                     </div>
-                                @endif
-                            </td>
+
+
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

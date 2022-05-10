@@ -88,7 +88,8 @@ class ContractController extends Controller
      */
     public function edit(Contract $contract)
     {
-        //
+       
+        return view('dashboard.contracts.edit', ["contract"=>$contract]);
     }
 
     /**
@@ -98,11 +99,13 @@ class ContractController extends Controller
      * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contract $contract)
+    public function update(ContractRequest $request, Contract $contract)
     {
-        $contract->state = 1;
-        $contract->save();
-        return back();
+        // $contract->state = 1;
+        // $contract->save();
+        // return back();
+        $contract->update($request -> validated());
+        return redirect()->route('home')->with('status','Contrato actualizado con éxito');
     }
 
     /**
@@ -118,7 +121,6 @@ class ContractController extends Controller
 
     public function create_contract($id_student, $id_postulate)
     {
-
         $postulados = (Postulate::where('id', $id_postulate)->get())[0];
         $postulados->state = 2;
         $postulados->save();

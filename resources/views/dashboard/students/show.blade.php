@@ -64,19 +64,19 @@
                 <div class="card-body">
                     <h5 class="card-title" style="color:#0069A3">Datos de contacto</h5>
                     <div class="d-lg-flex d-md-flex d-sm-block">
-                        <p class="card-text" style="margin-right: 2%; font-weight:bold">Correo</p>
-                        <p class="card-text" style="margin-right: 2%">{{ $user->email }}</p>
-                        <p class="card-text" style="margin-right: 2%; font-weight:bold">Teléfono</p>
-                        <p class="card-text" style="margin-right: 2%">{{ $user->phone }}</p>
+                        <p class="card-text me-3 fw-bold" style="">Correo</p>
+                        <p class="card-text me-3" style="">{{ $user->email }}</p>
+                        <p class="card-text me-3 fw-bold" style="">Teléfono</p>
+                        <p class="card-text me-3" style="">{{ $user->phone }}</p>
                     </div>
                 </div>
             </div>
             <div class="card w-75">
                 <div class="card-body">
                     <h5 class="card-title" style="color:#0069A3">Formación adicional</h5>
-                    <p class="card-text" style="margin-right: 2%; font-weight:bold">Herramientas ofimaticas</p>
+                    <p class="card-text me-3 fw-bold" style="">Herramientas ofimaticas</p>
                     <p class="card-text">{{ $student->office_tools }}</p>
-                    <p class="card-text" style="margin-right: 2%; font-weight:bold">Idiomas</p>
+                    <p class="card-text me-3 fw-bold" style="">Idiomas</p>
                     <p class="card-text">{{ $student->languages }}</p>
                 </div>
             </div>
@@ -90,15 +90,15 @@
                 <div class="card-body">
                     <h5 class="card-title" style="color:#0069A3">Otros datos personales</h5>
                     <div class="d-flex">
-                        <p class="card-text" style="margin-right: 2%; font-weight:bold">Tipo de documento</p>
-                        <p class="card-text" style="margin-right: 2%">C.C</p>
-                        <p class="card-text" style="margin-right: 2%; font-weight:bold">Número</p>
+                        <p class="card-text me-3 fw-bold" style="">Tipo de documento</p>
+                        <p class="card-text me-3" style="">C.C</p>
+                        <p class="card-text me-3 fw-bold" style="">Número</p>
                         <p class="card-text">{{ $user->document }}</p>
                     </div>
                     <div class="d-flex">
-                        <p class="card-text" style="margin-right: 2%; font-weight:bold">EPS</p>
-                        <p class="card-text" style="margin-right: 2%">{{ $student->eps }}</p>
-                        <p class="card-text" style="margin-right: 2%; font-weight:bold">Tipo de sangre</p>
+                        <p class="card-text me-3 fw-bold" style="">EPS</p>
+                        <p class="card-text me-3" style="">{{ $student->eps }}</p>
+                        <p class="card-text me-3 fw-bold" style="">Tipo de sangre</p>
                         <p class="card-text">{{ $student->blood_type }}</p>
                     </div>
                 </div>
