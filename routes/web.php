@@ -31,6 +31,9 @@ Route::get('/prueba', function () {
     return view('dashboard.partials.bar-chart');
 });
 
+Route::get('/editSurvey', function () {
+    return view('dashboard.surveys.edit');
+});
 
 Auth::routes();
 

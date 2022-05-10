@@ -90,9 +90,11 @@ class SurveyController extends Controller
      * @param  \App\Models\Survey  $survey
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Survey $survey)
+    public function update(SurveyRequest $request, Survey $survey)
     {
-        //
+        $survey->update($request->validated());
+        return redirect()->route('home')->with('status', 'Hecho');       
+
     }
 
     /**
@@ -107,16 +109,27 @@ class SurveyController extends Controller
     }
     public function createSurvey($id_receiver)
     {
+        $edit = Survey::where('receiver',$id_receiver)
+                        ->where('emitter', auth()->user()->id)
+                        ->count();
+       
+        if($edit>=1){
+            $survey = (Survey::where('receiver',$id_receiver)
+            ->where('emitter', auth()->user()->id)
+            ->get())[0];
+            return view('dashboard.surveys.edit',['survey'=> $survey, 'id_receiver'=> $id_receiver]);
+        }
+
         return view('dashboard.surveys.create',['survey'=> new Survey(), 'id_receiver'=> $id_receiver]);
     }
 
     public function barchart(){
-        $users = User::select(DB::raw("COUNT(*) as count"))
+        $users = Student::select(DB::raw("COUNT(*) as count"))
         ->whereYear('created_at', date('Y'))
         ->groupBy(DB::raw("Month(created_at)"))
         ->pluck('count');
 
-        $months = User::select(DB::raw("Month(created_at) as month"))
+        $months = Student::select(DB::raw("Month(created_at) as month"))
         ->whereYear('created_at', date('Y'))
         ->groupBy(DB::raw("Month(created_at)"))
         ->pluck('month');

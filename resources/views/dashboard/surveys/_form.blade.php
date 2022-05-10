@@ -10,7 +10,7 @@
     @endcomponent
 
     <div class="form-control">
-        @component('dashboard.partials.survey-values', ['question' => 'q1'])
+        @component('dashboard.partials.survey-values', ['question' => 'q1', 'survey'=>$survey->q1])
         @endcomponent
     </div>
     <!-- QUESTION 2-->
@@ -19,7 +19,7 @@
 
 
     <div class="form-control">
-        @component('dashboard.partials.survey-values', ['question' => 'q2'])
+        @component('dashboard.partials.survey-values', ['question' => 'q2','survey'=>$survey->q2])
         @endcomponent
     </div>
     <!-- QUESTION 3-->
@@ -27,7 +27,7 @@
     @endcomponent
 
     <div class="form-control">
-        @component('dashboard.partials.survey-values', ['question' => 'q3'])
+        @component('dashboard.partials.survey-values', ['question' => 'q3','survey'=>$survey->q3])
         @endcomponent
     </div>
     <!-- QUESTION 4-->
@@ -36,13 +36,13 @@
 
 
     <div class="form-control">
-        @include('dashboard/partials/survey-values', ['question' => 'q4'])
+        @include('dashboard/partials/survey-values', ['question' => 'q4','survey'=>$survey->q4])
     </div>
     <!-- QUESTION 5-->   
     @component('dashboard.partials.survey-questions', ['question' => auth()->user()->rol->key =='employer' ? "¿Presentación y cordialidad?":"¿Recomendaría la empresa a un compañero?"])
     @endcomponent
     <div class="form-control">
-        @include('dashboard/partials/survey-values', ['question' => 'q5'])
+        @include('dashboard/partials/survey-values', ['question' => 'q5','survey'=>$survey->q5])
     </div>
 
     <div class="text-center">
