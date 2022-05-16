@@ -164,41 +164,27 @@ class EmployerController extends Controller
     public function accept_request(StoreUserRequest $request, Auxcode $codifica, $id){
         // Hacer un try catch para que no cambie el estado sin guardar el usuario
         // Cambiar estado de solicitud
-        // Estado:  2 => solicitud aceptada
-        
+        // Estado:  2 => solicitud aceptada  
         $avatar = $codifica->assignImage($request->sector);
-        $request->avatar = $avatar; 
-       //$request->password =  Hash::make("12345678");
-        //dd($request->password);
-        $solicitudes = Solicitude::findOrFail($id);
-        $solicitudes->state = 2;
-        $solicitudes->save();
-
-        $user = User::create($request->validated());
-       
-        $user->password = Hash::make($request->password);
-        // $user->document = $request->document;
-        // $user->phone = $request->phone;
-        // $user->rol_id='2';
-        // $user->avatar = $avatar;
-        $user->save();
       
-        $request->id_user=$user->id;
-        $employer = new Employer();
-        $employer->id_user=$user->id;
-       
-        $employer->fill($request->validated());
-        $employer->save();
-    //     $employer->id_user=$id_user;
-    //     $employer->company=$request->company;
-    //     $employer->location=$request->location;
-    //     $employer->sector=$request->sector;
-    //     $employer->description=$request->description;
-    //     $employer->score=0;
-    //     $employer->hidden=0;
-
-    //     $employer->save();
-
+        try {
+            $user = User::create($request->validated());
+            $user->password = Hash::make($request->password);
+            $user->avatar = $avatar;
+            $user->save();
+        
+            $employer = new Employer();
+            $employer->id_user=$user->id;
+            $employer->fill($request->validated());
+            $employer->save();
+        } catch(\Illuminate\Database\QueryException $ex){
+            
+            return back()->with('status','La solicitud no fue aceptada');
+          }
+          
+          $solicitudes = Solicitude::findOrFail($id);
+          $solicitudes->state = 2;
+          $solicitudes->save();
         return redirect()->route('home')->with('status','Solictud aprobada exitosamente');
     }
 
