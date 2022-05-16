@@ -79,8 +79,7 @@ class PostulateController extends Controller
 
         $count= Survey::where('receiver','=',$student->id_user)->get()->count();
 
-
-        return view('dashboard.postulates.show',['user'=>$user,'vacancy'=>$vacancy,'postulate'=>$postulate, 'student'=>$student, 'datas'=>$datas, 'count'=>$count]);
+        return view('dashboard.postulates.show',['user'=>$user,'vacancy'=>$vacancy,'postulate'=>$postulate, 'student'=>$student, 'datas'=>$datas, 'count'=>$count, 'empleo'=>null]);
     }
 
     /**

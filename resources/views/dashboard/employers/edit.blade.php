@@ -11,6 +11,7 @@
                             <div class="col mb-3">
 
                                 <div class="input-group mb-3">
+                                    <img width="100px" src="{{ asset('images/employers-profile/'. $user->avatar) }}">
                                     <i class="bi bi-camera p-2"></i>
                                     <input type="file" class="form-control" id="avatar" name="avatar">
                                 </div>

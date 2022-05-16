@@ -11,6 +11,7 @@
             <div class="form-group">
                 <div class="row center">
                     <div class="col mb-3">
+                        <input type="hidden" name="rol_id" id="rol_id" value="2">
                         <label for="name"> Nombre empleador</label>
                         <input type="text" class="form-control" name="name" id="name"
                             placeholder="Nombre y apellido del empleador" value="{{ old('name', $solicitudes->name) }}"

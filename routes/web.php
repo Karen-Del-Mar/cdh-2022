@@ -86,6 +86,10 @@ Route::get('/conoce_mas', function () {
         return view('dashboard.conoce_mas.index');
     })->name('conoce_mas.index');
 
+Route::get('/conoce_mas_info', function () {
+        return view('dashboard.conoce_mas.info_register');
+    })->name('conoce_mas.info');
+
 Route::get('/contact', function () {
         return view('dashboard.contact.index');
     })->name('contact');

@@ -1,8 +1,8 @@
 @csrf
 @include('dashboard.partials.validation-error')
 <div class="background">
-    <div class="container py-4">
-        <div class="p-5 mb-2 bg-light rounded-3">
+    <div class="container py-4 row justify-content-center">
+        <div class="col-lg-6 mb-2 bg-light rounded-3">
             <div class="container-fluid py-3">
                 <h4>
                     <p style="color: #0069A3; text-align: center;">
@@ -12,6 +12,7 @@
                 <div class="form-group">
                     <div class="row center">
                         <div class="col mb-1">
+                            <input type="hidden" name="id_employer" id="id_employer" value="{{$id_employer}}">
                             <input type="text" class="form-control" name="job" id="job"
                                 placeholder="Nombre de la vacante...">
                             <br>
@@ -67,12 +68,11 @@
 
     }
 
-    .p-5 {
+    /* .p-5 {
         width: 50%;
         margin: auto;
-        /* opacity: 0.7; */
-        /* filter:  alpha(opacity=50); */
-    }
+       
+    } */
 
     .container-fluid {
         opacity: 1;

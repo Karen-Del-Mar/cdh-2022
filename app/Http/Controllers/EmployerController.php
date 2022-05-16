@@ -165,34 +165,39 @@ class EmployerController extends Controller
         // Hacer un try catch para que no cambie el estado sin guardar el usuario
         // Cambiar estado de solicitud
         // Estado:  2 => solicitud aceptada
+        
         $avatar = $codifica->assignImage($request->sector);
-  
-        $solicitudes = (Solicitude::where('id',$id)->get())[0];
+        $request->avatar = $avatar; 
+       //$request->password =  Hash::make("12345678");
+        //dd($request->password);
+        $solicitudes = Solicitude::findOrFail($id);
         $solicitudes->state = 2;
         $solicitudes->save();
 
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $user = User::create($request->validated());
+       
         $user->password = Hash::make($request->password);
-        $user->document = $request->document;
-        $user->phone = $request->phone;
-        $user->rol_id='2';
-        $user->avatar = $avatar;
+        // $user->document = $request->document;
+        // $user->phone = $request->phone;
+        // $user->rol_id='2';
+        // $user->avatar = $avatar;
         $user->save();
       
-        $id_user=$user->id;
-
+        $request->id_user=$user->id;
         $employer = new Employer();
-        $employer->id_user=$id_user;
-        $employer->company=$request->company;
-        $employer->location=$request->location;
-        $employer->sector=$request->sector;
-        $employer->description=$request->description;
-        $employer->score=0;
-        $employer->hidden=0;
-
+        $employer->id_user=$user->id;
+       
+        $employer->fill($request->validated());
         $employer->save();
+    //     $employer->id_user=$id_user;
+    //     $employer->company=$request->company;
+    //     $employer->location=$request->location;
+    //     $employer->sector=$request->sector;
+    //     $employer->description=$request->description;
+    //     $employer->score=0;
+    //     $employer->hidden=0;
+
+    //     $employer->save();
 
         return redirect()->route('home')->with('status','Solictud aprobada exitosamente');
     }

@@ -13,7 +13,7 @@ class VacancyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class VacancyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'id_employer'=>'',
+            'job'=>'required',
+            'profile'=>'required',
+            'payment'=>'required',
+            'availability'=>'required', /** Horario */
+            'hidden'=>'',
+            'state'=>'',
+            'limit_date'=>'',
+            'places'=>''
+        ];
+    }
+    public function messages(){
+        return [
+            'job.required' => 'El campo nombre de la vacante es requerido.',
         ];
     }
 }

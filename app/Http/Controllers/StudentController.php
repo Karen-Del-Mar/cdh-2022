@@ -64,13 +64,15 @@ class StudentController extends Controller
 
         $count= Survey::where('receiver','=',$id)->get()->count();
         $empleo = null;
+        $company = null;
         if($student->state=='Contratado'){
             $empleo = (Contract::where('id_student',$student->id)
                         ->join('employers', 'employers.id','contracts.id_employer')
                         ->select('employers.company')->get())[0];
+            $company = $empleo -> company;
         }
 
-        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas, 'count'=>$count,'empleo'=>$empleo->company  ]);
+        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas, 'count'=>$count,'empleo'=>$company  ]);
     }
 
     /**

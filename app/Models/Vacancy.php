@@ -16,7 +16,9 @@ class Vacancy extends Model
         'payment',
         'availability', /** Horario */
         'hidden',
-        'state'
+        'state',
+        'limit_date',
+        'places'
     ];
 
 

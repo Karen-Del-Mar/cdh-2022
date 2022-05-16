@@ -6,6 +6,7 @@ use App\Models\Vacancy;
 use App\Models\Employer;
 use App\Models\Postulate;
 use Illuminate\Http\Request;
+use App\Http\Requests\VacancyRequest;
 
 class VacancyController extends Controller
 {
@@ -38,7 +39,12 @@ class VacancyController extends Controller
      */
     public function create()
     {
-        return view('dashboard.vacancies.create',['vacancies'=>new Vacancy()]);
+        $id_user = auth()->user()->id;
+        $employer = (Employer::where('id_user', $id_user)->get())[0];
+        if($employer->hidden == 1){
+            return redirect()->route('vacancies.index')->with('userCantCreateVaca','userReported');
+        }
+        return view('dashboard.vacancies.create',['vacancies'=>new Vacancy(),'id_employer'=>$employer->id]);
     }
 
     /**
@@ -47,27 +53,35 @@ class VacancyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VacancyRequest $request)
     {   
-        $id_user = auth()->user()->id;
-        $employer = (Employer::where('id_user', $id_user)->get())[0];
-        $id_employer = $employer->id;
+        // $id_user = auth()->user()->id;
+        // $employer = (Employer::where('id_user', $id_user)->get())[0];
+        // $request->id_employer = $employer->id;
 
-        if($employer->hidden == 1){
-          return redirect()->route('vacancies.index')->with('userCantCreateVaca','userReported');
+        // if($employer->hidden == 1){
+        //   return redirect()->route('vacancies.index')->with('userCantCreateVaca','userReported');
+        // }
+       // dd($request->id_employer);
+           
+         $vacancy = Vacancy::create($request->validated());
+         if($request->places==null){
+            $vacancy->places=-1;
+            $vacancy->save();
         }
-        
-        $vacancy = new Vacancy();
-        $vacancy->id_employer = $id_employer;
-        $vacancy->job = $request->job;
-        $vacancy->profile = $request->profile;
-        $vacancy->payment = $request->payment;
-        $vacancy->places = $request->places;
-        $vacancy->limit_date = $request->limit_date;
+       // $vacancy = (new Vacancy)->fill($request->validated());
+      // dd($vacancy);
+        // $vacancy = new Vacancy();
+        // $vacancy->id_employer = $id_employer;
+        // $vacancy->job = $request->job;
+        // $vacancy->profile = $request->profile;
+        // $vacancy->payment = $request->payment;
+        // $vacancy->places = $request->places;
+        // $vacancy->limit_date = $request->limit_date;
 
-        $vacancy->availability = $request->availability;
+        // $vacancy->availability = $request->availability;
   
-        $vacancy->save();
+        // $vacancy->save();
 
        // return back()->with('status','Vacante creada');
         return redirect()->route('vacancies.index')->with('status','Vacante creada');
