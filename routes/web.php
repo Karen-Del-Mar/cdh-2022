@@ -94,7 +94,7 @@ Route::get('/contact', function () {
         return view('dashboard.contact.index');
     })->name('contact');
 
-Route::get('/contract/{id}/{id_postulate}', [ContractController::class, 'create_contract'])
+Route::get('/createcontract/{id_postulate}', [ContractController::class, 'create_contract'])
                 ->name('contracts.created_contract');
 
 

@@ -9,6 +9,7 @@ use App\Models\Vacancy;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateEmployerRequest;
 use Illuminate\Support\Facades\Hash;
 use Helpers\auxCode;
 
@@ -25,6 +26,8 @@ class EmployerController extends Controller
         // Envia lista de empresas y lista de usuarios asociados a esas empresas
         $users = null;
         $count = array();
+        $count_rates = array();
+
         $employers = Employer::join("users", "users.id","=","employers.id_user")
         ->select("users.avatar","employers.company","employers.sector","employers.id_user", "employers.id")
         ->where("employers.hidden", 0)->get();
@@ -36,9 +39,12 @@ class EmployerController extends Controller
             ->where('vacancies.id_employer','=', $employer->id)
             ->count();
             array_push($count, strval($hasVacancies));
-            
+
+            $hasRates = Survey::select(['surveys.*'])
+            ->where('receiver',$employer->id_user)->count();
+            array_push($count_rates, strval($hasRates));           
         }
-        return view('dashboard.employers.index',['employers'=>$employers,'count'=> $count]);
+        return view('dashboard.employers.index',['employers'=>$employers,'count'=> $count, 'count_rates'=>$count_rates]);
     }
 
     /**
@@ -119,34 +125,26 @@ class EmployerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUserRequest $request, $id)
-    {   
+    public function update(UpdateEmployerRequest $request, $id)
+    {  
         /** 
          *  Debería poder editar la cédula?
          */
-        $user = (User::where('id', $id)->get())[0];
+        $user = User::findOrFail($id);
+        $user->update($request->validated());
         $employer = (Employer::where('id_user', $id)->get())[0];
 
-        $user -> name = $request ->name;
-        $user -> email = $request ->email;
-        $user -> phone = $request ->phone;
         /** Estaba acá */
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/employers-profile/', $name); 
-            //$user -> avatar = $request ->file('avatar')->store('public');
             $user -> avatar = $name;
+            $user->save();
         }
         //$user -> password = $request -> password;
-
-        $user->save();
-
-        $employer -> company = $request -> company;
-        $employer -> location = $request -> location;
-        $employer -> description = $request -> description;
-
-        $employer ->save();
+        
+        $employer->update($request->validated());
 
         return redirect()->route('employer.show',[$id]);
     }

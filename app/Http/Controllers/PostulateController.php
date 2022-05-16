@@ -67,13 +67,14 @@ class PostulateController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id_postulate, Auxcode $codifica)
-    {
-        $postulate = (Postulate::where('id', $id_postulate)->get())[0];
-        $student = (Student::where('id',$postulate->id_student)->get())[0];
+    { 
+        $postulate = Postulate::findOrFail($id_postulate);
+        //(Postulate::where('id', $id_postulate)->get())[0];
+        $student = Student::findOrFail($postulate->id_student);
 
-        $user = (User::where('id',$student->id_user)->get())[0];
+        $user = User::findOrFail($student->id_user);
 
-        $vacancy = (Vacancy::where('id', $postulate->id_vacancy)->get())[0];
+        $vacancy = Vacancy::findOrFail($postulate->id_vacancy);
 
         $datas = $codifica->avgQuestion($student->id_user);
 
@@ -113,8 +114,15 @@ class PostulateController extends Controller
      */
     public function destroy($id)
     {   
-        $postulate = (Postulate::where('id', $id)->get())[0];
+        $postulate = Postulate::findOrFail($id);
+        $id_student = $postulate->id_student;
         $postulate->delete();
+
+        $count_postulates = Postulate::where('id_Student','=',$id_student)->get()->count();
+        if($count_postulates==0){
+            $student = Student::where('id',$id_student)->update(array('state' => 'No postulado'));
+        }
+
         return redirect()->route('home')->with('deletePost','ok');
     }
     /**

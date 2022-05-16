@@ -10,7 +10,7 @@
             </div>
             <div class="">
                 <a class="btn btn-primary"
-                    href="{{ route('contracts.created_contract', [$user->id, $postulate->id]) }}">Contratar</a>
+                    href="{{ route('contracts.created_contract', [$postulate->id]) }}">Contratar</a>
             </div>
 
             {{-- Usar otra palabra para rechazar --}}

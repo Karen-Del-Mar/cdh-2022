@@ -25,7 +25,7 @@
                             alt="Imagén no disponible">
                     </div>
                     <div class="row">
-                        <a href="" class="btn btn-warning w-50 mx-auto">Estudiante</a>
+                        <a href="{{ route('student.create') }}" class="btn btn-warning w-50 mx-auto">Estudiante</a>
                     </div>
                 </div>
 

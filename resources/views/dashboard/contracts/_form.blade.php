@@ -6,6 +6,8 @@
             <div class="row center">
               
                 <div class="col mb-3">
+                    <input type="text" name="id_postulate" id="id_postulate" value="{{$id_postulate}}">
+                    <input type="text" name="id_vacancy" id="id_vacancy" value="{{$vacancy->id}}">
                     <label for="">Fecha inicio</label>
                     <input type="date" class="form-control" name="start_date" id="start_date">
                     <br>

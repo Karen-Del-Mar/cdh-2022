@@ -50,5 +50,14 @@ class SurveySeeder extends Seeder
             'emitter'=>'5',
             'receiver'=>'3'
         ]);
+        Survey::create([
+            'q1'=>'4',
+            'q2'=>'2',
+            'q3'=>'3',
+            'q4'=>'5',
+            'q5'=>'4',
+            'emitter'=>'3',
+            'receiver'=>'5'
+        ]);
     }
 }

@@ -169,6 +169,6 @@ class StudentController extends Controller
         ->select(\DB::raw('AVG(q5) as q5_avg'))
         ->get();
 
-        dd($q1);
+       // dd($q1);
     }
 }

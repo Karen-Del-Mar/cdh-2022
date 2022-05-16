@@ -51,7 +51,7 @@
                                 <div class="px-lg-2 px-1"> <span class="bi bi-star"></span> <span
                                         class="bi bi-star"></span> <span class="bi bi-star"></span> <span
                                         class="bi bi-star"></span> <span class="bi bi-star"></span> <a href="#"
-                                        class="px-lg-2 px-1 reviews">{3 Reviews}</a>
+                                        class="px-lg-2 px-1 reviews">{{$count_rates[$i]}} Reviews</a>
                                 </div>
                             </div>
 
