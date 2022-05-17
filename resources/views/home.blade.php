@@ -67,7 +67,7 @@
                                 <div class="row container d-flex justify-content-center">
                                     <div class="col-sm-12">
                                
-                                        <a class="btn btn-outline-primary" href="{{ route('employer.show', auth()->user()->id) }}">
+                                        <a class="btn btn-outline-primary" href="{{ route('survey.barchart') }}">
                                             <img src="https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/50/F4D73B/external-document-business-vitaliy-gorbachev-lineal-vitaly-gorbachev-1.png"/>
                                             {{ __('Datos') }}           
                                         </a>

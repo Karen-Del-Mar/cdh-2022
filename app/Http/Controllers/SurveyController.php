@@ -138,9 +138,75 @@ class SurveyController extends Controller
         foreach ($months as $index => $month) {
            $datas[$month-1] = $users[$index];
         }
+
+        $employers = Employer::select(DB::raw("COUNT(*) as count"))
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw("Month(created_at)"))
+        ->pluck('count');
         
 
-        return view('dashboard.partials.bar-chart', compact('datas'));
+        $months2 = Employer::select(DB::raw("Month(created_at) as month"))
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw("Month(created_at)"))->pluck('month');
+        
+       // dd($months2);
+        $datas2 = array(0,0,0,0,0,0,0,0,0,0,0,0);
+        foreach ($months2 as $index => $month) {
+           $datas2[$month-1] = $employers[$index];
+        }
+
+        $employer = Employer::select(DB::raw("COUNT(*) as count"))->groupBy(DB::raw("sector"))
+        ->pluck('count');
+
+        $sector_employer = Employer::select(DB::raw("sector"))->groupBy(DB::raw("sector"))->pluck('sector');
+        //DB::table('employers')->get()->groupBy('sector');
+
+        for($i=0; $i<sizeof($sector_employer); $i++ ){
+            if ($sector_employer[$i]=="Restaurante") {
+                $sector_employer[$i]=0;
+            } else if ($sector_employer[$i]=="Bar") {
+                $sector_employer[$i]=1;
+            }  else if ($sector_employer[$i]=="Comercio") {
+                $sector_employer[$i]=2;
+            } else if ($sector_employer[$i]=="Entretenimiento") {
+                $sector_employer[$i]=3;
+            } else if ($sector_employer[$i]=="Atención al cliente") {
+                $sector_employer[$i]=4;
+            } else if ($sector_employer[$i]=="Marketing") {
+                $sector_employer[$i]=5;
+            }else if ($sector_employer[$i]=="Tecnología") {
+                $sector_employer[$i]=6;
+            }else {
+                $sector_employer[$i]=7;
+            }                     
+        }
+
+        $sectors = array(0,0,0,0,0,0,0,0);
+        foreach ($sector_employer as $index => $sector) {
+           $sectors[$sector] = $employer[$index];
+        }
+
+        $student = Student::select(DB::raw("COUNT(*) as count"))->groupBy(DB::raw("state"))
+        ->pluck('count');
+
+        $state_student = Student::select(DB::raw("state"))->groupBy(DB::raw("state"))->pluck('state');
+        
+        for($i=0; $i<sizeof($state_student); $i++ ){
+            if ($state_student[$i]=="Postulado") {
+                $state_student[$i]=0;
+            } else if ($state_student[$i]=="No postulado") {
+                $state_student[$i]=1;
+            }  else{
+                $state_student[$i]=2;
+            }
+        }
+
+        $states = array(0,0,0);
+        foreach ($state_student as $index => $state) {
+           $states[$state] = $student[$index];
+        }
+
+        return view('dashboard.partials.bar-chart', compact('datas','datas2', 'sectors','states'));
     }
 
     public function avgQuestion(){

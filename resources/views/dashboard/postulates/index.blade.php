@@ -4,17 +4,18 @@
         <table class="table table-striped table-hover">
             <thead>
                 <tr class="table-primary">
-                    <th scope="col">fechaPostulacion</th>
+                    <th scope="col">Fecha Postulacion</th>
                     <th scope="col">Nombre postulado</th>
                     <th scope="col">correo postulado</th>
                     <th scope="col">Vacante</th>
                     <th scope="col">Perfil requerido</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($lista_post as $postulados)
                     <tr>
-                        <td>{{ $postulados->created_at }}</td>
+                        <td>{{ $postulados->created_at->format('d-m-Y') }}</td>
                         <td>{{ $postulados->name }}</td>
                         <td>{{ $postulados->email }}</td>
                         <td>{{ $postulados->job }}</td>
