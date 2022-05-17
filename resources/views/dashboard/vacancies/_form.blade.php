@@ -4,7 +4,7 @@
     <div class="container py-4 row justify-content-center">
         <div class="col-lg-6 mb-2 bg-light rounded-3">
             <div class="container-fluid py-3">
-                <h4>
+                <h4> 
                     <p style="color: #0069A3; text-align: center;">
                         Crear una nueva vacante laboral
                     </p>

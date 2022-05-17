@@ -63,8 +63,13 @@ class VacancyController extends Controller
         //   return redirect()->route('vacancies.index')->with('userCantCreateVaca','userReported');
         // }
        // dd($request->id_employer);
-           
+        try{
          $vacancy = Vacancy::create($request->validated());
+        }catch(\Illuminate\Database\QueryException $ex){
+            echo 'Excepción capturada: ',  $ex->getMessage(), "\n";
+            return back()->with('status', 'No se puede registrar la vacante, por favor revise los datos ingresados');
+        }
+         
          if($request->places==null){
             $vacancy->places=-1;
             $vacancy->save();

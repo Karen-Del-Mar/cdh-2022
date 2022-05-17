@@ -5,11 +5,15 @@
     <form action="{{ route('contracts.update', $contract->id) }}" method="post">
         @method('PUT')
         @csrf
-        <div class="container mt-4">
-            <div class="jumbotron">
+        <div class="container">
+            <div class="jumbotron mx-auto col-lg-6 mt-5">
                 <div class="form-group">
-                    <div class="row center w-75 mx-auto">
-                      
+                    <div class="row center ">
+                        <h4>
+                            <p style="color: #0069A3; text-align: center;">
+                                Formulario de Contratación
+                            </p>
+                        </h4>
                         <div class="col mb-3">
                             <label for="">Fecha inicio</label>
                             <input type="date" class="form-control" name="start_date" id="start_date" value="{{old('start_date', $contract->start_date)}}">

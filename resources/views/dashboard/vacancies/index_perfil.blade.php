@@ -145,7 +145,7 @@
                                 </form>
                                 {{-- no deja eliminar si hay postulaciones --}}
 
-                                <form action="{{ route('vacancies.destroy', ['vacancy' => $vacancy->id]) }}"
+                                <form class="form-eliminar-v" action="{{ route('vacancies.destroy', ['vacancy' => $vacancy->id]) }}"
                                     method="post">
                                     @method('DELETE')
                                     @csrf
@@ -183,5 +183,23 @@
 </style>
 
 <script>
+ $('.form-eliminar-v').submit(function(e) {
+        e.preventDefault();
 
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Su vacante se eliminará definitivamente",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '¡Si, eliminar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                this.submit();
+            }
+        })
+
+    });
 </script>
