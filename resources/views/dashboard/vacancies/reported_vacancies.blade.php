@@ -5,18 +5,19 @@
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="table-primary">
                         <th scope="col">Empleo</th>
                         <th scope="col">Empresa</th>
                         <th scope="col">Perfil requerido</th>
                         <th scope="col">Disponibilidad</th>
                         <th scope="col">Salario</th>
                         <th scope="col">Contacto</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($vacancies as $vacancy)
-                        <tr>
+                        <tr >
                             <td>{{ $vacancy->job }}</td>
                             <td>{{ $vacancy->company }}</td>
                             <td>{{ $vacancy->profile }}</td>

@@ -5,7 +5,7 @@
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="table-primary">
                         <th scope="col">Empresa</th>
                         <th scope="col">Fecha inicio</th>
                         <th scope="col">Cargo</th>

@@ -5,7 +5,7 @@
     <div class="table-responsive">
         <table class="table table-striped table-hover">
             <thead>
-                <tr>
+                <tr class="table-primary">
                     <th scope="col">Fecha Postulacion</th>
                     <th scope="col">Nombre empresa</th>
                     <th scope="col">Correo</th>

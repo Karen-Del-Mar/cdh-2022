@@ -1,13 +1,13 @@
 <div class="table-responsive">
     <table class="table table-hover" id="tabla">
         <thead>
-            <tr>
+            <tr class="row">
                 <td colspan="4" class="d-flex">
                     <input id="buscar" type="text" class="form-control" placeholder="Escriba algo para filtrar" /><i
                         class="bi bi-search"></i>
                 </td>
             </tr>
-            <tr>
+            <tr class="table-primary">
                 {{-- 3 estados de estudiante: Ha enviado postulaciones, no se ha postulado, contratado
                     Hacerlo desde las consultas --}}
                 <th scope="col">Nombre</th>
@@ -16,6 +16,7 @@
                 <th scope="col">Carrera</th>
                 <th scope="col">Promedio</th>
                 <th scope="col">Estado</th>
+                <th scope="col"></th>
 
             </tr>
         </thead>

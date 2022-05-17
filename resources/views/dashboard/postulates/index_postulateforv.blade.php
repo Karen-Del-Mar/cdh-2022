@@ -8,7 +8,7 @@
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead>
-                        <tr>
+                        <tr class="table-primary">
 
                             <th scope="col">fechaPostulacion</th>
                             <th scope="col">Nombre postulado</th>

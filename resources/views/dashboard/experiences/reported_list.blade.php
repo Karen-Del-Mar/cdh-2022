@@ -5,12 +5,13 @@
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
-                <tr>
+                <tr class="table-primary">
                     <th scope="col">Estudiante</th>
                     <th scope="col">Correo</th>
                     <th scope="col">Telefono</th>
                     <th scope="col">Comentario</th>
                     <th scope="col">Fecha</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +22,7 @@
                         <td>{{ $experience->phone }}</td>
                         <td>{{ $experience->experience }}</td>
                         <td>{{ $experience->created_at }}</td>
-                        <td>{{ $experience->id }}</td>
+                        {{-- <td>{{ $experience->id }}</td> --}}
 
                         <td>
                             <div class="d-flex">

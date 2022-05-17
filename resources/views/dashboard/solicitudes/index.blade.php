@@ -8,11 +8,12 @@
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="table-primary">
                         <th scope="col">Documento</th>
                         <th scope="col">Nombre Empleador</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Dirección</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
