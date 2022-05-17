@@ -9,7 +9,7 @@
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                        value="{{ old('name', $user->name) }}" required autocomplete="name" autofocus>
+                        value="" required autocomplete="name" autofocus>
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -27,7 +27,7 @@
 
                 <div class="col-md-6">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="{{ old('email', $user->email) }}" required autocomplete="email">
+                        name="email" value="" required autocomplete="email">
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -41,13 +41,17 @@
                 <div class="col">
                     <label for="document_type" class="form-label">Tipo de
                         documento </label>
-                    <input disabled placeholder="C.C" type="text" name="document_type" id="document_type"
-                        class="form-control" />
+                        <select class="form-control" name="gender" id="gender">
+                            <option value=""></option>
+                            @include('dashboard/partials/options_document', [
+                                'val' => 'C.C',
+                            ])
+                        </select>
                 </div>
                 <div class="col">
                     <label for="name" class="form-label">Numero documento</label>
-                    <input readonly type="number" name="document" id="document" class="form-control"
-                        value="{{ old('document', $user->document) }}" />
+                    <input  type="number" name="document" id="document" class="form-control"
+                        value="" />
                 </div>
             </div>
 
@@ -56,7 +60,7 @@
                     <label for="contact" class="form-label">Telefono <span
                             class="required">*</span></label>
                     <input type="number" name="contact" id="contact" class="form-control"
-                        value="{{ old('contact', $user->phone) }}" />
+                        value="" />
                 </div>
             </div>
 
@@ -76,7 +80,7 @@
                     <select class="form-control" name="gender" id="gender">
                         <option value=""></option>
                         @include('dashboard/partials/option-gender', [
-                            'val' => $student->gender,
+                            'val' => 'mujer',
                         ])
                     </select>
                 </div>
@@ -88,7 +92,7 @@
                     <div class="col">
                         <label for="eps" class="form-label">EPS <span class="required">*</span></label>
                         <input type="text" name="eps" id="eps" class="form-control"
-                            value="{{ old('eps', $student->eps) }}" />
+                            value="" />
                     </div>
                 </div>
                 <div class="row">
@@ -99,7 +103,7 @@
                         <select class="form-control" name="blood_type" id="blood_type">
                             <option value=""></option>
                             @include('dashboard.partials.blood-type', [
-                                'val' => $student->blood_type,
+                                'val' => 'O+',
                             ])
                         </select>
                     </div>
@@ -113,7 +117,7 @@
                     <label for="birthday" class="form-label">Fecha de nacimiento <span
                             class="required">*</span></label>
                     <input type="date" name="birthday" id="birthday" class="form-control"
-                        value="{{ old('birthday', $student->birthday) }}" />
+                        value="" />
                 </div>
 
             </div>
@@ -132,23 +136,23 @@
                             <select class="form-control" name="career" id="career">
                                 <option value=""></option>
                                 @include('dashboard.partials.careers', [
-                                    'val' => $student->career,
+                                    'val' => 'Ing. Sistemas',
                                 ])
                             </select>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="col">
                         <label for="name" class="form-label">Promedio <span
                                 class="required">*</span></label>
                         <input type="number" name="average" id="average" class="form-control"
-                            value="{{ old('average', $student->average) }}" />
+                            value="" />
                     </div>
                     <div class="col">
                         <label for="name" class="form-label">Semestre actual <span
                                 class="required">*</span></label>
                         <input type="number" name="semester" id="semester" class="form-control"
-                            value="{{ old('name', $student->semester) }}" />
+                            value="" />
                     </div>
                 </div>
                 <div class="row center">
@@ -156,7 +160,7 @@
                         <label for="job_skills" class="form-label">Habilidades <span
                                 class="required">*</span></label>
                         <textarea class="form-control" name="job_skills" id="job_skills" cols="30" rows="4"
-                            placeholder="Antecedentes">{{ old('job_skills', $student->job_skills) }}</textarea>
+                            placeholder="Antecedentes"></textarea>
                     </div>
                 </div>
                 <div class="row center">
@@ -164,7 +168,7 @@
                         <label for="work_experience" class="form-label">Experiencia laboral <span
                                 class="required">*</span></label>
                         <textarea class="form-control" name="work_experience" id="work_experience" cols="30" rows="4"
-                            placeholder="Antecedentes">{{ old('work_experience', $student->work_experience) }}</textarea>
+                            placeholder="Antecedentes"></textarea>
                     </div>
                 </div>
 
@@ -173,7 +177,7 @@
                         <label for="office_tools" class="form-label">Manejo de herramientas
                             ofimaticas <span class="required">*</span></label>
                         <textarea class="form-control" name="office_tools" id="office_tools" cols="30" rows="3"
-                            placeholder="Antecedentes">{{ old('office_tools', $student->office_tools) }}</textarea>
+                            placeholder="Antecedentes"></textarea>
                     </div>
                 </div>
 
@@ -182,7 +186,7 @@
                         <label for="languages" class="form-label">Idiomas <span
                                 class="required">*</span></label>
                         <textarea class="form-control" name="languages" id="languages" cols="30" rows="2"
-                            placeholder="Antecedentes">{{ old('languages', $student->languages) }}</textarea>
+                            placeholder="Antecedentes"></textarea>
                     </div>
                 </div>
 
@@ -193,8 +197,8 @@
     <div class="row">
         <div class="mb-3">
             <div class="form-group">
-                <a href="{{ URL::previous() }}" class="btn btn-outline-danger btn-sm">Cancelar</a>
-                <button type="submit" class="btn btn-outline-success btn-sm">Editar</button>
+                <a href="{{ URL::previous() }}" class="btn btn-danger btn-sm">Cancelar</a>
+                <button type="submit" class="btn btn-success btn-sm">Registrar</button>
             </div>
         </div>
     </div>

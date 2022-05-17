@@ -61,8 +61,8 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-group">
-                            <a href="{{ URL::previous() }}" class="btn btn-outline-danger btn-sm">Cancelar</a>
-                            <button type="submit" class="btn btn-outline-success btn-sm">Editar</button>
+                            <a href="{{ URL::previous() }}" class="btn btn-danger btn-sm">Cancelar</a>
+                            <button type="submit" class="btn btn-success btn-sm">Editar</button>
                         </div>
                     </div>
                 </div>
