@@ -31,9 +31,9 @@ class StudentRequest extends FormRequest
             'career' => 'required',
             'average' => 'required',
             'semester' => 'required',
-            'job_skills' => 'required',
-            // 'basic_tools'=> 'required',
-            'office_tools'=> 'required',
+            //'job_skills' => 'required',
+            'basic_tools'=> 'required',
+            'work_experience'=>'',
             'languages'=> 'required',
         ];
     }

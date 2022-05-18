@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContractSeeder::class);
         $this->call(ExperienceSeeder::class);
         $this->call(SurveySeeder::class);
+        $this->call(SkillSeeder::class);
 
         // \App\Models\User::factory(10)->create();
     }

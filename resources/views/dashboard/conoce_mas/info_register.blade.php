@@ -1,7 +1,7 @@
 @extends('dashboard.master')
 
 @section('content')
-    <div class="container">
+    <div class="container bg-light">
         <div class="row justify-content-around mt-5">
             <p class="text-center fw-bold fs-1" style="color: #0069A3">!Elije un tipo de usuario para registrar!</p>
 

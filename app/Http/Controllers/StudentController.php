@@ -6,8 +6,10 @@ use App\Models\Student;
 use App\Models\User;
 use App\Models\Survey;
 use App\Models\Contract;
+use App\Models\Skill;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StudentRequest;
+use App\Http\Requests\UserRequest;
 use Helpers\auxCode;
 
 use Illuminate\Http\Request;
@@ -34,8 +36,9 @@ class StudentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('dashboard.students.create');
+    {   
+        $skills = Skill::pluck('id','skill');
+        return view('dashboard.students.create', ['skills'=>$skills]);
     }
 
     /**
@@ -44,9 +47,36 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(StudentRequest $request, UserRequest $request2)
+    {     
+        try {
+            $user = User::create($request2->validated());
+            $user->password = Hash::make($request->document);
+
+            if ($request->hasFile('avatar')) {
+                $file = $request->file('avatar');
+                $name = time().$file->getClientOriginalName();
+                $file->move(public_path().'/images/employers-profile/', $name); 
+                $user -> avatar = $name;
+            }
+            $user->save();
+        
+            $student = new Student();
+            $student->id_user=$user->id;
+            $student->fill($request->validated());
+            $student->save();
+        } catch(\Illuminate\Database\QueryException $ex){
+            
+            return back()->with('status','La solicitud no fue aceptada');
+          }
+        for ($i=0; $i <sizeof($skills); $i++) { 
+            if($request->skill.$i !== null){
+                $skill = new Skill();
+                $skill->id_student = $student->id;
+                $skill->id_skill = $request->skill.$i;
+            }
+        }  
+        return redirect()->route('student.show',[$user->id]);
     }
 
     /**
