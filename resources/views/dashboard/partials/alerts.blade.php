@@ -128,3 +128,13 @@
         )
     </script>
 @endif
+
+@if (session('solicitud') == 'sended')
+<script>
+     Swal.fire(
+            '¡Solicituda enviada!',
+            'Su solicitud será revisada por el administrador.',
+            'success'
+        )
+</script>
+@endif

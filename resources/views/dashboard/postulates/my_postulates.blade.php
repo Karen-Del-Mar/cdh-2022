@@ -11,6 +11,7 @@
                     <th scope="col">Correo</th>
                     <th scope="col">Vacante</th>
                     <th scope="col">Perfil requerido</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>

@@ -23,8 +23,16 @@ class StudentRequest extends FormRequest
      */
     public function rules()
     {
-        return [          
-            'gender' => 'required',
+        return [
+            'document' => 'required',
+            'name' => 'required',
+            'email'=> 'required',
+            'avatar' => 'image',
+            'phone' => 'required',
+            'rol_id'=>'required',
+           // 'password'=>'required',
+            'id_user'=> '',          
+            'gender' => '',
             'eps' => 'required',
             'blood_type' => 'required',
             'birthday' => 'required',
@@ -34,14 +42,11 @@ class StudentRequest extends FormRequest
             //'job_skills' => 'required',
             'basic_tools'=> 'required',
             'work_experience'=>'',
-            'languages'=> 'required',
-        ];
-    }
-    public function messages(){
-        return [
-            'gender.required' => 'Es necesario ingresar el campo del genero', 
-            'blood_typer.required' => 'Es necesario seleccionar un tipo sanguineo', 
-            'eps.required' => 'Es necesario ingresar el campo de la EPS',
+            'languages'=>'required',
+            'skill1'=>'',
+            'skill2'=>'',
+            'skill2'=>'',
+            'skill4'=>'',
         ];
     }
 }

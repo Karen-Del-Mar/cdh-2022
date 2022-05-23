@@ -7,9 +7,11 @@ use App\Models\User;
 use App\Models\Survey;
 use App\Models\Contract;
 use App\Models\Skill;
+use App\Models\Skillsstudent;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 use Helpers\auxCode;
 
 use Illuminate\Http\Request;
@@ -47,16 +49,16 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StudentRequest $request, UserRequest $request2)
-    {     
+    public function store(StudentRequest $request)
+    {   
         try {
-            $user = User::create($request2->validated());
+            $user = User::create($request->validated());
             $user->password = Hash::make($request->document);
 
             if ($request->hasFile('avatar')) {
                 $file = $request->file('avatar');
                 $name = time().$file->getClientOriginalName();
-                $file->move(public_path().'/images/employers-profile/', $name); 
+                $file->move(public_path().'/images/students-profiles/', $name); 
                 $user -> avatar = $name;
             }
             $user->save();
@@ -67,16 +69,20 @@ class StudentController extends Controller
             $student->save();
         } catch(\Illuminate\Database\QueryException $ex){
             
-            return back()->with('status','La solicitud no fue aceptada');
+            return back()->with('status','La solicitud no fue aceptada, verifique los datos ingresados');
           }
-        for ($i=0; $i <sizeof($skills); $i++) { 
-            if($request->skill.$i !== null){
-                $skill = new Skill();
-                $skill->id_student = $student->id;
-                $skill->id_skill = $request->skill.$i;
-            }
-        }  
-        return redirect()->route('student.show',[$user->id]);
+          $skills = Skill::get()->count();
+       
+          for ($i=1; $i <=$skills; $i++) { 
+              $n = "skill".$i;
+              if($request->$n !== null){
+                  $skill = new Skillsstudent(); 
+                  $skill->id_student = $student->id;
+                  $skill->id_skill = $request->skill.$i;
+                  $skill->save();
+              }
+         }   
+        return redirect()->route('login')->with('status','Usuario registrado, inicie sesión con correo y número de documento');
     }
 
     /**
@@ -101,8 +107,11 @@ class StudentController extends Controller
                         ->select('employers.company')->get())[0];
             $company = $empleo -> company;
         }
+        $studentSkills = (Skillsstudent::where('id_student',$student->id)
+                                    ->join('skills', 'skills.id','skillsstudents.id_skill')
+                                    ->select('skills.skill')->get());
 
-        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas, 'count'=>$count,'empleo'=>$company  ]);
+        return view('dashboard.students.show',['user'=>$user, 'student'=>$student, 'datas'=>$datas, 'count'=>$count,'empleo'=>$company, 'job_skills'=>$studentSkills]);
     }
 
     /**
@@ -117,7 +126,9 @@ class StudentController extends Controller
         
         $student = (Student::where('id_user', $id)->get())[0];
 
-        return view('dashboard.students.edit',['user'=>$user, 'student'=>$student]); 
+        $skills = Skill::pluck('id','skill');
+
+        return view('dashboard.students.edit',['user'=>$user, 'student'=>$student, "skills"=>$skills]); 
     }
 
     /**
@@ -127,14 +138,26 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreUserRequest $request, StudentRequest $request2, $id)
+    public function update(StudentRequest $request, $id)
     {
         $user = (User::where('id', $id)->get())[0];
         
         $student = (Student::where('id_user', $id)->get())[0];
 
         $user->update($request->validated());
-        $student->update($request2->validated());
+        $student->update($request->validated());
+
+        $skills = Skill::get()->count();
+       
+        for ($i=1; $i <=$skills; $i++) { 
+            $n = "skill".$i;
+            if($request->$n !== null){
+                $skill = new Skillsstudent(); 
+                $skill->id_student = $student->id;
+                $skill->id_skill = $request->skill.$i;
+                $skill->save();
+            }
+       }   
 
         return back()->with('status','Perfil actualizado con éxito');
     }

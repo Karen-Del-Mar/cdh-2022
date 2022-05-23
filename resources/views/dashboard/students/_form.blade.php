@@ -7,7 +7,13 @@
                 <div class="input-group mb-3">
                     <img width="100px" src="{{ asset('images/students-profiles/avatardefault.png') }}">
                     <i class="bi bi-camera p-2"></i>
-                    <input type="file" class="form-control" id="avatar" name="avatar" required>
+                    <input type="file" class="form-control @error('name') is-invalid @enderror" id="avatar"
+                        name="avatar">
+                    @error('avatar')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
 
@@ -17,7 +23,7 @@
 
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                        value="" required autocomplete="name" autofocus>
+                        value="" autocomplete="name" autofocus>
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -35,7 +41,7 @@
 
                 <div class="col-md-6">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                        name="email" value="" required autocomplete="email">
+                        name="email" value="" autocomplete="email">
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -49,16 +55,29 @@
                 <div class="col">
                     <label for="document_type" class="form-label">Tipo de
                         documento </label>
-                    <select class="form-control" name="gender" id="gender">
+                    <select class="form-control @error('document_type') is-invalid @enderror" name="document_type"
+                        id="document_type">
                         <option value=""></option>
                         @include('dashboard/partials/options_document', [
                             'val' => 'C.C',
                         ])
                     </select>
+                    @error('document_type')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="col">
                     <label for="name" class="form-label">Numero documento</label>
-                    <input type="number" name="document" id="document" class="form-control" value="" />
+                    <input type="number" name="document" id="document"
+                        class="form-control @error('document') is-invalid @enderror" value="" />
+
+                    @error('document')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
 
@@ -66,7 +85,13 @@
                 <label for="phone" class="form-label col-md-4 col-form-label text-md-right">Telefono <span
                         class="required">*</span></label>
                 <div class="col-md-6">
-                    <input type="number" name="phone" id="phone" class="form-control" value="" />
+                    <input type="number" name="phone" id="phone"
+                        class="form-control @error('phone') is-invalid @enderror" value="" />
+                    @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
 
@@ -83,12 +108,17 @@
                     <label>Género <span class="required">*</span></label>
                 </div>
                 <div class="col-md-6 mb-2">
-                    <select class="form-control" name="gender" id="gender">
+                    <select class="form-control @error('gender') is-invalid @enderror" name="gender" id="gender">
                         <option value=""></option>
                         @include('dashboard/partials/option-gender', [
                             'val' => 'mujer',
                         ])
                     </select>
+                    @error('gender')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
 
@@ -97,18 +127,31 @@
 
                 <div class="col">
                     <label for="eps" class="form-label">EPS <span class="required">*</span></label>
-                    <input type="text" name="eps" id="eps" class="form-control" value="" />
+                    <input type="text" name="eps" id="eps" class="form-control @error('eps') is-invalid @enderror"
+                        value="" />
+                    @error('eps')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="col">
-                    <label  for="blood_type" class="form-label">Tipo de sangre  <span class="required">*</span></label>
-               
-                    <select class="form-control" name="blood_type" id="blood_type">
+                    <label for="blood_type" class="form-label">Tipo de sangre <span
+                            class="required">*</span></label>
+
+                    <select class="form-control @error('blood_type') is-invalid @enderror" name="blood_type"
+                        id="blood_type">
                         <option value=""></option>
                         @include('dashboard.partials.blood-type', [
                             'val' => 'O+',
                         ])
                     </select>
+                    @error('blood_type')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
             </div>
@@ -117,7 +160,13 @@
                 <label for="birthday" class="form-label col-md-4 col-form-label text-md-right">Fecha de nacimiento <span
                         class="required">*</span></label>
                 <div class="col-md-6">
-                    <input type="date" name="birthday" id="birthday" class="form-control" value="" />
+                    <input type="date" name="birthday" id="birthday"
+                        class="form-control @error('birthday') is-invalid @enderror" value="" />
+                    @error('birthday')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
 
@@ -142,7 +191,8 @@
                             <label>Carrera <span class="required">*</span></label>
                         </div>
                         <div class="col">
-                            <select class="form-control" name="career" id="career">
+                            <select class="form-control @error('career') is-invalid @enderror" name="career"
+                                id="career">
                                 <option value=""></option>
                                 @include('dashboard.partials.careers', [
                                     'val' => 'Ing. Sistemas',
@@ -153,20 +203,38 @@
 
                     <div class="col">
                         <label for="name" class="form-label">Promedio <span class="required">*</span></label>
-                        <input type="number" name="average" id="average" class="form-control" value="" />
+                        <input type="number" name="average" id="average"
+                            class="form-control @error('average') is-invalid @enderror" value="" />
+                        @error('average')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="col">
                         <label for="name" class="form-label">Semestre actual <span
                                 class="required">*</span></label>
-                        <input type="number" name="semester" id="semester" class="form-control" value="" />
+                        <input type="number" name="semester" id="semester"
+                            class="form-control @error('semester') is-invalid @enderror" value="" />
+                        @error('semester')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row center">
                     <div class="col">
-                        <label for="job_skills" class="form-label">Perfil <span
+                        <label for="basic_tools" class="form-label">Perfil <span
                                 class="required">*</span></label>
-                        <textarea class="form-control" name="basic_tools" id="basic_tools" cols="30" rows="4"
+                        <textarea class="form-control @error('basic_tools') is-invalid @enderror" name="basic_tools" id="basic_tools" cols="30"
+                            rows="4"
                             placeholder="Describa su perfil y conocimientos, ej: Manejo de herramientas ofimaticas"></textarea>
+                        @error('basic_tools')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="row center">
@@ -181,8 +249,13 @@
                     <div class="col">
                         <label for="languages" class="form-label">Idiomas <span
                                 class="required">*</span></label>
-                        <textarea class="form-control" name="languages" id="languages" cols="30" rows="2"
-                            placeholder="Lectura % - Escucha % - Habla %"></textarea>
+                        <textarea class="form-control @error('languages') is-invalid @enderror" name="languages" id="languages" cols="30"
+                            rows="2" placeholder="Lectura % - Escucha % - Habla %"></textarea>
+                        @error('languages')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
 
@@ -194,8 +267,15 @@
         <div class="mx-auto mb-3">
             <div class="form-group">
                 <a href="{{ URL::previous() }}" class="btn btn-danger btn-sm">Cancelar</a>
+                {{-- <a href="{{ route('login') }}" class="btn btn-success btn-sm">Registrar</a> --}}
                 <button type="submit" class="btn btn-success btn-sm">Registrar</button>
             </div>
         </div>
     </div>
 </div>
+<style>
+    .required {
+        color: red;
+    }
+
+</style>

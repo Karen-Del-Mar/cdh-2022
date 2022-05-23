@@ -38,7 +38,7 @@ class SolicitudeController extends Controller
     public function store(SolicitudeRequest $request)
     {  
         Solicitude::create($request ->validated());
-        return back()->with('status','Empresa registrada para revisión');
+        return back()->with('solicitud','sended');
     }
 
     /**

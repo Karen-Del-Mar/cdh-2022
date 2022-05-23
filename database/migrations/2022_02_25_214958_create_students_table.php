@@ -31,7 +31,7 @@ class CreateStudentsTable extends Migration
             $table->text('work_experience', 7000)->nullable(); // mostrar formato segun cv en canva
             $table->text('languages', 7000)->nullable();
             $table->text('basic_tools', 7000)->nullable();
-            $table->float('score')->nullable();
+            $table->float('score')->nullable()->default(0.0);
             $table->boolean('hidden')->default(false);
             $table->timestamps();
 

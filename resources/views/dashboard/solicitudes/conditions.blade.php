@@ -61,7 +61,9 @@
 
                                 <li>Realiza el contrato</li>
                                 <p>
-                                    Elije el candidato que mejor se adapte al perfil buscado
+                                    Elije el candidato que mejor se adapte al perfil buscado.  
+                                    La contratación va por parte de la empresa, si es por horas, la universidad pone el seguro, 
+                                    si es por tiempo completo la empresa paga prestaciones. 
                                 </p>
                             </ul>
                         </div>

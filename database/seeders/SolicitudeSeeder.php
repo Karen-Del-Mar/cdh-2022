@@ -16,7 +16,7 @@ class SolicitudeSeeder extends Seeder
     {
         Solicitude::create([
             'document'=>'12345601',
-            'name'=> 'Patrick',
+            'name'=> 'Patrick Smith Boyce',
             'email' =>'unpatrick@autonoma.edu.co',
             'company'=>'Valkiria',
             'location' => 'Av. Santander #56-25',

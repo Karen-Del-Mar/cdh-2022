@@ -21,20 +21,32 @@
                         {{-- <button class="btn btn-primary btn-sm follow">Aceptar</button> --}}
                         <div class="d-flex justify-content-between align-items-center mt-4 px-4">
                             <div class="stats">
-                                <h6 class="mb-0">Valoración</h6> <span>{{ $student->score }}</span>
+                                <h6 class="mb-0">Valoración</h6>
+                                @if ($student->score !== null)
+                                    <span>{{ $student->score }}</span>
+                                @else
+                                    <p> {{ $count }} opiniones </p>
+                                @endif
+
                             </div>
                             <div class="stats">
                                 <h6 class="mb-0">Semestre actual</h6> <span> {{ $student->semester }} </span>
                             </div>
-                            @if (auth()->user()->rol_id == 1)
-                                <div class="stats">
+                            @if (Auth::guest())
+                                <a href="/login" class="hidden"></a>
+                            @else
+                                @if (auth()->user()->rol_id == 1)
+                                    <div class="stats">
 
-                                    <h6 class="mb-0">Promedio</h6> <span>{{ $student->average }}</span>
+                                        <h6 class="mb-0">Promedio</h6> <span>{{ $student->average }}</span>
 
-                                </div>
+                                    </div>
+                                @endif
                             @endif
                         </div>
-                        <label class="badge rounded-pill bg-success">{{$student->state}} {{$empleo}}</label>
+                        <div class="mb-1">
+                            <label class="badge rounded-pill bg-success">{{ $student->state }} {{ $empleo }}</label>
+                        </div>
                     </div>
                 </div>
                 <!---->
@@ -57,7 +69,9 @@
             <div class="card w-75">
                 <div class="card-body">
                     <h5 class="card-title" style="color:#0069A3">Habilidades</h5>
-                    <p class="card-text badge rounded-pill bg-secondary">{{ $student->job_skills }}</p>
+                    @foreach ($job_skills as $skill)
+                        <p class="card-text badge rounded-pill bg-secondary">{{ $skill->skill }}</p>
+                    @endforeach
                 </div>
             </div>
             <br>
@@ -74,9 +88,9 @@
             </div>
             <div class="card w-75">
                 <div class="card-body">
-                    <h5 class="card-title" style="color:#0069A3">Formación adicional</h5>
-                    <p class="card-text me-3 fw-bold" style="">Herramientas ofimaticas</p>
-                    <p class="card-text">{{ $student->office_tools }}</p>
+                    <h5 class="card-title" style="color:#0069A3">Perfil</h5>
+                    {{-- <p class="card-text me-3 fw-bold" style="">Herramientas ofimaticas</p> --}}
+                    <p class="card-text">{{ $student->basic_tools }}</p>
                     <p class="card-text me-3 fw-bold" style="">Idiomas</p>
                     <p class="card-text">{{ $student->languages }}</p>
                 </div>
@@ -104,7 +118,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card w-75">
                 <div class="card-body">
                     <h5 class="card-title">Valoración</h5>
@@ -116,11 +130,11 @@
                         <div class="m-auto">
                             <h1 class="m-auto">{{ $student->score }}</h1>
                             <span class="bi bi-star">
-                            <span class="bi bi-star">
-                            <span class="bi bi-star">
-                            <span class="bi bi-star">
-                            <span class="bi bi-star">
-                            <p> {{ $count }} opiniones</p>
+                                <span class="bi bi-star">
+                                    <span class="bi bi-star">
+                                        <span class="bi bi-star">
+                                            <span class="bi bi-star">
+                                                <p> {{ $count }} opiniones</p>
                         </div>
                     </div>
                 </div>
@@ -129,7 +143,6 @@
         </div>
 
     </div>
-
 @endsection
 
 <style>

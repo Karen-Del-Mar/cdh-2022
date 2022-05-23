@@ -1,8 +1,8 @@
 @csrf
 @include('dashboard.partials.validation-error')
-<div class="container py-4">
+<div class="container py-2 col-lg-5 col-md-5 col-sm-12">
     <div class="p-5 mb-3 bg-light rounded-3">
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-3">
             <h4>
                 <p style="color: #0069A3;; text-align: center;">
                     Crear una cuenta de empleador
@@ -65,3 +65,10 @@
     </div>
 
 </div>
+
+<style>
+    .required {
+        color: red;
+    }
+
+</style>

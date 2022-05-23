@@ -19,17 +19,12 @@
                 <div class="row">
                     <div class="col">
                         <h1 class="titles">Misión</h1>
-                        <p class="text-p">Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua</p>
+                        <p class="text-p">Cadena de Honor es un programa que orienta a los estudiantes que necesitan ingresos economicos adicionales en actividades laborales presenciales 
+                            o virtuales en Manizales y en la región. </p>
                     </div>
                     <div class="col">
                         <h1 class="titles">Visión</h1>
-                        <p class="text-p">Lorem ipsum dolor sit amet,
-                            consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore
-                            et dolore magna aliqua</p>
+                        <p class="text-p">En dos años queremos ser un programa que pueda solucionar un 50% de las solicitudes de empleo de los estudiantes</p>
                     </div>
                 </div>
             </div>
@@ -56,7 +51,7 @@
                         </a>
                     </div>
                     <div class="col info backcolor">
-                        <a href="" style="text-decoration: none;">
+                        <a href="{{ route('student.create') }}" style="text-decoration: none;">
                             <h2 class="titles-2">Estudiante</h2>
                             <p class="text-p">
                                 Conoce una oportunidad

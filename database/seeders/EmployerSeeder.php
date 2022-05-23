@@ -23,6 +23,7 @@ class EmployerSeeder extends Seeder
             'description' => 'En Grupo SELF S.A.S. buscamos personas apasionadas y comprometidas con su labor para que hagan parte del mejor equipo de trabajo. Si cuentas con las siguientes características, envíanos tu hoja de vida.',
             'score'=>4.5,
             'hidden' => false,
+            'created_at' => '2022-04-21 12:12:24'
         ]);
 
 
@@ -34,6 +35,7 @@ class EmployerSeeder extends Seeder
             'description' => 'Somos una empresa de servicios y alimentos que busca crecer y consolidarse como una cadena especializada en pollo, con un amplio menú, con marcas bien posicionadas en el mercado nacional que brinda experiencias agradables atendiendo las necesidades de sus clientes.',
             'score'=>4.8,
             'hidden' => false,
+            'created_at' => '2022-05-21 12:12:24'
         ]);
 
         Employer::create([
@@ -44,6 +46,27 @@ class EmployerSeeder extends Seeder
             'description' => 'Un lugar para pasar un rato agradable con comida deliciosa',
             'score'=>3.7,
             'hidden' => true,
+            'created_at' => '2022-05-21 12:12:24'
+        ]);
+        Employer::create([
+            'id_user'=>'9',
+            'company'=>'Asociación andina',
+            'location' => 'Cll 10 # 50 - 2 Milán',
+            'Sector'=>'Tecnología',
+            'description' => 'Un lugar para pasar un rato agradable con comida deliciosa',
+            'score'=>3.7,
+            'hidden' => true,
+            'created_at' => '2022-05-21 12:12:24'
+        ]);
+        Employer::create([
+            'id_user'=>'10',
+            'company'=>'Asociación andina',
+            'location' => 'Cll 10 # 50 - 2 Milán',
+            'Sector'=>'Restaurante',
+            'description' => 'Un lugar para pasar un rato agradable con comida deliciosa',
+            'score'=>3.7,
+            'hidden' => true,
+            'created_at' => '2022-04-21 12:12:24'
         ]);
     }
 }

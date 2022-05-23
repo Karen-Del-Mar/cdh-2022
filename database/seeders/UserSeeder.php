@@ -94,14 +94,14 @@ class UserSeeder extends Seeder
         ]);
 
         /** Para visualizar el bar chart */
-
+        /** 8 */
         User::create([
             'document'=>'20220521',
             'name'=> 'Usuario prueba 1',
             'email' =>'up1@hotmail.com',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204900',
-            'avatar'=>'entertainment-profile.svg',
+            'avatar'=>'student-profile-1.jpg',
             'rol_id' => '3',
             'created_at' => '2022-03-21 12:12:24'
         ]);
@@ -111,7 +111,7 @@ class UserSeeder extends Seeder
             'email' =>'up2@hotmail.com',
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204900',
-            'avatar'=>'entertainment-profile.svg',
+            'avatar'=>'student-profile2.jpg',
             'rol_id' => '3',
             'created_at' => '2022-02-21 12:12:24'
         ]);
@@ -122,7 +122,7 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('12345678'),
             'phone'=>'3105204900',
             'avatar'=>'entertainment-profile.svg',
-            'rol_id' => '3',
+            'rol_id' => '2',
             'created_at' => '2022-03-21 12:12:24'
         ]);
     }
