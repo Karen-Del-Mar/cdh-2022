@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\User;
 use App\Models\Vacancy;
 use App\Models\Survey;
+use App\Models\Skillsstudent;
 use Helpers\auxCode;
 use Illuminate\Http\Request;
 
@@ -80,7 +81,11 @@ class PostulateController extends Controller
 
         $count= Survey::where('receiver','=',$student->id_user)->get()->count();
 
-        return view('dashboard.postulates.show',['user'=>$user,'vacancy'=>$vacancy,'postulate'=>$postulate, 'student'=>$student, 'datas'=>$datas, 'count'=>$count, 'empleo'=>null]);
+        $studentSkills = (Skillsstudent::where('id_student',$student->id)
+        ->join('skills', 'skills.id','skillsstudents.id_skill')
+        ->select('skills.skill')->get());
+
+        return view('dashboard.postulates.show',['user'=>$user,'vacancy'=>$vacancy,'postulate'=>$postulate, 'student'=>$student, 'datas'=>$datas, 'count'=>$count, 'empleo'=>null, 'job_skills'=>$studentSkills]);
     }
 
     /**

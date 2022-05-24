@@ -1,6 +1,6 @@
 @include('dashboard.students.show')
 
-
+<footer class="fixed-bottom bg-light">
 
 <div class="container d-flex justify-content-center align-items-center">
     <div class="mx-auto mb-4">
@@ -28,7 +28,7 @@
     </div>
 
 </div>
-
+</footer>
 <script>
     $('.formulario-eliminar-post').submit(function(e) {
         e.preventDefault();

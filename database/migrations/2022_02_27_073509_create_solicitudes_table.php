@@ -21,7 +21,7 @@ class CreateSolicitudesTable extends Migration
             $table->string('company', 80);
             $table->string('location', 50);
             $table->string('phone', 10);
-            $table->enum('sector', ['Restaurante', 'Bar','Comercio', 'Entretenimiento', 'Atención al cliente', 'Marketing', 'Otro'])->nullable();
+            $table->enum('sector', ['Restaurante', 'Bar','Comercio', 'Entretenimiento', 'Atención al cliente', 'Marketing','Tecnología', 'Otro'])->nullable();
             $table->string('description', 8000);
 
             // Estado: 1 => solicitud pendiente

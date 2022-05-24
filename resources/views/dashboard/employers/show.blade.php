@@ -7,7 +7,7 @@
         <div class="d-flex flex-md-row justify-content-around align-items-center">
 
             <div class="d-flex flex-md-row align-items-center">
-                <div class="p-md-2">
+                <div class="p-md-1">
                     <img src="{{ asset('images/employers-profile/' . $user->avatar) }}" alt="" id="profile"
                         class="img-fluid">
                 </div>
